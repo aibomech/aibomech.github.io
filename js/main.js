@@ -76,3 +76,24 @@ function loadFullBlog2() {
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
 }
+
+// TO OPEN BLOGS FROM NAV BAR 
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash === '#blog') {
+    const blogSection = document.getElementById('blog');
+    if (blogSection) {
+      blogSection.scrollIntoView({ behavior: 'smooth' });
+
+      const btn1 = document.querySelector('button[onclick="toggleBlog(event)"]');
+      if (btn1 && btn1.innerText === 'Read More...') {
+        toggleBlog({ target: btn1 });
+      }
+
+      const btn2 = document.querySelector('button[onclick="toggleBlog2(event)"]');
+      if (btn2 && btn2.innerText === 'Read More...') {
+        toggleBlog2({ target: btn2 });
+      }
+    }
+  }
+});
