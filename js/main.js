@@ -33,17 +33,21 @@ function loadFullBlog(blog) {
   }
 
   if (blogFile !== '') {
-    fetch(blogFile)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then(data => {
-        document.getElementById('full-' + blog).innerHTML = data;
-      })
-      .catch(error => console.error('Failed to load full blog:', error));
+    // Only load the blog content if it's not already loaded
+    const blogContent = document.getElementById('full-' + blog);
+    if (blogContent.innerHTML.trim() === '') {
+      fetch(blogFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('full-' + blog).innerHTML = data;
+        })
+        .catch(error => console.error('Failed to load full blog:', error));
+    }
   }
 }
 
