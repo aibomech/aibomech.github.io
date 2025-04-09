@@ -4,23 +4,27 @@ function toggleBlog(event) {
   const blogContent = document.getElementById('full-blog');
   const button = event.target;  // Get the clicked button
 
-  // Toggle the visibility of the full blog content
+  // Check if the blog content is currently visible
   if (isBlogVisible) {
-    blogContent.style.display = 'none';  // Hide the content
-    button.innerText = 'Read More...';  // Change button text to 'Read More'
+    // Hide the content and change the button text
+    blogContent.style.display = 'none';
+    button.innerText = 'Read More...';
   } else {
-    loadFullBlog();  // Load the full blog content if not already loaded
-    blogContent.style.display = 'block';  // Show the content
-    button.innerText = 'Read Less...';  // Change button text to 'Read Less'
+    // If the content is not visible, load and show the content, change the button text
+    loadFullBlog();
+    blogContent.style.display = 'block';
+    button.innerText = 'Read Less...';
   }
 
-  isBlogVisible = !isBlogVisible;  // Toggle visibility state
+  // Toggle visibility state
+  isBlogVisible = !isBlogVisible;
 }
 
 function loadFullBlog() {
-  // Check if content is already loaded to avoid fetching multiple times
-  if (document.getElementById('full-blog').innerHTML.trim() === '') {
-    fetch('blogs/blog1.html')  // Update with your actual blog content path
+  // Only load the content if it's not already loaded
+  const blogContent = document.getElementById('full-blog');
+  if (blogContent.innerHTML.trim() === '') {
+    fetch('blogs/blog1.html')  // Update the path as needed
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -28,7 +32,7 @@ function loadFullBlog() {
         return response.text();
       })
       .then(data => {
-        document.getElementById('full-blog').innerHTML = data;  // Insert blog content
+        blogContent.innerHTML = data;  // Insert blog content into the div
       })
       .catch(error => console.error('Failed to load full blog:', error));
   }
