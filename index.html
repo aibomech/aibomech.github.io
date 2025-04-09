@@ -56,24 +56,27 @@
     <!-- <p>Robotics Engineer & ROS Developer | Researcher in Mobile Robotics, Computer Vision, and SLAM, Mechatronics</p> -->
 
     <h2 id="Aibomech Lab"> AIBOMECH LAB</h2>
-    <p>Welcome to the AIBOMECH Lab, where I share my latest projects, blogs, and publications in robotics and AIIII.</p>
+    <p>Welcome to the AIBOMECH Lab, where I share my latest projects, blogs, and publications in robotics and AI</p>
 
     <h2 id="projects"> Projects</h2>
     <div>
 
     </div>
-    <div>
-    
-      <h2 id="blog">Blog</h2>
-      <div id="blog-container">
-        <!-- Blog preview content will be loaded here -->
-        <div class="blog-preview">
-          <h3>Robot Kinematics & Dynamics: Basic Definitions and Design</h3>
-          <p>To build a robot arm that works in real life, we must first understand how it moves and how its parts work together...</p>
-          <button onclick="loadFullBlog()" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-          <div id="full-blog" style="display: none; margin-top: 10px;"></div>
-        </div>
-      </div> 
+  <div>
+    <h2 id="blog">Blog</h2>
+    <div id="blog-container">
+      <!-- Blog preview content will be loaded here -->
+      <div class="blog-preview">
+        <h3>Robot Kinematics & Dynamics: Basic Definitions and Design</h3>
+        <p>To build a robot arm that works in real life, we must first understand how it moves and how its parts work together...</p>
+        <button onclick="toggleBlog(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
+        <div id="full-blog" style="display: none; margin-top: 10px;"></div>
+      </div>
+    </div>
+  
+
+
+
 
     <h2 id="publications"> Publications</h2>
     <div>
@@ -94,24 +97,9 @@
   </div>
 
   <script src="js/main.js"></script>
-  <script>
-    function loadFullBlog() {
-  fetch('blogs/blog1.html')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.text();
-    })
-    .then(data => {
-      console.log(data);  // Log the fetched content
-      document.getElementById('full-blog').innerHTML = data;
-      document.getElementById('full-blog').style.display = 'block';
-    })
-    .catch(error => console.error('Failed to load full blog:', error));
-}
 
-    </script>
+
+ 
     
   
 </body>
