@@ -167,14 +167,9 @@ i {
   background-color: #007acc;
 }
 
-.nav-item:hover .dropdown-menu {
+/* .nav-item:hover .dropdown-menu {
   display: block;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+} */
 
 /* .blog-preview {
   border: 1px solid #ddd;
