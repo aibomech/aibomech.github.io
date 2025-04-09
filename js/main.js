@@ -1,20 +1,4 @@
-// Wait for DOM to load
-window.addEventListener('DOMContentLoaded', () => {
-  const blogLink = document.querySelector('a[href="#blog"]');  // Get the Blog navigation link
-  const blogSection = document.getElementById('blog-container');  // Blog container section
-  
-  // Check if the current URL is pointing to #blog
-  if (window.location.hash === '#blog') {
-    blogSection.style.display = 'block'; // Show the Blog section
-  }
 
-  // Scroll and show the blog section when clicking on the Blog link
-  blogLink.addEventListener('click', (event) => {
-    setTimeout(() => {  // Delay showing the Blog section until after the scroll
-      blogSection.style.display = 'block'; // Show Blog section after scroll
-    }, 500);  // Delay to ensure smooth scroll completes
-  });
-});
 
 
 let isBlogVisible = false;
