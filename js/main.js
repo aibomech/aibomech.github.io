@@ -1,3 +1,22 @@
+// Wait for DOM to load
+window.addEventListener('DOMContentLoaded', () => {
+  const blogLink = document.querySelector('a[href="#blog"]');  // Get the Blog navigation link
+  const blogSection = document.getElementById('blog-container');  // Blog container section
+  
+  // Check if the current URL is pointing to #blog
+  if (window.location.hash === '#blog') {
+    blogSection.style.display = 'block'; // Show the Blog section
+  }
+
+  // Scroll and show the blog section when clicking on the Blog link
+  blogLink.addEventListener('click', (event) => {
+    setTimeout(() => {  // Delay showing the Blog section until after the scroll
+      blogSection.style.display = 'block'; // Show Blog section after scroll
+    }, 500);  // Delay to ensure smooth scroll completes
+  });
+});
+
+
 let isBlogVisible = false;
 let isBlog2Visible = false;
 
@@ -77,23 +96,3 @@ function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
 }
 
-// TO OPEN BLOGS FROM NAV BAR 
-window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (hash === '#blog') {
-    const blogSection = document.getElementById('blog');
-    if (blogSection) {
-      blogSection.scrollIntoView({ behavior: 'smooth' });
-
-      const btn1 = document.querySelector('button[onclick="toggleBlog(event)"]');
-      if (btn1 && btn1.innerText === 'Read More...') {
-        toggleBlog({ target: btn1 });
-      }
-
-      const btn2 = document.querySelector('button[onclick="toggleBlog2(event)"]');
-      if (btn2 && btn2.innerText === 'Read More...') {
-        toggleBlog2({ target: btn2 });
-      }
-    }
-  }
-});

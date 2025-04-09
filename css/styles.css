@@ -171,6 +171,11 @@ i {
   display: block;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 /* .blog-preview {
   border: 1px solid #ddd;
   padding: 16px;
