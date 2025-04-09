@@ -1,0 +1,279 @@
+/* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  background-color: #000000;
+  color: white;
+}
+
+/* Header Styles */
+header {
+  background-color: black;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  color: #007acc;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+/* List Styles */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 1rem 0;
+}
+
+i {
+  margin-right: 0.5rem;
+}
+
+/* Content Styles */
+.content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.content h2 {
+  margin-top: 2rem;
+}
+
+.content p {
+  font-size: 1.1rem;
+}
+
+/* Social Icon Styles */
+.social-icons i {
+  margin-right: 10px;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode button {
+  background-color: #444;
+  color: white;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  height: 70px; /* Set navbar height */
+  padding: 1rem 2rem;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/* Navbar Left (logo and links) */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-left a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-left: -40px; /* Adjust position of logo */
+}
+
+/* Navbar Right (social icons) */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  margin-left: 15px;
+}
+
+.social-icons a {
+  color: white;
+  margin-left: 15px;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #007acc;
+}
+
+/* Dropdown Menu (for navbar items) */
+.nav-item {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  min-width: 180px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  background-color: #444;
+}
+
+.dropdown-menu a:hover {
+  background-color: #007acc;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* .blog-preview {
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.blog-preview h3 {
+  margin-top: 0;
+}
+
+.blog-preview a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: bold;
+} */
+
+
+/* Responsive Design mobile layout*/
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    height: auto;
+  }
+
+  .logo {
+    width: 100px; /* smaller logo */
+    margin: 0;
+  }
+
+  .nav-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-left a {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .social-icons a {
+    font-size: 18px; /* smaller icons */
+    margin-left: 8px;
+  }
+
+  .dropdown-menu {
+    display: none;
+  }
+
+  .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+
+
+/* Tablet Layout (max-width: 1024px and min-width: 768px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-left a {
+    margin-right: 15px;
+    font-size: 16px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .nav-right {
+    margin-left: 20px;
+  }
+}
+
+/* Desktop Layout (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .nav-left a {
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 250px;
+  }
+}
+
+
