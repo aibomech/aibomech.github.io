@@ -148,10 +148,10 @@ function loadFullBlog4() {
   }
 }
 
-// loadFulltogglemicrocotroller
+
 // micorcontrooler Toggle
-function togglemicrocotroller(event) {
-  const blogContent = document.getElementById('full-microcotroller');
+function togglemicrocontroller(event) {
+  const blogContent = document.getElementById('full-microcontroller');
   const button = event.target;
 
   if (ismicrocotrollerVisible) {
@@ -160,13 +160,13 @@ function togglemicrocotroller(event) {
   } else {
     blogContent.style.display = 'block';
     button.innerText = 'Read Less...';
-    loadFulltogglemicrocotroller();
+    loadFullmicrocontroller();
   }
 
-  loadFulltogglemicrocotroller = !loadFulltogglemicrocotroller;
+  ismicrocotrollerVisible = !ismicrocotrollerVisible;
 }
 
-function loadFulltogglemicrocotroller() {
+function loadFullmicrocontroller() {
   const blogContent = document.getElementById('full-micorcontrooler');
   if (blogContent.innerHTML.trim() === '') {
     blogContent.innerHTML = '<p>Loading...</p>';
