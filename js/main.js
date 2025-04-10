@@ -2,7 +2,7 @@ let isBlogVisible = false;
 let isBlog2Visible = false;
 let isBlog3Visible = false;
 let isBlog4Visible=false;
-let ismicrocotrollerVisible=false;
+let isBlog5Visible=false;
 // Blog 1 Toggle
 function toggleBlog(event) {
   const blogContent = document.getElementById('full-blog');
@@ -149,28 +149,28 @@ function loadFullBlog4() {
 }
 
 
-// micorcontrooler Toggle
-function togglemicrocontroller(event) {
-  const blogContent = document.getElementById('full-microcontroller');
+// Blog 5 Toggle
+function toggleBlog5(event) {
+  const blogContent = document.getElementById('full-blog5');
   const button = event.target;
 
-  if (ismicrocotrollerVisible) {
+  if (isBlog5Visible) {
     blogContent.style.display = 'none';
     button.innerText = 'Read More...';
   } else {
     blogContent.style.display = 'block';
     button.innerText = 'Read Less...';
-    loadFullmicrocontroller();
+    loadFullBlog4();
   }
 
-  ismicrocotrollerVisible = !ismicrocotrollerVisible;
+  isBlog5Visible = !isBlog5Visible;
 }
 
-function loadFullmicrocontroller() {
-  const blogContent = document.getElementById('full-micorcontrooler');
+function loadFullBlog5() {
+  const blogContent = document.getElementById('full-blog5');
   if (blogContent.innerHTML.trim() === '') {
     blogContent.innerHTML = '<p>Loading...</p>';
-    fetch('blogs/microcontroller.html')
+    fetch('blogs/blog5.html')
       .then(res => {
         if (!res.ok) throw new Error('Network error');
         return res.text();
@@ -180,11 +180,10 @@ function loadFullmicrocontroller() {
       })
       .catch(err => {
         blogContent.innerHTML = '<p>Failed to load blog content.</p>';
-        console.error('microcontroller error:', err);
+        console.error('Blog 5 error:', err);
       });
   }
 }
-
 
 // Dark Mode Toggle
 function toggleDarkMode() {
