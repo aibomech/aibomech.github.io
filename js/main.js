@@ -113,10 +113,10 @@ function loadFullBlog3() {
 
 // Blog 4 Toggle
 function toggleBlog4(event) {
-  const blogContent = document.getElementById('full-blog3');
+  const blogContent = document.getElementById('full-blog4');
   const button = event.target;
 
-  if (isBlog2Visible) {
+  if (isBlog4Visible) {
     blogContent.style.display = 'none';
     button.innerText = 'Read More...';
   } else {
@@ -125,7 +125,7 @@ function toggleBlog4(event) {
     loadFullBlog4();
   }
 
-  isBlog2Visible = !isBlog2Visible;
+  isBlog4Visible = !isBlog4Visible;
 }
 
 function loadFullBlog4() {
@@ -142,7 +142,7 @@ function loadFullBlog4() {
       })
       .catch(err => {
         blogContent.innerHTML = '<p>Failed to load blog content.</p>';
-        console.error('Blog 3 error:', err);
+        console.error('Blog 4 error:', err);
       });
   }
 }
