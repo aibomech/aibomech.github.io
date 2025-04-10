@@ -160,7 +160,7 @@ function toggleBlog5(event) {
   } else {
     blogContent.style.display = 'block';
     button.innerText = 'Read Less...';
-    loadFullBlog4();
+    loadFullBlog5();
   }
 
   isBlog5Visible = !isBlog5Visible;
