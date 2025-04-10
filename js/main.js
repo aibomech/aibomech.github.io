@@ -1,34 +1,27 @@
-// Track visibility state
-const blogVisibility = {
-  blog1: false,
-  blog2: false,
-  blog3: false,
-  blog4: false,
-};
+const blogStates = {};
 
-// Generic toggle function
-function toggleBlog(event, blogId, filePath) {
-  const blogContent = document.getElementById(`full-${blogId}`);
+function toggleBlogGeneric(event, blogId, blogFile) {
+  const blogContent = document.getElementById(blogId);
   const button = event.target;
+  const isVisible = blogStates[blogId] || false;
 
-  if (blogVisibility[blogId]) {
+  if (isVisible) {
     blogContent.style.display = 'none';
     button.innerText = 'Read More...';
   } else {
     blogContent.style.display = 'block';
     button.innerText = 'Read Less...';
-    loadBlogContent(blogId, filePath);
+    loadBlogContent(blogId, blogFile);
   }
 
-  blogVisibility[blogId] = !blogVisibility[blogId];
+  blogStates[blogId] = !isVisible;
 }
 
-// Generic content loader
-function loadBlogContent(blogId, filePath) {
-  const blogContent = document.getElementById(`full-${blogId}`);
+function loadBlogContent(blogId, blogFile) {
+  const blogContent = document.getElementById(blogId);
   if (blogContent.innerHTML.trim() === '') {
     blogContent.innerHTML = '<p>Loading...</p>';
-    fetch(filePath)
+    fetch(`blogs/${blogFile}`)
       .then(res => {
         if (!res.ok) throw new Error('Network error');
         return res.text();
@@ -43,7 +36,6 @@ function loadBlogContent(blogId, filePath) {
   }
 }
 
-// Dark mode toggle
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-}
+// Example HTML usage:
+// <button onclick="toggleBlogGeneric(event, 'full-blog', 'blog1.html')">Read More...</button>
+// <button onclick="toggleBlogGeneric(event, 'full-blog2', 'blog2.html')">Read More...</button>
