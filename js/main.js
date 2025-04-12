@@ -217,7 +217,7 @@ function loadFullBlog6() {
         blogContent.innerHTML = data;
       })
       .catch(err => {
-        blogContent.innerHTML = '<p>Failed to load blog content.</p>';
+        blogContent.innerHTML = '<p>Failed to load blog6 content.</p>';
         console.error('Blog 6 error:', err);
       });
   }
