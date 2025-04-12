@@ -1,9 +1,14 @@
+
+  // blogs
 let isBlogVisible = false;
 let isBlog2Visible = false;
 let isBlog3Visible = false;
 let isBlog4Visible=false;
 let isBlog5Visible=false;
 let isBlog6Visible=false;
+
+// Projects
+let isProjectVisible=false;
 // Blog 1 Toggle
 function toggleBlog(event) {
   const blogContent = document.getElementById('full-blog');
@@ -222,6 +227,43 @@ function loadFullBlog6() {
       });
   }
 }
+
+// Projects
+// Project 1 Toggle
+function toggleProject(event) {
+  const projectContent = document.getElementById('full-project');
+  const button = event.target;
+
+  if (isProjectVisible) {
+    projectContent.style.display = 'none';
+    button.innerText = 'Read More...';
+  } else {
+    projectContent.style.display = 'block';
+    button.innerText = 'Read Less...';
+    loadFullProject();
+  }
+
+  isProjectVisible = !isProjectVisible;
+}
+
+function loadFullProject() {
+  const projectContent = document.getElementById('full-project');
+  if (projectContent.innerHTML.trim() === '') {
+    fetch('projects/project1.html')
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.text();
+      })
+      .then(data => {
+        projectContent.innerHTML = data;
+      })
+      .catch(err => {
+        projectContent.innerHTML = '<p>Failed to load project1 content.</p>';
+        console.error('Project 1 error:', err);
+      });
+  }
+}
+
 
 // Dark Mode Toggle
 function toggleDarkMode() {
