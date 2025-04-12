@@ -3,6 +3,7 @@ let isBlog2Visible = false;
 let isBlog3Visible = false;
 let isBlog4Visible=false;
 let isBlog5Visible=false;
+let isBlog6Visible=false;
 // Blog 1 Toggle
 function toggleBlog(event) {
   const blogContent = document.getElementById('full-blog');
@@ -181,6 +182,43 @@ function loadFullBlog5() {
       .catch(err => {
         blogContent.innerHTML = '<p>Failed to load blog content.</p>';
         console.error('Blog 5 error:', err);
+      });
+  }
+}
+
+
+// Blog 6 Toggle
+function toggleBlog6(event) {
+  const blogContent = document.getElementById('full-blog6');
+  const button = event.target;
+
+  if (isBlog6Visible) {
+    blogContent.style.display = 'none';
+    button.innerText = 'Read More...';
+  } else {
+    blogContent.style.display = 'block';
+    button.innerText = 'Read Less...';
+    loadFullBlog6();
+  }
+
+  isBlog6Visible = !isBlog6Visible;
+}
+
+function loadFullBlog6() {
+  const blogContent = document.getElementById('full-blog6');
+  if (blogContent.innerHTML.trim() === '') {
+    blogContent.innerHTML = '<p>Loading...</p>';
+    fetch('blogs/blog6.html')
+      .then(res => {
+        if (!res.ok) throw new Error('Network error');
+        return res.text();
+      })
+      .then(data => {
+        blogContent.innerHTML = data;
+      })
+      .catch(err => {
+        blogContent.innerHTML = '<p>Failed to load blog content.</p>';
+        console.error('Blog 6 error:', err);
       });
   }
 }
