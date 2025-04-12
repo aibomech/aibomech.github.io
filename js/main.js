@@ -150,40 +150,40 @@ function loadFullBlog4() {
 
 
 // Blog 5 Toggle
-function toggleBlog5(event) {
-  const blogContent = document.getElementById('full-blog5');
-  const button = event.target;
+// function toggleBlog5(event) {
+//   const blogContent = document.getElementById('full-blog5');
+//   const button = event.target;
 
-  if (isBlog5Visible) {
-    blogContent.style.display = 'none';
-    button.innerText = 'Read More...';
-  } else {
-    blogContent.style.display = 'block';
-    button.innerText = 'Read Less...';
-    loadFullBlog5();
-  }
+//   if (isBlog5Visible) {
+//     blogContent.style.display = 'none';
+//     button.innerText = 'Read More...';
+//   } else {
+//     blogContent.style.display = 'block';
+//     button.innerText = 'Read Less...';
+//     loadFullBlog5();
+//   }
 
-  isBlog5Visible = !isBlog5Visible;
-}
+//   isBlog5Visible = !isBlog5Visible;
+// }
 
-function loadFullBlog5() {
-  const blogContent = document.getElementById('full-blog5');
-  if (blogContent.innerHTML.trim() === '') {
-    blogContent.innerHTML = '<p>Loading...</p>';
-    fetch('blogs/blog5.html')
-      .then(res => {
-        if (!res.ok) throw new Error('Network error');
-        return res.text();
-      })
-      .then(data => {
-        blogContent.innerHTML = data;
-      })
-      .catch(err => {
-        blogContent.innerHTML = '<p>Failed to load blog content.</p>';
-        console.error('Blog 5 error:', err);
-      });
-  }
-}
+// function loadFullBlog5() {
+//   const blogContent = document.getElementById('full-blog5');
+//   if (blogContent.innerHTML.trim() === '') {
+//     blogContent.innerHTML = '<p>Loading...</p>';
+//     fetch('blogs/blog5.html')
+//       .then(res => {
+//         if (!res.ok) throw new Error('Network error');
+//         return res.text();
+//       })
+//       .then(data => {
+//         blogContent.innerHTML = data;
+//       })
+//       .catch(err => {
+//         blogContent.innerHTML = '<p>Failed to load blog content.</p>';
+//         console.error('Blog 5 error:', err);
+//       });
+//   }
+// }
 
 // Dark Mode Toggle
 function toggleDarkMode() {
