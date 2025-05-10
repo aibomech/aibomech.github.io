@@ -488,7 +488,7 @@
     <!-- <p>Robotics Engineer & ROS Developer | Researcher in Mobile Robotics, Computer Vision, and SLAM, Mechatronics</p> -->
     <!-- About Me Section -->
     <h2 id="about">About Me</h2>
-    <p>
+      <p>
         I'm a robotics engineer and PhD student with a strong focus on mobile robotics, computer vision, and SLAM.
         I have hands-on experience in ROS, AI, and embedded systems, and I enjoy turning complex robotic problems into practical solutions.
       </p>
@@ -501,102 +501,355 @@
     <p>Welcome to the AIBOMECH Lab, where I share my latest projects, blogs, and publications in robotics and AI</p>
 
      <!-- PROJECTS -->
-     <h2 id="projects">Projects</h2>
+     <!-- <h2 id="projects">Projects</h2>
      <div id="projects-container">
-       <!-- Project 1 -->
        <div class="project-preview">
          <h3>🌡️ Temperature Control Using Fuzzy Logic</h3>
          <button onclick="toggleProject(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
          <div id="full-project" style="display: none; margin-top: 10px;"></div>
        </div>
-       <!-- Add more projects below -->
-     </div>
-
-    <!-- </div> -->
-    <!-- <div> -->
-    <h2 id="blog">Blog</h2>
-        <div id="blog-container">
-            <!-- Blog 1 -->
-            <div class="blog-preview">
-              <h3>Robot Kinematics & Dynamics: Basic Definitions and Design</h3>
-              <!-- <p>To build a robot arm that works in real life, we must first understand how it moves and how its parts work together...</p> -->
-              <button onclick="toggleBlog(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-blog" style="display: none; margin-top: 10px;"></div>
-            </div>
-          
-             <!-- Blog 2 -->
-            <div class="blog-preview">
-              <h3>Robot Manipulators Design - Part 1</h3>
-              <button onclick="toggleBlog2(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-blog2" style="display: none; margin-top: 10px;"></div>
-            </div>
-
-            <!-- Blog 3 -->
-            <div class="blog-preview">
-              <h3>Robot Manipulators Design - Part 2</h3>
-              <button onclick="toggleBlog3(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-blog3" style="display: none; margin-top: 10px;"></div>
-            </div>
-
-            <!-- Blog 4 -->
-            <div class="blog-preview">
-              <h3>Mechanisms of Machines & Their Benefits</h3>
-              <button onclick="toggleBlog4(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-blog4" style="display: none; margin-top: 10px;"></div>
-            </div>
-
-            <!-- Blog 5 -->
-            <div class="blog-preview">
-              <h3>Microcontrollers: The Hidden Power Behind Smart Devices</h3>
-              <button onclick="toggleBlog5(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-blog5" style="display: none; margin-top: 10px;"></div>
-            </div>
-
-            <!-- Blog 6 -->
-            <div class="blog-preview">
-              <h3>From Ideas to Reality: Arduino Microcontroller Essentials </h3>
-              <button onclick="toggleBlog6(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-blog6" style="display: none; margin-top: 10px;"></div>
-            </div>
-
-                <!-- Projects -->
-
-             <!-- project1
-             <div class="project-preview">
-              <h3> Temperature Control Using Fuzzy Logic </h3>
-              <button onclick="toggleProject(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
-              <div id="full-project" style="display: none; margin-top: 10px;"></div>
-            </div> -->
-
-
+     </div> -->
+     
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="cards-container">
+        <!-- Project 1 -->
+        <div class="card">
+          <img src="/api/placeholder/400/200" alt="Temperature Control System" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">🌡️ Temperature Control Using Fuzzy Logic</h3>
+            <p class="card-text">
+              A smart temperature control system implementing fuzzy logic principles for precise environmental management. This project demonstrates how fuzzy logic can be applied to create more natural and human-like control systems.
+            </p>
+            <a href="projects/project1.html" class="card-link" data-project="projects/project1.html">View Project</a>
+          </div>
+        </div>
         
-
+        <!-- Project 2 -->
+        <div class="card">
+          <img src="/api/placeholder/400/200" alt="Mobile Robot" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">🤖 Autonomous Mobile Robot</h3>
+            <p class="card-text">
+              A ROS-based mobile robot with SLAM capabilities for autonomous navigation in unknown environments. Features obstacle avoidance and path planning algorithms.
+            </p>
+            <a href="projects/project2.html" class="card-link" data-project="projects/project2.html">View Project</a>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="card">
+          <img src="/api/placeholder/400/200" alt="Computer Vision System" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">👁️ Real-time Object Detection</h3>
+            <p class="card-text">
+              A computer vision system capable of detecting and classifying objects in real-time using deep learning techniques. Optimized for embedded systems.
+            </p>
+            <a href="projects/project3.html" class="card-link" data-project="projects/project3.html">View Project</a>
+          </div>
+        </div>
       </div>
-  
+    </section>
+    
 
-    <h2 id="publications"> Publications</h2>
-    <div>
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <div class="cards-container">
+        <!-- Blog 1 -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">Robot Kinematics & Dynamics: Basic Definitions and Design</h3>
+            <p class="card-text">
+              Understanding the fundamental principles of robot movement and how different parts interact to create coordinated motion.
+            </p>
+            <a href="blogs/blog1.html" class="card-link" data-blog="blogs/blog1.html">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 2 -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">Robot Manipulators Design - Part 1</h3>
+            <p class="card-text">
+              An in-depth exploration of robot manipulator design principles, focusing on mechanical considerations and degrees of freedom.
+            </p>
+            <a href="blogs/blog2.html" class="card-link" data-blog="blogs/blog2.html">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 3 -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">Robot Manipulators Design - Part 2</h3>
+            <p class="card-text">
+              Advanced topics in manipulator design, including workspace analysis, singularities, and performance optimization.
+            </p>
+            <a href="blogs/blog3.html" class="card-link" data-blog="blogs/blog3.html">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 4 -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">Mechanisms of Machines & Their Benefits</h3>
+            <p class="card-text">
+              Exploring various mechanical systems and how they contribute to machine functionality, efficiency, and reliability.
+            </p>
+            <a href="blogs/blog4.html" class="card-link" data-blog="blogs/blog4.html">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 5 -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">Microcontrollers: The Hidden Power Behind Smart Devices</h3>
+            <p class="card-text">
+              Discover how these tiny computers enable countless smart devices and how they're programmed to perform complex tasks.
+            </p>
+            <a href="blogs/blog5.html" class="card-link" data-blog="blogs/blog5.html">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 6 -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">From Ideas to Reality: Arduino Microcontroller Essentials</h3>
+            <p class="card-text">
+              A practical guide to getting started with Arduino platforms for robotics and automation projects.
+            </p>
+            <a href="blogs/blog6.html" class="card-link" data-blog="blogs/blog6.html">Read More</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </div>
-    <div>
+    <!-- Publications Section -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <!-- Sample Publication - Replace with actual publications -->
+      <div class="publication">
+        <h3>Improved SLAM Techniques for Mobile Robots in Dynamic Environments</h3>
+        <p class="publication-meta">Journal of Robotics and Automation, 2024</p>
+        <p>
+          This paper presents a novel approach to Simultaneous Localization and Mapping (SLAM) that improves performance in environments with moving obstacles.
+        </p>
+        <a href="#" class="card-link">Read Paper</a>
+      </div>
+      <div class="publication">
+        <h3>Computer Vision Applications in Autonomous Navigation Systems</h3>
+        <p class="publication-meta">International Conference on Robotics, 2023</p>
+        <p>
+          A comprehensive review of computer vision techniques applied to autonomous navigation challenges and solutions.
+        </p>
+        <a href="#" class="card-link">Read Paper</a>
+      </div>
+    </section>
 
-    </div>
-
-    <h2 id="contact"> Contact Me</h2>
-    <p>Feel free to reach out if you'd like to collaborate or chat about robotics, AI, or related fields!</p>
-    <ul>
-      <li><a href="mailto:aibomechatronics@gmail.com"><i class="fas fa-envelope"></i> Email Me</a></li>
-    </ul>
-    <p>📍 Based in Germany | 💼 Open for collaborations</p>
-
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out if you'd like to collaborate or chat about robotics, AI, or related fields!</p>
+      
+      <div class="contact-info">
+        <div class="contact-method">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>The best way to reach me for professional inquiries.</p>
+          <a href="mailto:aibomechatronics@gmail.com">aibomechatronics@gmail.com</a>
+        </div>
+        
+        <div class="contact-method">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Location</h3>
+          <p>Based in Germany</p>
+          <p>Open for remote collaborations worldwide</p>
+        </div>
+        
+        <div class="contact-method">
+          <i class="fas fa-handshake"></i>
+          <h3>Collaboration</h3>
+          <p>Interested in research partnerships and project collaborations in robotics, computer vision, and SLAM.</p>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <script src="js/main.js"></script>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="/api/placeholder/100/40" alt="Aibomech Logo" class="footer-logo">
+      
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+      
+      <div class="footer-social">
+        <a href="https://www.youtube.com/channel/UCMk8Wiy96j4m9BFl7SuwM2g" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/basheeraltawil/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://x.com/aibomech" target="_blank" aria-label="Twitter">
+          <i class="fab fa-x"></i>
+        </a>
+      </div>
+      
+      <p class="copyright">&copy; 2025 Basheer Altawil - AIBOMECH</p>
+    </div>
+  </footer>
 
+  <!-- Dark Mode Toggle Button -->
+  <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
 
- 
+  <!-- JavaScript -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLeft = document.querySelector('.nav-left');
     
-  
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLeft.classList.toggle('active');
+      });
+    }
+    
+    // Dark Mode Toggle
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+    const icon = darkModeToggle.querySelector('i');
+    
+    // Check for saved theme preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+      icon.classList.replace('fa-moon', 'fa-sun');
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      // Update icon
+      if (body.classList.contains('dark-mode')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Close mobile menu if open
+          if (navLeft.classList.contains('active')) {
+            navLeft.classList.remove('active');
+          }
+        }
+      });
+    });
+    
+    // Modal handling
+    const modal = document.getElementById('contentModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.querySelector('.close-modal');
+    
+    // Close modal when clicking the X
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Enable scrolling on body
+    });
+    
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling on body
+      }
+    });
+    
+    // Handle blog and project link clicks
+    document.addEventListener('click', (event) => {
+      // Check if the clicked element is a blog or project link
+      if (event.target.classList.contains('card-link') && 
+         (event.target.dataset.blog || event.target.dataset.project)) {
+        
+        event.preventDefault();
+        
+        const contentPath = event.target.dataset.blog || event.target.dataset.project;
+        const contentTitle = event.target.closest('.card-content').querySelector('.card-title').textContent;
+        
+        // Show modal
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Disable scrolling on body
+        
+        // Show loading message
+        modalContent.innerHTML = '<div class="loading">Loading content...</div>';
+        
+        // Load the content
+        fetch(contentPath)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(html => {
+            // Extract just the content part of the loaded HTML file
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Look for main content - adjust these selectors based on your actual blog/project HTML structure
+            const contentElement = doc.querySelector('.content') || 
+                                  doc.querySelector('article') || 
+                                  doc.querySelector('main') || 
+                                  doc.body;
+            
+            // Set title and content
+            modalContent.innerHTML = `<h2>${contentTitle}</h2>${contentElement.innerHTML}`;
+          })
+          .catch(error => {
+            modalContent.innerHTML = `
+              <div class="error-message">
+                <p>Sorry, could not load the content. Please try clicking the link directly:</p>
+                <p><a href="${contentPath}" target="_blank">Open ${contentTitle} in new tab</a></p>
+              </div>
+            `;
+            console.error('Error loading content:', error);
+          });
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.style.display === 'block') {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling on body
+      }
+    });
+  </script>
 </body>
 </html>
+
+  
