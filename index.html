@@ -1,10 +1,11 @@
+<!-- index.html: -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AIBOMECH website. Robotics engineer specializing in mobile robotics, computer vision, AI, and entrepreneurship." />
+  <meta name="description" content="AIBOMECH website. Robotics engineer specializing in mobile robotics, computer vision, AI, and entrepreneurship.." />
   <meta name="keywords" content="robotics, mobile robotics, computer vision, SLAM, ROS, AI, LLM, entrepreneurship, AIBOMECH" />
   <meta name="author" content="Basheer Al-tawil" />
   <title>AIBOMECH - Robotics Engineering, Academic Research, and Entrepreneurship</title>
@@ -104,6 +105,11 @@
       width: 100%;
     }
 
+    /* .logo {
+      height: 40px;
+      width: auto;
+    } */
+
     .logo {
         width: 200px;
         height: auto;
@@ -162,7 +168,9 @@
 
     /* Main Content */
     .hero {
-      background: #2c3e50;
+        background: #2c3e50;
+        /* background: linear-gradient(135deg, var(--secondary-color),#2c3e50); */
+      /* background: linear-gradient(135deg, var(--secondary-color), #3498db); */
       color: white;
       padding: 5rem 5%;
       text-align: center;
@@ -178,6 +186,7 @@
       max-width: 500px;
       margin: 0 auto 2rem;
     }
+
 
     .content {
       max-width: 1200px;
@@ -344,10 +353,11 @@
     }
 
     .footer-logo {
-      height: 180px;
-      width: 450px;
-      object-fit: cover;
+      height: 180px;  /* Adjust the height as needed */
+      width: 450px;   /* Keep the width fixed at 500px */
+      object-fit: cover; /* This will help crop the image from the top or bottom if necessary */
     }
+
 
     .footer-links {
       display: flex;
@@ -412,67 +422,9 @@
       transform: rotate(30deg);
     }
 
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1050;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .modal-content {
-      background-color: var(--card-bg);
-      margin: 10vh auto;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 800px;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-    }
-
-    .close-modal {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      font-size: 1.5rem;
-      color: var(--text-color);
-      cursor: pointer;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .error-message {
-      text-align: center;
-      padding: 2rem;
-      color: var(--accent-color);
-    }
-
-    /* Enhanced Mobile Responsiveness */
-    @media (max-width: 992px) {
-      .cards-container {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      }
-      
-      .footer-logo {
-        width: 100%;
-        max-width: 350px;
-        height: auto;
-      }
-    }
-
+    /* Responsive Design */
     @media (max-width: 768px) {
-      /* Navigation */
-      .nav-left {
+      .nav-left, .dropdown-menu {
         display: none;
         flex-direction: column;
         position: absolute;
@@ -481,162 +433,22 @@
         width: 100%;
         background-color: var(--secondary-color);
         padding: 1rem 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        z-index: 100;
       }
 
       .nav-left.active {
         display: flex;
       }
 
-      .nav-left a, .dropdown-menu a {
-        width: 100%;
-        text-align: center;
-        padding: 0.75rem;
-      }
-
-      .nav-item {
-        width: 100%;
-      }
-
-      .dropdown-menu {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-        display: none;
-        padding: 0;
-      }
-
-      .dropdown-menu.active {
-        display: block;
-      }
-
-      .nav-item:hover .dropdown-menu {
-        display: none; /* Override desktop behavior */
-      }
-
       .mobile-menu-btn {
         display: block;
-      }
-
-      .logo {
-        margin-left: 0;
-        width: 150px;
-      }
-
-      /* Social icons in nav */
-      .social-icons a {
-        font-size: 1.2rem;
-      }
-
-      /* Content sections */
-      .hero {
-        padding: 3rem 5%;
       }
 
       .hero h1 {
         font-size: 2rem;
       }
 
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      h2 {
-        font-size: 1.75rem;
-      }
-
-      .content {
-        padding: 2rem 5%;
-      }
-
-      /* Cards layout */
-      .cards-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      /* Publications */
-      .publication {
-        padding: 1rem;
-      }
-
-      .publication pre {
-        font-size: 0.75rem;
-        overflow-x: auto;
-      }
-
-      /* Contact */
       .contact-info {
         flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .contact-method {
-        min-width: 100%;
-      }
-
-      /* Footer */
-      .footer-links {
-        gap: 1rem;
-      }
-
-      .footer-links a {
-        padding: 0.5rem;
-      }
-
-      /* Modal */
-      .modal-content {
-        width: 95%;
-        padding: 1.5rem;
-        margin: 5vh auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 0.75rem 4%;
-      }
-
-      .social-icons {
-        gap: 0.5rem;
-      }
-
-      .hero h1 {
-        font-size: 1.75rem;
-      }
-
-      .logo {
-        width: 120px;
-      }
-
-      .footer-logo {
-        max-width: 280px;
-      }
-
-      .dark-mode-toggle {
-        bottom: 1rem;
-        right: 1rem;
-        width: 40px;
-        height: 40px;
-      }
-
-      /* Navigation dropdowns on mobile */
-      .nav-item-toggle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        cursor: pointer;
-      }
-
-      .nav-item-toggle i {
-        margin-left: 8px;
-        transition: var(--transition);
-      }
-
-      .nav-item-toggle.active i {
-        transform: rotate(180deg);
       }
     }
   </style>
@@ -647,6 +459,20 @@
   <!-- Navigation Bar -->
   <header>
     <nav class="navbar">
+      <div class="nav-left">
+        <a href="#Home">Home</a>
+        <div class="nav-item">
+          <a href="#Aibomech Lab">Aibomech Lab</a>
+          <div class="dropdown-menu">
+            <a href="#projects">Projects</a>
+            <a href="#blog">Blog</a>
+            <a href="#publications">Publications</a>
+          </div>
+        </div>
+        <a href="#about">About Me</a>
+        <a href="pdfs/CV_Eng.pdf" target="_blank">My CV</a>
+        <a href="#contact">Contact</a>
+      </div>
       <div class="nav-right">
         <a href="#home">
            <img src="images/l44.png" alt="Aibomech Logo" class="logo" />
@@ -662,40 +488,29 @@
             <i class="fab fa-x"></i>
           </a>
         </div>
-        <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <!-- ## ADDED -->
+        <button class="mobile-menu-btn">
           <i class="fas fa-bars"></i>
         </button>
-      </div>
-      <div class="nav-left">
-        <a href="#Home">Home</a>
-        <div class="nav-item">
-          <div class="nav-item-toggle">
-            <span>Aibomech Lab</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="dropdown-menu">
-            <a href="#projects">Projects</a>
-            <a href="#blog">Blog</a>
-            <a href="#publications">Publications</a>
-          </div>
-        </div>
-        <a href="#about">About Me</a>
-        <a href="pdfs/CV_Eng.pdf" target="_blank">My CV</a>
-        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- AUTHOR Section -->
+  <!-- <section class="hero" id="home">
+    <h1>AIBOMECH</h1>
+    <p>Exploring the latest in Robotics, AI, and Computer Vision</p>
+  </section> -->
+
   <section class="hero" id="home">
     <h1>AIBOMECH</h1>
     <p>Exploring the latest in Robotics, AI, and Computer Vision</p>
   </section>
 
   <div class="content">
+    <!-- <p>Robotics Engineer & ROS Developer | Researcher in Mobile Robotics, Computer Vision, and SLAM, Mechatronics</p> -->
     <!-- About Me Section -->
-    <section id="about">
-      <h2>About Me</h2>
+    <h2 id="about">About Me</h2>
       <p>
         I'm a robotics engineer and PhD student with a strong focus on mobile robotics, computer vision, and SLAM.
         I have hands-on experience in ROS, AI, and embedded systems, and I enjoy turning complex robotic problems into practical solutions.
@@ -704,14 +519,20 @@
         I'm passionate about research and development, and I regularly share my knowledge through projects, blogs, and tutorials.
         My goal is to become an expert in robotics and contribute to real-world applications that make a difference.
       </p>
-    </section>
-    
     <!-- AIBOMECH LAB Section -->
-    <section id="Aibomech Lab"> 
-      <h2>AIBOMECH LAB</h2>
-      <p>Welcome to the AIBOMECH Lab, where I share my latest projects, blogs, and publications in robotics and AI</p>
-    </section>
+    <h2 id="Aibomech Lab"> AIBOMECH LAB</h2>
+    <p>Welcome to the AIBOMECH Lab, where I share my latest projects, blogs, and publications in robotics and AI</p>
 
+     <!-- PROJECTS -->
+     <!-- <h2 id="projects">Projects</h2>
+     <div id="projects-container">
+       <div class="project-preview">
+         <h3>🌡️ Temperature Control Using Fuzzy Logic</h3>
+         <button onclick="toggleProject(event)" style="color: blue; background: none; border: none; cursor: pointer;">Read More...</button>
+         <div id="full-project" style="display: none; margin-top: 10px;"></div>
+       </div>
+     </div> -->
+     
     <!-- Projects Section -->
     <section id="projects">
       <h2>Projects</h2>
@@ -755,7 +576,7 @@
     </section>
     
 
-    <!-- Blog Section -->
+    <!-- Blog Section Demonstration-->
     <section id="blog">
       <h2>Blog</h2>
       <div class="cards-container">
@@ -829,75 +650,71 @@
 
     <!-- Publications Section -->
     <section id="publications">
-      <h2>Publications</h2>
-      <div class="publication">
-        <h3>Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition</h3>
-        <img src="images/pub1.png" alt="HAR Framework" class="pub-card-img">
-        <p class="publication-meta">Sensors, 2025</p>
-        <p>
-          This paper proposes a deep learning framework combining ResNet-18, Bi-LSTM, and multi-head attention for accurate and efficient human action recognition. It achieves 96.60% accuracy on the UCF-101 dataset and was validated on a mobile robot for real-time deployment.
-        </p>
-        <a href="https://doi.org/10.3390/s25092930" target="_blank" class="card-link">Read Paper</a>
-        <p><strong>If you wish to cite this paper:</strong></p>
-        <pre>
-@article{al2025multi,
-  title={Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition},
-  author={Al-Tawil, Basheer and Jung, Magnus and Hempel, Thorsten and Al-Hamadi, Ayoub},
-  journal={Sensors},
-  year={2025},
-  publisher={Multidisciplinary Digital Publishing Institute}
-}
-        </pre>
-      </div>
-        
-      <!-- Second Paper -->
-      <div class="publication">
-        <h3>Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion</h3>
-        <img src="images/pub2.png" alt="Robot Navigation System" class="pub-card-img">
-        <p class="publication-meta">Sensors, 2025</p>
-        <p>
-          This paper presents an enhanced SLAM framework for mobile robot navigation that integrates RGB-D cameras and 2D LiDAR sensors. A novel fusion strategy projects RGB-D point clouds into 2D and denoises them alongside LiDAR data. The enhanced Gmapping (EGM) algorithm adds adaptive resampling and degeneracy handling, improving robustness.
-        </p>
-        <a href="https://doi.org/10.3390/s25082408" target="_blank" class="card-link">Read Paper</a>
-        <p><strong>If you wish to cite this paper:</strong></p>
-        <pre>
-@article{al2025mobile,
-  title={Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion},
-  author={Al-Tawil, Basheer and Candemir, Adem and Jung, Magnus and Al-Hamadi, Ayoub},
-  journal={Sensors},
-  volume={25},
-  number={8},
-  pages={2408},
-  year={2025},
-  publisher={MDPI}
-}
-        </pre>
-      </div>
-      
-      <!-- Third Paper -->
-      <div class="publication">
-        <h3>A Review of Visual SLAM for Robotics: Evolution, Properties, and Future Applications</h3>
-        <img src="images/pub3.png" alt="Visual SLAM Review" class="pub-card-img">
-        <p class="publication-meta">Frontiers in Robotics and AI, 2024</p>
-        <p>
-          This review explores the evolution and recent advancements of Visual SLAM (V-SLAM) for robotic systems. It provides selection criteria and comparative insights into major V-SLAM methods, emphasizing their integration with ROS middleware and evaluating them using key benchmark datasets.
-        </p>
-        <a href="https://doi.org/10.3389/frobt.2024.1347985" target="_blank" class="card-link">Read Paper</a>
-        <p><strong>If you wish to cite this paper:</strong></p>
-        <pre>
-@article{al2024review,
-  title={A review of visual SLAM for robotics: evolution, properties, and future applications},
-  author={Al-Tawil, Basheer and Hempel, Thorsten and Abdelrahman, Ahmed and Al-Hamadi, Ayoub},
-  journal={Frontiers in Robotics and AI},
-  volume={11},
-  year={2024},
-  publisher={Frontiers},
-  doi={10.3389/frobt.2024.1347985}
-}
-        </pre>
-      </div>
-    </section>
-
+        <h2>Publications</h2>
+          <div class="publication">
+      <h3>Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition</h3>
+      <img src="images/pub1.png" alt="HAR Framework" class="pub-card-img">
+      <p class="publication-meta">Sensors, 2025</p>
+      <p>
+        This paper proposes a deep learning framework combining ResNet-18, Bi-LSTM, and multi-head attention for accurate and efficient human action recognition. It achieves 96.60% accuracy on the UCF-101 dataset and was validated on a mobile robot for real-time deployment.
+      </p>
+      <a href="https://doi.org/10.3390/s25092930" target="_blank" class="card-link">Read Paper</a>
+      <p><strong>If you wish to cite this paper:</strong></p>
+      <pre>
+          @article{al2025multi,
+            title={Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition},
+            author={Al-Tawil, Basheer and Jung, Magnus and Hempel, Thorsten and Al-Hamadi, Ayoub},
+            journal={Sensors},
+            year={2025},
+            publisher={Multidisciplinary Digital Publishing Institute}
+          }
+      </pre>
+        <!-- Second Paper -->
+  <div class="publication">
+    <h3>Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion</h3>
+    <img src="images/pub2.png" alt="Robot Navigation System" class="pub-card-img">
+    <p class="publication-meta">Sensors, 2025</p>
+    <p>
+      This paper presents an enhanced SLAM framework for mobile robot navigation that integrates RGB-D cameras and 2D LiDAR sensors. A novel fusion strategy projects RGB-D point clouds into 2D and denoises them alongside LiDAR data. The enhanced Gmapping (EGM) algorithm adds adaptive resampling and degeneracy handling, improving robustness. Tested on the Tiago robot in simulation and real-world scenarios, the system outperforms state-of-the-art methods in efficiency and accuracy, with up to 15% better goal completion and 9% reduced execution time.
+    </p>
+    <a href="https://doi.org/10.3390/s25082408" target="_blank" class="card-link">Read Paper</a>
+    <p><strong>If you wish to cite this paper:</strong></p>
+    <pre>
+      @article{al2025mobile,
+        title={Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion},
+        author={Al-Tawil, Basheer and Candemir, Adem and Jung, Magnus and Al-Hamadi, Ayoub},
+        journal={Sensors},
+        volume={25},
+        number={8},
+        pages={2408},
+        year={2025},
+        publisher={MDPI}
+      }
+    </pre>
+  </div>
+  <!-- Third Paper -->
+<div class="publication">
+  <h3>A Review of Visual SLAM for Robotics: Evolution, Properties, and Future Applications</h3>
+  <img src="images/pub3.png" alt="Visual SLAM Review" class="pub-card-img">
+  <p class="publication-meta">Frontiers in Robotics and AI, 2024</p>
+  <p>
+    This review explores the evolution and recent advancements of Visual SLAM (V-SLAM) for robotic systems. It provides selection criteria and comparative insights into major V-SLAM methods, emphasizing their integration with ROS middleware and evaluating them using key benchmark datasets. The review supports researchers in selecting optimal V-SLAM strategies for real-world applications in autonomous and collaborative robots.
+  </p>
+  <a href="https://doi.org/10.3389/frobt.2024.1347985" target="_blank" class="card-link">Read Paper</a>
+  <p><strong>If you wish to cite this paper:</strong></p>
+  <pre>
+      @article{al2024review,
+        title={A review of visual SLAM for robotics: evolution, properties, and future applications},
+        author={Al-Tawil, Basheer and Hempel, Thorsten and Abdelrahman, Ahmed and Al-Hamadi, Ayoub},
+        journal={Frontiers in Robotics and AI},
+        volume={11},
+        year={2024},
+        publisher={Frontiers},
+        doi={10.3389/frobt.2024.1347985}
+      }
+  </pre>
+</div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact">
