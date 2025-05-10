@@ -11,6 +11,8 @@
   <title>Aibomech - Robotics Engineering & Research</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- External CSS -->
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <style>
     :root {
       --primary-color: #3498db;
@@ -432,8 +434,7 @@
       }
     }
   </style>
-  <!-- External CSS -->
-  <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  
 </head>
 <body>
 
@@ -452,26 +453,36 @@
         </div>
         <a href="#about">About Me</a>
         <a href="pdfs/CV_Eng.pdf" target="_blank">My CV</a>
-        <a href="#contact">Contact Me</a>
+        <a href="#contact">Contact</a>
       </div>
       <div class="nav-right">
         <a href="#home">
            <img src="images/l44.png" alt="Aibomech Logo" class="logo" />
         </a>
         <div class="social-icons">
-          <a href="https://www.youtube.com/channel/UCMk8Wiy96j4m9BFl7SuwM2g" target="_blank">
+          <a href="https://www.youtube.com/channel/UCMk8Wiy96j4m9BFl7SuwM2g" target="_blank" aria-label="YouTube">
             <i class="fab fa-youtube"></i>
           </a>
-          <a href="https://www.linkedin.com/in/basheeraltawil/" target="_blank">
+          <a href="https://www.linkedin.com/in/basheeraltawil/" target="_blank" aria-label="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://x.com/aibomech" target="_blank">
+          <a href="https://x.com/aibomech" target="_blank" aria-label="X">
             <i class="fab fa-x"></i>
           </a>
         </div>
+        <!-- ## ADDED -->
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </nav>
   </header>
+
+  <!-- AUTHOR Section -->
+  <section class="hero" id="home">
+    <h1>Basheer Altawil</h1>
+    <p>Robotics Engineer & ROS Developer | Researcher in Mobile Robotics, Computer Vision, and SLAM</p>
+  </section>
 
   <div class="content">
     <!-- <p>Robotics Engineer & ROS Developer | Researcher in Mobile Robotics, Computer Vision, and SLAM, Mechatronics</p> -->
