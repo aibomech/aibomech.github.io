@@ -127,13 +127,13 @@
           <img src="images/l44.png" alt="Aibomech Logo" class="logo" />
         </a>
         <!-- The updated search HTML code (can be incorporated into your existing navbar) -->
-        <div class="search-container">
-          <button id="search-icon" aria-label="Search">
+        <div class="search-container" style="position: relative;">
+          <button id="search-icon" aria-label="Search" style="background: none; border: none; cursor: pointer; padding: 8px;">
             <i class="fas fa-search"></i>
           </button>
-          <div class="search-box" id="search-box">
-            <input type="text" id="search-input" placeholder="Search...">
-            <button id="close-search" aria-label="Close search">
+          <div id="search-box" style="display: none; position: absolute; right: 0; top: 100%; z-index: 1000; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); border-radius: 4px; padding: 5px; min-width: 250px;">
+            <input type="text" id="search-input" placeholder="Search..." style="border: none; padding: 8px; width: 100%; outline: none;">
+            <button id="close-search" aria-label="Close search" style="background: none; border: none; cursor: pointer; padding: 8px;">
               <i class="fas fa-times"></i>
             </button>
           </div>
@@ -666,115 +666,138 @@
 
     // SEARCH ISSUE
     // Search functionality
-// Search functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const searchIcon = document.getElementById('search-icon');
-      const searchBox = document.getElementById('search-box');
-      const searchInput = document.getElementById('search-input');
-      const closeSearch = document.getElementById('close-search');
-      
-      // Toggle search box visibility
-      searchIcon.addEventListener('click', function(e) {
-        e.stopPropagation();
-        searchBox.classList.toggle('active');
-        
-        if (searchBox.classList.contains('active')) {
-          setTimeout(() => {
-            searchInput.focus();
-          }, 300); // Focus after animation completes
-        }
-      });
-      
-      // Close search when clicking the close button
-      closeSearch.addEventListener('click', function(e) {
-        e.stopPropagation();
-        searchBox.classList.remove('active');
-      });
-      
-      // Handle search submission
-      searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          performSearch(searchInput.value.trim());
-        }
-      });
-      
-      // Close search when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!searchBox.contains(e.target) && e.target !== searchIcon) {
-          searchBox.classList.remove('active');
-        }
-      });
-      
-      // Prevent clicks inside search box from closing it
-      searchBox.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-      
-      // Your search function
-      function performSearch(query) {
-        if (!query) return;
-        
-        console.log('Searching for:', query);
-        
-        // Simple content search implementation
-        const searchableElements = document.querySelectorAll('h1, h2, h3, p, .card-text, .publication');
-        let results = [];
-        
-        searchableElements.forEach(element => {
-          if (element.textContent.toLowerCase().includes(query.toLowerCase())) {
-            results.push(element);
-          }
-        });
-        
-        // Highlight results (you can implement your own logic here)
-        displaySearchResults(results, query);
-      }
-      
-      function displaySearchResults(results, query) {
-        // Clear previous search indicators
-        document.querySelectorAll('.search-highlight').forEach(el => {
-          el.classList.remove('search-highlight');
-        });
-        
-        if (results.length === 0) {
-          alert('No results found for: ' + query);
-          return;
-        }
-        
-        // Highlight results and scroll to first one
-        results.forEach(element => {
-          element.classList.add('search-highlight');
-        });
-        
-        // Scroll to first result
-        results[0].scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-        
-        // Optional: Add a floating indicator showing "1 of X results"
-        let resultCount = document.createElement('div');
-        resultCount.className = 'search-result-count';
-        resultCount.textContent = `${results.length} results found`;
-        resultCount.style.position = 'fixed';
-        resultCount.style.bottom = '20px';
-        resultCount.style.right = '20px';
-        resultCount.style.padding = '10px 15px';
-        resultCount.style.background = '#007bff';
-        resultCount.style.color = 'white';
-        resultCount.style.borderRadius = '4px';
-        resultCount.style.zIndex = '1000';
-        resultCount.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-        
-        document.body.appendChild(resultCount);
-        
-        // Remove the count indicator after 3 seconds
-        setTimeout(() => {
-          resultCount.remove();
-        }, 3000);
-      }
+// Search functionality with direct styling
+document.addEventListener('DOMContentLoaded', function() {
+  // Get references to the search elements
+  const searchIcon = document.getElementById('search-icon');
+  const searchBox = document.getElementById('search-box');
+  const searchInput = document.getElementById('search-input');
+  const closeSearch = document.getElementById('close-search');
+  
+  // If search elements don't exist, exit early
+  if (!searchIcon || !searchBox || !searchInput || !closeSearch) {
+    console.error('Search elements not found!');
+    return;
+  }
+  
+  // Apply base styles directly to ensure they're not overridden
+  searchBox.style.position = 'absolute';
+  searchBox.style.right = '0';
+  searchBox.style.top = '100%';
+  searchBox.style.backgroundColor = '#fff';
+  searchBox.style.borderRadius = '4px';
+  searchBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+  searchBox.style.display = 'none'; // Hidden by default
+  searchBox.style.alignItems = 'center';
+  searchBox.style.padding = '5px';
+  searchBox.style.zIndex = '9999';
+  searchBox.style.minWidth = '250px';
+  
+  // Ensure the input takes up space
+  searchInput.style.flex = '1';
+  searchInput.style.border = 'none';
+  searchInput.style.padding = '8px';
+  searchInput.style.width = '100%';
+  searchInput.style.outline = 'none';
+  
+  // Function to handle dark mode (if your site has dark mode)
+  function updateDarkModeStyles() {
+    if (document.body.classList.contains('dark-mode')) {
+      searchBox.style.backgroundColor = '#333';
+      searchBox.style.color = '#fff';
+      searchInput.style.color = '#fff';
+      searchInput.style.backgroundColor = '#333';
+    } else {
+      searchBox.style.backgroundColor = '#fff';
+      searchBox.style.color = '#333';
+      searchInput.style.color = '#333';
+      searchInput.style.backgroundColor = '#fff';
+    }
+  }
+  
+  // Initial style setup for dark mode
+  updateDarkModeStyles();
+  
+  // Listen for dark mode changes
+  const darkModeToggle = document.querySelector('.dark-mode-toggle');
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', function() {
+      // Wait a bit for the dark-mode class to be applied
+      setTimeout(updateDarkModeStyles, 100);
     });
+  }
+  
+  // Show search box when clicking search icon
+  searchIcon.addEventListener('click', function(e) {
+    e.stopPropagation();
+    
+    // Toggle visibility
+    if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+      searchBox.style.display = 'flex';
+      setTimeout(() => {
+        searchInput.focus();
+      }, 100);
+    } else {
+      searchBox.style.display = 'none';
+    }
+  });
+  
+  // Hide search box when clicking close button
+  closeSearch.addEventListener('click', function(e) {
+    e.stopPropagation();
+    searchBox.style.display = 'none';
+  });
+  
+  // Prevent clicks inside search box from closing it
+  searchBox.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+  
+  // Hide search box when clicking outside
+  document.addEventListener('click', function() {
+    searchBox.style.display = 'none';
+  });
+  
+  // Handle search submission
+  searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      if (searchInput.value.trim()) {
+        alert('Searching for: ' + searchInput.value.trim());
+        // Add your actual search function here
+      }
+      
+      // Optionally hide the search box after search
+      searchBox.style.display = 'none';
+    }
+  });
+  
+  // Make sure search is responsive
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      // Mobile styles
+      searchBox.style.position = 'absolute';
+      searchBox.style.right = '0';
+      searchBox.style.top = '100%';
+      searchBox.style.width = '100vw';
+      searchBox.style.maxWidth = 'none';
+      searchBox.style.borderRadius = '0';
+    } else {
+      // Desktop styles
+      searchBox.style.position = 'absolute';
+      searchBox.style.width = 'auto';
+      searchBox.style.minWidth = '250px';
+      searchBox.style.borderRadius = '4px';
+    }
+  }
+  
+  // Initial responsive setup
+  handleResize();
+  
+  // Update layout on window resize
+  window.addEventListener('resize', handleResize);
+  
+  console.log('Search functionality initialized with direct styles');
+});
 
  
 </script>
