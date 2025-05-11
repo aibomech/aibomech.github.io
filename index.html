@@ -565,51 +565,44 @@
 
     // SEARCH ISSUE
     // Search functionality
-// Ensure search elements exist before adding event listeners
 const searchIcon = document.getElementById('search-icon');
 const searchBox = document.getElementById('search-box');
 const searchInput = document.getElementById('search-input');
 const closeSearch = document.getElementById('close-search');
 
 if (searchIcon && searchBox && searchInput && closeSearch) {
-  // Toggle search box visibility on icon click
   searchIcon.addEventListener('click', () => {
-    console.log('Search icon clicked'); // Debugging line to check if the event is firing
-    searchBox.classList.toggle('active'); // Toggle visibility of the search box
+    searchBox.classList.toggle('active');
     if (searchBox.classList.contains('active')) {
       setTimeout(() => {
-        searchInput.focus(); // Focus on input field after box appears
-      }, 300); // Small delay to ensure the animation completes
+        searchInput.focus();
+      }, 300); // Ensure focus happens after the animation completes
     }
   });
-  
-  // Close search box on close button click
+
   closeSearch.addEventListener('click', () => {
-    console.log('Close search clicked'); // Debugging line
-    searchBox.classList.remove('active'); // Hide the search box
+    searchBox.classList.remove('active');
   });
-  
-  // Trigger search when 'Enter' is pressed
+
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent form submission if inside a form
-      console.log('Searching for:', searchInput.value); // Debugging search input value
-      performSearch(searchInput.value.toLowerCase()); // Call search function (you can define this)
+      e.preventDefault();
+      performSearch(searchInput.value.toLowerCase());
     }
   });
-  
-  // Close search box when clicking outside
+
   document.addEventListener('click', (e) => {
     if (!searchBox.contains(e.target) && e.target !== searchIcon) {
-      searchBox.classList.remove('active'); // Hide search box if clicked outside
+      searchBox.classList.remove('active');
     }
   });
 }
 
 function performSearch(query) {
-  // Implement your search logic here
-  console.log('Performing search for:', query);
+  // Your custom search logic here
+  console.log('Searching for:', query);
 }
+
 
  
 </script>
