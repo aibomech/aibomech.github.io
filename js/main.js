@@ -269,3 +269,42 @@ function loadFullProject() {
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
 }
+
+
+// Check if search elements exist before adding event listeners
+const searchIcon = document.getElementById('search-icon');
+const searchBox = document.getElementById('search-box');
+const searchInput = document.getElementById('search-input');
+const closeSearch = document.getElementById('close-search');
+
+if (searchIcon && searchBox && searchInput && closeSearch) {
+  // Toggle search box visibility
+  searchIcon.addEventListener('click', () => {
+    searchBox.classList.toggle('active');
+    if (searchBox.classList.contains('active')) {
+      setTimeout(() => {
+        searchInput.focus();
+      }, 300); // Small delay to ensure the animation completes
+    }
+  });
+  
+  // Close search box
+  closeSearch.addEventListener('click', () => {
+    searchBox.classList.remove('active');
+  });
+  
+  // Search function
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      performSearch(searchInput.value.toLowerCase());
+    }
+  });
+  
+  // Close search when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!searchBox.contains(e.target) && e.target !== searchIcon) {
+      searchBox.classList.remove('active');
+    }
+  });
+}
