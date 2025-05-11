@@ -13,6 +13,8 @@
   <!-- Prism JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bibtex.min.js"></script>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/styles.css">
   <style>
     :root {
       --primary-color: #3498db;
@@ -944,33 +946,35 @@
 </div>
 
 <script>
-function loadBlogContent(event, url, containerId) {
-  event.preventDefault(); // Prevent default anchor navigation
+function loadBlogContent(event, url) {
+  event.preventDefault();
 
-  const container = document.getElementById(containerId);
+  const popup = document.getElementById('blogPopup');
+  const contentContainer = document.getElementById('popupBlogContent');
 
-  // If already visible, toggle and return
-  if (container.style.display === 'block') {
-    container.style.display = 'none';
-    container.innerHTML = '';
-    return;
-  }
+  // Clear and show loading state
+  contentContainer.innerHTML = '<p>Loading...</p>';
+  popup.style.display = 'flex';
 
-  // Fetch content via AJAX
   fetch(url)
     .then(response => response.text())
     .then(data => {
-      container.innerHTML = data;
-      container.style.display = 'block';
+      contentContainer.innerHTML = data;
     })
     .catch(error => {
-      container.innerHTML = "<p style='color:red;'>Failed to load content.</p>";
-      container.style.display = 'block';
+      contentContainer.innerHTML = "<p style='color:red;'>Failed to load content.</p>";
       console.error("Error loading blog:", error);
     });
 }
+
+function closePopup() {
+  document.getElementById('blogPopup').style.display = 'none';
+}
 </script>
-    </section>
+
+
+
+</section>
 
     
 
