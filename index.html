@@ -563,11 +563,23 @@
     });
 
     // SEARCH ISSUE
+    // Search functionality
+  // Open search box
+  document.getElementById('search-icon').addEventListener('click', function() {
+    const searchBox = document.getElementById('search-box');
+    searchBox.classList.add('active');
+    document.getElementById('search-input').focus(); // Automatically focus on the input
+  });
+
+  // Close search box
+  document.getElementById('close-search').addEventListener('click', function() {
+    document.getElementById('search-box').classList.remove('active');
+  });
  
   </script>
    
   <!-- search issue -->
-   <script src="js/main.js"></script>
+   <!-- <script src="js/main.js"></script> -->
 </body>
 </html>
 
