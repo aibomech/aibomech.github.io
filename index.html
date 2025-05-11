@@ -933,17 +933,16 @@
         </div>
         
         <!-- Blog 6 -->
-        <div class="card" id="blog6-card">
+   <div class="card" id="blog6-card">
   <div class="card-content">
     <h3 class="card-title">From Ideas to Reality: Arduino Microcontroller Essentials</h3>
     <p class="card-text">
       A practical guide to getting started with Arduino platforms for robotics and automation projects.
     </p>
-    <a href="#" class="card-link" data-project="blogs/blog6.html" onclick="loadBlogContent(event, 'blogs/blog6.html', 'blog6-content')">Read More...</a>
+    <a href="#" class="card-link" onclick="loadBlogContent(event, 'blogs/blog6.html')">Read More...</a>
   </div>
-  <!-- Placeholder for dynamic content -->
-  <div id="blog6-content" class="card-expanded-content" style="display: none; padding: 1em; border-top: 1px solid #ccc;"></div>
 </div>
+
 
 <script>
 function loadBlogContent(event, url) {
@@ -1183,6 +1182,14 @@ function closePopup() {
       }
     });
   </script>
+  <!-- Popup Modal -->
+<div id="blogPopup" class="blog-popup" style="display: none;">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <div id="popupBlogContent"></div>
+  </div>
+</div>
+
 </body>
 </html>
 
