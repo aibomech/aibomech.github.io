@@ -97,3 +97,11 @@
   right: 0;
   z-index: 2000;
 }
+
+.search-box.active {
+  position: relative; /* Added for visibility */
+  width: 250px;
+  opacity: 1;
+  visibility: visible;
+  z-index: 2000;
+}

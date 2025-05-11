@@ -565,45 +565,54 @@
 
     // SEARCH ISSUE
     // Search functionality
-  // Check if search elements exist before adding event listeners
+// Ensure search elements exist before adding event listeners
 const searchIcon = document.getElementById('search-icon');
 const searchBox = document.getElementById('search-box');
 const searchInput = document.getElementById('search-input');
 const closeSearch = document.getElementById('close-search');
 
 if (searchIcon && searchBox && searchInput && closeSearch) {
-  // Toggle search box visibility
+  // Toggle search box visibility on icon click
   searchIcon.addEventListener('click', () => {
-    searchBox.classList.toggle('active');
+    console.log('Search icon clicked'); // Debugging line to check if the event is firing
+    searchBox.classList.toggle('active'); // Toggle visibility of the search box
     if (searchBox.classList.contains('active')) {
       setTimeout(() => {
-        searchInput.focus();
+        searchInput.focus(); // Focus on input field after box appears
       }, 300); // Small delay to ensure the animation completes
     }
   });
   
-  // Close search box
+  // Close search box on close button click
   closeSearch.addEventListener('click', () => {
-    searchBox.classList.remove('active');
+    console.log('Close search clicked'); // Debugging line
+    searchBox.classList.remove('active'); // Hide the search box
   });
   
-  // Search function
+  // Trigger search when 'Enter' is pressed
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault();
-      performSearch(searchInput.value.toLowerCase());
+      e.preventDefault(); // Prevent form submission if inside a form
+      console.log('Searching for:', searchInput.value); // Debugging search input value
+      performSearch(searchInput.value.toLowerCase()); // Call search function (you can define this)
     }
   });
   
-  // Close search when clicking outside
+  // Close search box when clicking outside
   document.addEventListener('click', (e) => {
     if (!searchBox.contains(e.target) && e.target !== searchIcon) {
-      searchBox.classList.remove('active');
+      searchBox.classList.remove('active'); // Hide search box if clicked outside
     }
   });
 }
+
+function performSearch(query) {
+  // Implement your search logic here
+  console.log('Performing search for:', query);
+}
+
  
-  </script>
+</script>
    
   <!-- search issue -->
    <!-- <script src="js/main.js"></script> -->
