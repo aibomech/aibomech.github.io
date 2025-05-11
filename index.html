@@ -13,8 +13,6 @@
   <!-- Prism JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bibtex.min.js"></script>
-  <!-- External CSS -->
-  <link rel="stylesheet" href="css/styles.css">
   <style>
     :root {
       --primary-color: #3498db;
@@ -933,47 +931,17 @@
         </div>
         
         <!-- Blog 6 -->
-   <div class="card" id="blog6-card">
-  <div class="card-content">
-    <h3 class="card-title">From Ideas to Reality: Arduino Microcontroller Essentials</h3>
-    <p class="card-text">
-      A practical guide to getting started with Arduino platforms for robotics and automation projects.
-    </p>
-    <a href="#" class="card-link" onclick="loadBlogContent(event, 'blogs/blog6.html')">Read More...</a>
-  </div>
-</div>
-
-
-<script>
-function loadBlogContent(event, url) {
-  event.preventDefault();
-
-  const popup = document.getElementById('blogPopup');
-  const contentContainer = document.getElementById('popupBlogContent');
-
-  // Clear and show loading state
-  contentContainer.innerHTML = '<p>Loading...</p>';
-  popup.style.display = 'flex';
-
-  fetch(url)
-    .then(response => response.text())
-    .then(data => {
-      contentContainer.innerHTML = data;
-    })
-    .catch(error => {
-      contentContainer.innerHTML = "<p style='color:red;'>Failed to load content.</p>";
-      console.error("Error loading blog:", error);
-    });
-}
-
-function closePopup() {
-  document.getElementById('blogPopup').style.display = 'none';
-}
-</script>
-
-
-
-</section>
+        <div class="card">
+          <div class="card-content">
+            <h3 class="card-title">From Ideas to Reality: Arduino Microcontroller Essentials</h3>
+            <p class="card-text">
+              A practical guide to getting started with Arduino platforms for robotics and automation projects.
+            </p>
+            <a href="blogs/blog6.html" class="card-link" data-project="blogs/blog6.html">Read More...</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     
 
@@ -1182,14 +1150,6 @@ function closePopup() {
       }
     });
   </script>
-  <!-- Popup Modal -->
-<div id="blogPopup" class="blog-popup" style="display: none;">
-  <div class="popup-content">
-    <span class="close-btn" onclick="closePopup()">&times;</span>
-    <div id="popupBlogContent"></div>
-  </div>
-</div>
-
 </body>
 </html>
 
