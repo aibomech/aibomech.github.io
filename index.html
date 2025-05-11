@@ -25,7 +25,6 @@
           <img src="images/l44.png" alt="Aibomech Logo" class="logo" />
         </a>
         <div class="search-container">
-          <div class="search-container">
           <button id="search-icon" aria-label="Search">
             <i class="fas fa-search"></i>
           </button>
@@ -564,17 +563,43 @@
 
     // SEARCH ISSUE
     // Search functionality
-  // Open search box
-  document.getElementById('search-icon').addEventListener('click', function() {
-    const searchBox = document.getElementById('search-box');
-    searchBox.classList.add('active');
-    document.getElementById('search-input').focus(); // Automatically focus on the input
-  });
+  // Check if search elements exist before adding event listeners
+const searchIcon = document.getElementById('search-icon');
+const searchBox = document.getElementById('search-box');
+const searchInput = document.getElementById('search-input');
+const closeSearch = document.getElementById('close-search');
 
-  // Close search box
-  document.getElementById('close-search').addEventListener('click', function() {
-    document.getElementById('search-box').classList.remove('active');
+if (searchIcon && searchBox && searchInput && closeSearch) {
+  // Toggle search box visibility
+  searchIcon.addEventListener('click', () => {
+    searchBox.classList.toggle('active');
+    if (searchBox.classList.contains('active')) {
+      setTimeout(() => {
+        searchInput.focus();
+      }, 300); // Small delay to ensure the animation completes
+    }
   });
+  
+  // Close search box
+  closeSearch.addEventListener('click', () => {
+    searchBox.classList.remove('active');
+  });
+  
+  // Search function
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      performSearch(searchInput.value.toLowerCase());
+    }
+  });
+  
+  // Close search when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!searchBox.contains(e.target) && e.target !== searchIcon) {
+      searchBox.classList.remove('active');
+    }
+  });
+}
  
   </script>
    
