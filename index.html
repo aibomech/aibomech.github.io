@@ -29,7 +29,8 @@
         </button>
       </div>
       <!-- Add this search container -->
-       <div class="search-container">
+<!-- Search Bar Component - Add this right after the nav-right div in your header -->
+<div class="search-container">
   <form id="siteSearchForm">
     <input type="text" id="siteSearchInput" placeholder="Search website...">
     <button type="submit" aria-label="Search">
@@ -561,80 +562,7 @@
     });
 
 
-//     // Searching 
-//     document.addEventListener('DOMContentLoaded', () => {
-//     const searchForm = document.getElementById('siteSearchForm');
-//     const searchInput = document.getElementById('siteSearchInput');
-//     const contentDisplay = document.getElementById('contentDisplay');
 
-//     // Search configuration
-//     const searchableSections = ['about', 'Aibomech Lab', 'publications', 'projects', 'blog'];
-    
-//     function highlightText(element, text) {
-//         if (!text || !element) return;
-        
-//         const regex = new RegExp(`(${text})`, 'gi');
-//         const nodes = element.childNodes;
-        
-//         Array.from(nodes).forEach(node => {
-//             if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim()) {
-//                 const parent = node.parentNode;
-//                 const replacement = node.nodeValue.replace(regex, match => 
-//                     `<mark class="highlight">${match}</mark>`
-//                 );
-                
-//                 if (replacement !== node.nodeValue) {
-//                     const span = document.createElement('span');
-//                     span.innerHTML = replacement;
-//                     parent.replaceChild(span, node);
-//                 }
-//             } else if (node.nodeType === Node.ELEMENT_NODE) {
-//                 highlightText(node, text);
-//             }
-//         });
-//     }
-
-//     function removeHighlights() {
-//         const highlights = document.querySelectorAll('.highlight');
-//         highlights.forEach(highlight => {
-//             const text = highlight.textContent;
-//             highlight.outerHTML = text;
-//         });
-//     }
-
-//     function searchContent(query) {
-//         if (!query.trim()) {
-//             removeHighlights();
-//             return;
-//         }
-
-//         searchableSections.forEach(sectionId => {
-//             const section = document.getElementById(sectionId);
-//             if (section) {
-//                 removeHighlights();
-//                 highlightText(section, query);
-//             }
-//         });
-
-//         // Show/hide sections based on matches
-//         searchableSections.forEach(sectionId => {
-//             const section = document.getElementById(sectionId);
-//             if (section) {
-//                 const hasMatch = section.querySelector('.highlight') !== null;
-//                 section.style.display = hasMatch ? 'block' : 'none';
-//             }
-//         });
-//     }
-
-//     searchForm.addEventListener('submit', (e) => {
-//         e.preventDefault();
-//         searchContent(searchInput.value);
-//     });
-
-//     searchInput.addEventListener('input', () => {
-//         searchContent(searchInput.value);
-//     });
-// });
 
 
 // search script
