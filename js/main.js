@@ -308,3 +308,5 @@ if (searchIcon && searchBox && searchInput && closeSearch) {
     }
   });
 }
+
+

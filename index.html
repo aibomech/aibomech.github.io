@@ -29,14 +29,17 @@
         </button>
       </div>
       <!-- Add this search container -->
-<div class="nav-search">
-    <form id="siteSearchForm" class="search-form">
-        <input type="text" id="siteSearchInput" class="search-input" placeholder="Search...">
-        <button type="submit" class="search-button">
-            <i class="fas fa-search"></i>
-        </button>
-    </form>
-</div>
+
+<!-- Add this search container in the navbar before the nav-left div -->
+<!-- <div class="search-container">
+  <div class="search-icon">
+    <i class="fas fa-search"></i>
+  </div>
+  <input type="text" id="searchInput" placeholder="Search content..." aria-label="Search website content">
+  <div class="search-results" id="searchResults">
+  </div>
+</div> -->
+
 
       <div class="nav-left">
         <a href="#home">Home</a>
@@ -635,6 +638,11 @@
         searchContent(searchInput.value);
     });
 });
+
+
+// search
+
+
 
  
 </script>
