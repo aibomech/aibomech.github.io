@@ -29,7 +29,7 @@
         </button>
       </div>
       <!-- Add this search container before nav-left -->
-      <div class="search-container">
+      <!-- <div class="search-container">
         <form class="search-form" onsubmit="performSearch(event)">
           <input type="text" class="search-input" placeholder="Search..." id="searchInput" autocomplete="off">
           <button type="submit" class="search-btn">
@@ -39,7 +39,7 @@
         <div class="search-results" id="searchResults">
           <ul class="search-results-list" id="searchResultsList"></ul>
         </div>
-      </div>
+      </div> -->
 
       <div class="nav-left">
         <a href="#home">Home</a>
@@ -565,217 +565,7 @@
 
 
     // Searching 
-        // Create the search index when the page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      buildSearchIndex();
-    });
     
-    let searchIndex = [];
-    
-    function buildSearchIndex() {
-      // Add publications to the search index
-      const publications = document.querySelectorAll('#publications .publication');
-      publications.forEach(publication => {
-        const title = publication.querySelector('h3').textContent;
-        const content = publication.querySelector('p:not(.publication-meta)').textContent;
-        const meta = publication.querySelector('.publication-meta')?.textContent || '';
-        const link = publication.querySelector('a')?.getAttribute('href') || '#publications';
-        
-        searchIndex.push({
-          title: title,
-          content: content,
-          category: 'Publication',
-          meta: meta,
-          link: link,
-          element: publication
-        });
-      });
-      
-      // Add projects to the search index
-      const projects = document.querySelectorAll('#projects .card');
-      projects.forEach(project => {
-        const title = project.querySelector('.card-title').textContent;
-        const content = project.querySelector('.card-text').textContent;
-        const link = project.querySelector('.card-link')?.getAttribute('href') || '#projects';
-        
-        searchIndex.push({
-          title: title,
-          content: content,
-          category: 'Project',
-          link: link,
-          element: project
-        });
-      });
-      
-      // Add blog posts to the search index
-      const blogPosts = document.querySelectorAll('#blog .card');
-      blogPosts.forEach(post => {
-        const title = post.querySelector('.card-title').textContent;
-        const content = post.querySelector('.card-text').textContent;
-        const link = post.querySelector('.card-link')?.getAttribute('href') || '#blog';
-        
-        searchIndex.push({
-          title: title,
-          content: content,
-          category: 'Blog',
-          link: link,
-          element: post
-        });
-      });
-      
-      // Add about section content
-      const aboutSection = document.querySelector('#about');
-      if (aboutSection) {
-        searchIndex.push({
-          title: "About Me",
-          content: aboutSection.querySelector('p').textContent,
-          category: 'About',
-          link: '#about',
-          element: aboutSection
-        });
-      }
-      
-      // Add AIBOMECH LAB section content
-      const labSection = document.querySelector('#Aibomech\\ Lab');
-      if (labSection) {
-        searchIndex.push({
-          title: "AIBOMECH LAB",
-          content: labSection.querySelector('p').textContent,
-          category: 'Lab',
-          link: '#Aibomech Lab',
-          element: labSection
-        });
-      }
-    }
-    
-    function performSearch(event) {
-      event.preventDefault();
-      const searchInput = document.getElementById('searchInput');
-      const searchTerm = searchInput.value.trim().toLowerCase();
-      const searchResults = document.getElementById('searchResults');
-      const searchResultsList = document.getElementById('searchResultsList');
-      
-      // Clear previous results
-      searchResultsList.innerHTML = '';
-      
-      if (searchTerm.length < 2) {
-        searchResults.classList.remove('active');
-        return;
-      }
-      
-      // Perform the search
-      const results = searchIndex.filter(item => {
-        return item.title.toLowerCase().includes(searchTerm) || 
-               item.content.toLowerCase().includes(searchTerm) ||
-               (item.meta && item.meta.toLowerCase().includes(searchTerm));
-      });
-      
-      // Display results
-      if (results.length > 0) {
-        results.forEach(result => {
-          const li = document.createElement('li');
-          li.className = 'search-result-item';
-          
-          // Find the context where the search term appears in the content
-          let contextSnippet = '';
-          const contentLower = result.content.toLowerCase();
-          const termIndex = contentLower.indexOf(searchTerm);
-          
-          if (termIndex !== -1) {
-            // Get context around the found term (about 100 characters)
-            const startIndex = Math.max(0, termIndex - 50);
-            const endIndex = Math.min(result.content.length, termIndex + searchTerm.length + 50);
-            contextSnippet = result.content.substring(startIndex, endIndex);
-            
-            // Add ellipsis if we're not showing from the beginning or to the end
-            if (startIndex > 0) contextSnippet = '...' + contextSnippet;
-            if (endIndex < result.content.length) contextSnippet += '...';
-          } else {
-            // If the match was in the title, just show the first bit of content
-            contextSnippet = result.content.substring(0, 100) + '...';
-          }
-          
-          li.innerHTML = `
-            <span class="search-result-category">${result.category}</span>
-            <h4>${result.title}</h4>
-            <p>${contextSnippet}</p>
-          `;
-          
-          li.addEventListener('click', () => {
-            // Close search results
-            searchResults.classList.remove('active');
-            
-            // Navigate to the section and highlight the element temporarily
-            window.location.href = result.link;
-            
-            // Highlight the found element
-            result.element.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-            
-            // Add a temporary highlight class
-            result.element.classList.add('search-highlight');
-            setTimeout(() => {
-              result.element.classList.remove('search-highlight');
-            }, 2000);
-          });
-          
-          searchResultsList.appendChild(li);
-        });
-        
-        searchResults.classList.add('active');
-      } else {
-        // No results found
-        const li = document.createElement('li');
-        li.className = 'no-results';
-        li.textContent = 'No results found';
-        searchResultsList.appendChild(li);
-        searchResults.classList.add('active');
-      }
-    }
-    
-    // Close search results when clicking outside
-    document.addEventListener('click', (event) => {
-      const searchContainer = document.querySelector('.search-container');
-      const searchResults = document.getElementById('searchResults');
-      
-      if (!searchContainer.contains(event.target)) {
-        searchResults.classList.remove('active');
-      }
-    });
-    
-    // Toggle search results visibility when typing
-    document.getElementById('searchInput').addEventListener('input', (event) => {
-      const searchTerm = event.target.value.trim();
-      const searchResults = document.getElementById('searchResults');
-      
-      if (searchTerm.length >= 2) {
-        performSearch(new Event('submit'));  // This will update and show results
-      } else {
-        searchResults.classList.remove('active');
-      }
-    });
-    
-    // Add this to your existing CSS for highlighting found elements
-    const highlightStyle = document.createElement('style');
-    highlightStyle.textContent = `
-      .search-highlight {
-        animation: highlightPulse 2s;
-        box-shadow: 0 0 20px rgba(107, 70, 193, 0.6);
-      }
-      
-      @keyframes highlightPulse {
-        0% { box-shadow: 0 0 0 rgba(107, 70, 193, 0); }
-        50% { box-shadow: 0 0 20px rgba(107, 70, 193, 0.6); }
-        100% { box-shadow: 0 0 0 rgba(107, 70, 193, 0); }
-      }
-      
-      .dark-mode .search-highlight {
-        box-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
-      }
-    `;
-    document.head.appendChild(highlightStyle);
 
  
 </script>
