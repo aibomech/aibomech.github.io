@@ -29,18 +29,15 @@
         </button>
       </div>
       <!-- Add this search container -->
-
-<!-- Add this search container in the navbar before the nav-left div -->
-<!-- <div class="search-container">
-  <div class="search-icon">
-    <i class="fas fa-search"></i>
-  </div>
-  <input type="text" id="searchInput" placeholder="Search content..." aria-label="Search website content">
-  <div class="search-results" id="searchResults">
-  </div>
-</div> -->
-
-
+       <div class="search-container">
+  <form id="siteSearchForm">
+    <input type="text" id="siteSearchInput" placeholder="Search website...">
+    <button type="submit" aria-label="Search">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <div id="searchResults" class="search-results"></div>
+</div>
       <div class="nav-left">
         <a href="#home">Home</a>
         <div class="nav-item">
@@ -640,15 +637,325 @@
 });
 
 
-// search
+// search script
 
 
-
+document.addEventListener('DOMContentLoaded', function() {
+  // Get search elements
+  const searchForm = document.getElementById('siteSearchForm');
+  const searchInput = document.getElementById('siteSearchInput');
+  const searchResults = document.getElementById('searchResults');
+  
+  // Search indexing - collect all searchable content
+  const searchIndex = [];
+  
+  // Function to index content from a section
+  function indexSection(sectionId, type) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    
+    // Index the main section content
+    const mainContent = section.querySelector('p');
+    if (mainContent) {
+      searchIndex.push({
+        id: sectionId,
+        title: section.querySelector('h2').textContent || sectionId,
+        content: mainContent.textContent,
+        type: type,
+        element: section
+      });
+    }
+    
+    // Index cards/publications within the section
+    const items = section.querySelectorAll('.card, .publication');
+    items.forEach(function(item, index) {
+      const itemTitle = item.querySelector('.card-title') || item.querySelector('h3');
+      const itemContent = item.querySelector('.card-text') || item.querySelector('p:not(.publication-meta):not(.card-title)');
+      
+      if (itemTitle && itemContent) {
+        searchIndex.push({
+          id: `${sectionId}-item-${index}`,
+          title: itemTitle.textContent,
+          content: itemContent.textContent,
+          type: type + '-item',
+          element: item,
+          parent: section
+        });
+      }
+    });
+  }
+  
+  // Index all important sections
+  function buildSearchIndex() {
+    // Clear existing index
+    searchIndex.length = 0;
+    
+    // Index main sections
+    indexSection('about', 'about');
+    indexSection('Aibomech Lab', 'lab');
+    indexSection('publications', 'publication');
+    indexSection('projects', 'project');
+    indexSection('blog', 'blog');
+    
+    console.log(`Search index built with ${searchIndex.length} entries`);
+  }
+  
+  // Build the search index when the page loads
+  buildSearchIndex();
+  
+  // Function to highlight search term in text
+  function highlightSearchTerm(text, searchTerm) {
+    if (!searchTerm || !text) return text;
+    
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
+  }
+  
+  // Function to get context around search term
+  function getContextAround(text, searchTerm, contextLength = 50) {
+    if (!text || !searchTerm) return '';
+    
+    const lowerText = text.toLowerCase();
+    const lowerTerm = searchTerm.toLowerCase();
+    const index = lowerText.indexOf(lowerTerm);
+    
+    if (index === -1) return text.substring(0, contextLength) + '...';
+    
+    const start = Math.max(0, index - contextLength);
+    const end = Math.min(text.length, index + searchTerm.length + contextLength);
+    
+    let context = text.substring(start, end);
+    if (start > 0) context = '...' + context;
+    if (end < text.length) context += '...';
+    
+    return highlightSearchTerm(context, searchTerm);
+  }
+  
+  // Function to search the index
+  function performSearch(query) {
+    if (!query || query.trim().length < 2) {
+      searchResults.style.display = 'none';
+      return [];
+    }
+    
+    query = query.toLowerCase().trim();
+    const results = searchIndex.filter(item => {
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.content.toLowerCase().includes(query)
+      );
+    });
+    
+    return results;
+  }
+  
+  // Function to display search results
+  function displaySearchResults(results, query) {
+    searchResults.innerHTML = '';
+    
+    if (results.length === 0) {
+      searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+      searchResults.style.display = 'block';
+      return;
+    }
+    
+    results.forEach(function(result) {
+      const resultItem = document.createElement('div');
+      resultItem.className = 'search-result-item';
+      
+      const titleHighlighted = highlightSearchTerm(result.title, query);
+      const contextContent = getContextAround(result.content, query);
+      
+      resultItem.innerHTML = `
+        <h4>${titleHighlighted}</h4>
+        <div class="search-result-context">${contextContent}</div>
+        <p class="search-result-section">${result.type}</p>
+      `;
+      
+      // Add click event to navigate to the result
+      resultItem.addEventListener('click', function() {
+        navigateToResult(result, query);
+      });
+      
+      searchResults.appendChild(resultItem);
+    });
+    
+    searchResults.style.display = 'block';
+  }
+  
+  // Function to highlight content in the page
+  function highlightInPage(element, searchTerm) {
+    // Remove any existing highlights first
+    const existingHighlights = document.querySelectorAll('.highlight');
+    existingHighlights.forEach(function(el) {
+      const parent = el.parentNode;
+      parent.replaceChild(document.createTextNode(el.textContent), el);
+      parent.normalize();
+    });
+    
+    if (!element || !searchTerm) return;
+    
+    const walkText = (node) => {
+      if (node.nodeType === 3) { // Text node
+        const text = node.nodeValue;
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        
+        if (regex.test(text)) {
+          const frag = document.createDocumentFragment();
+          let lastIdx = 0;
+          let match;
+          
+          regex.lastIndex = 0; // Reset regex
+          while ((match = regex.exec(text)) !== null) {
+            // Add text before match
+            frag.appendChild(document.createTextNode(text.substring(lastIdx, match.index)));
+            
+            // Add highlighted match
+            const highlight = document.createElement('span');
+            highlight.className = 'highlight';
+            highlight.appendChild(document.createTextNode(match[0]));
+            frag.appendChild(highlight);
+            
+            lastIdx = regex.lastIndex;
+          }
+          
+          // Add remaining text
+          if (lastIdx < text.length) {
+            frag.appendChild(document.createTextNode(text.substring(lastIdx)));
+          }
+          
+          // Replace original node with fragment
+          node.parentNode.replaceChild(frag, node);
+          return true;
+        }
+      } else if (node.nodeType === 1 && // Element node
+                node.childNodes && 
+                !/(script|style)/i.test(node.tagName)) {
+        let hasChanges = false;
+        for (let i = 0; i < node.childNodes.length; i++) {
+          const result = walkText(node.childNodes[i]);
+          hasChanges = hasChanges || result;
+        }
+        return hasChanges;
+      }
+      return false;
+    };
+    
+    walkText(element);
+  }
+  
+  // Function to navigate to a search result
+  function navigateToResult(result, query) {
+    // Hide search results
+    searchResults.style.display = 'none';
+    
+    // Scroll to the element
+    const element = result.element;
+    if (!element) return;
+    
+    // Highlight the search term in the content
+    highlightInPage(element, query);
+    
+    // If it's a card item or publication, we need to make sure the parent section is visible
+    if (result.parent) {
+      result.parent.style.display = 'block';
+    }
+    
+    // Scroll to the element with some offset for the header
+    const yOffset = -100; // Adjust based on your header height
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+    
+    // Add a temporary highlight to the element for visibility
+    element.style.transition = 'background-color 0.5s ease';
+    element.style.backgroundColor = 'rgba(255, 230, 0, 0.2)';
+    
+    // Remove highlight after 2 seconds
+    setTimeout(() => {
+      element.style.backgroundColor = '';
+    }, 2000);
+  }
+  
+  // Search form submit handler
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    
+    if (query.length < 2) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    const results = performSearch(query);
+    displaySearchResults(results, query);
+  });
+  
+  // Search input handler for real-time results
+  searchInput.addEventListener('input', function() {
+    const query = searchInput.value.trim();
+    
+    if (query.length < 2) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    const results = performSearch(query);
+    displaySearchResults(results, query);
+  });
+  
+  // Close search results when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!searchForm.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.style.display = 'none';
+    }
+  });
+  
+  // Navigation key handling for search results
+  let selectedResultIndex = -1;
+  
+  searchInput.addEventListener('keydown', function(e) {
+    const resultItems = searchResults.querySelectorAll('.search-result-item');
+    const itemCount = resultItems.length;
+    
+    if (searchResults.style.display !== 'block' || itemCount === 0) return;
+    
+    // Arrow down
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectedResultIndex = (selectedResultIndex + 1) % itemCount;
+      updateSelectedResult(resultItems);
+    }
+    // Arrow up
+    else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectedResultIndex = (selectedResultIndex - 1 + itemCount) % itemCount;
+      updateSelectedResult(resultItems);
+    }
+    // Enter key
+    else if (e.key === 'Enter' && selectedResultIndex >= 0) {
+      e.preventDefault();
+      resultItems[selectedResultIndex].click();
+    }
+  });
+  
+  function updateSelectedResult(resultItems) {
+    resultItems.forEach(function(item, index) {
+      if (index === selectedResultIndex) {
+        item.classList.add('selected');
+        item.scrollIntoView({ block: 'nearest' });
+      } else {
+        item.classList.remove('selected');
+      }
+    });
+  }
+});
  
 </script>
    
-  <!-- search issue -->
-   <!-- <script src="js/main.js"></script> -->
 </body>
 </html>
 
