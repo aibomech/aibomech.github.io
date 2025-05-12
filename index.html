@@ -15,108 +15,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bibtex.min.js"></script>
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Search CSS -->
-  <!-- <link rel="stylesheet" href="css/search.css"> -->
-    <!-- Your existing head content -->
-  <!-- <style>
-    /* Search Styles */
-    .search-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    
-    #search-icon {
-      background: none;
-      border: none;
-      color: #333;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 8px;
-      transition: color 0.3s;
-    }
-    
-    .dark-mode #search-icon {
-      color: #fff;
-    }
-    
-    #search-icon:hover {
-      color: #007bff;
-    }
-    
-    .search-box {
-      position: absolute;
-      right: 0;
-      top: 100%;
-      background: #fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      width: 0;
-      opacity: 0;
-      transition: width 0.3s ease, opacity 0.3s ease;
-      z-index: 1000;
-    }
-    
-    .dark-mode .search-box {
-      background: #333;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    }
-    
-    .search-box.active {
-      width: 250px;
-      opacity: 1;
-    }
-    
-    #search-input {
-      flex: 1;
-      border: none;
-      padding: 10px 15px;
-      font-size: 0.9rem;
-      background: transparent;
-      color: #333;
-      width: 100%;
-    }
-    
-    .dark-mode #search-input {
-      color: #fff;
-    }
-    
-    #search-input:focus {
-      outline: none;
-    }
-    
-    #close-search {
-      background: none;
-      border: none;
-      color: #666;
-      cursor: pointer;
-      padding: 10px;
-      font-size: 0.9rem;
-    }
-    
-    .dark-mode #close-search {
-      color: #ccc;
-    }
-    
-    #close-search:hover {
-      color: #ff4d4d;
-    }
-    
-    /* Make sure search is visible on mobile */
-    @media (max-width: 768px) {
-      .search-box.active {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        border-radius: 0;
-      }
-    }
-  </style> -->
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -126,22 +24,23 @@
         <a href="#home">
           <img src="images/l44.png" alt="Aibomech Logo" class="logo" />
         </a>
-        <!-- The updated search HTML code (can be incorporated into your existing navbar) -->
-        <!-- <div class="search-container" style="position: relative;">
-          <button id="search-icon" aria-label="Search" style="background: none; border: none; cursor: pointer; padding: 8px;">
-            <i class="fas fa-search"></i>
-          </button>
-          <div id="search-box" style="display: none; position: absolute; right: 0; top: 100%; z-index: 1000; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); border-radius: 4px; padding: 5px; min-width: 250px;">
-            <input type="text" id="search-input" placeholder="Search..." style="border: none; padding: 8px; width: 100%; outline: none;">
-            <button id="close-search" aria-label="Close search" style="background: none; border: none; cursor: pointer; padding: 8px;">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div> -->
         <button class="mobile-menu-btn">
           <i class="fas fa-bars"></i>
         </button>
       </div>
+      <!-- Add this search container before nav-left -->
+      <div class="search-container">
+        <form class="search-form" onsubmit="performSearch(event)">
+          <input type="text" class="search-input" placeholder="Search..." id="searchInput" autocomplete="off">
+          <button type="submit" class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <div class="search-results" id="searchResults">
+          <ul class="search-results-list" id="searchResultsList"></ul>
+        </div>
+      </div>
+
       <div class="nav-left">
         <a href="#home">Home</a>
         <div class="nav-item">
@@ -664,140 +563,219 @@
       }
     });
 
-    // SEARCH ISSUE
-    // Search functionality
-// Search functionality with direct styling
-// document.addEventListener('DOMContentLoaded', function() {
-//   // Get references to the search elements
-//   const searchIcon = document.getElementById('search-icon');
-//   const searchBox = document.getElementById('search-box');
-//   const searchInput = document.getElementById('search-input');
-//   const closeSearch = document.getElementById('close-search');
-  
-//   // If search elements don't exist, exit early
-//   if (!searchIcon || !searchBox || !searchInput || !closeSearch) {
-//     console.error('Search elements not found!');
-//     return;
-//   }
-  
-//   // Apply base styles directly to ensure they're not overridden
-//   searchBox.style.position = 'absolute';
-//   searchBox.style.right = '0';
-//   searchBox.style.top = '100%';
-//   searchBox.style.backgroundColor = '#fff';
-//   searchBox.style.borderRadius = '4px';
-//   searchBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-//   searchBox.style.display = 'none'; // Hidden by default
-//   searchBox.style.alignItems = 'center';
-//   searchBox.style.padding = '5px';
-//   searchBox.style.zIndex = '9999';
-//   searchBox.style.minWidth = '250px';
-  
-//   // Ensure the input takes up space
-//   searchInput.style.flex = '1';
-//   searchInput.style.border = 'none';
-//   searchInput.style.padding = '8px';
-//   searchInput.style.width = '100%';
-//   searchInput.style.outline = 'none';
-  
-//   // Function to handle dark mode (if your site has dark mode)
-//   function updateDarkModeStyles() {
-//     if (document.body.classList.contains('dark-mode')) {
-//       searchBox.style.backgroundColor = '#333';
-//       searchBox.style.color = '#fff';
-//       searchInput.style.color = '#fff';
-//       searchInput.style.backgroundColor = '#333';
-//     } else {
-//       searchBox.style.backgroundColor = '#fff';
-//       searchBox.style.color = '#333';
-//       searchInput.style.color = '#333';
-//       searchInput.style.backgroundColor = '#fff';
-//     }
-//   }
-  
-//   // Initial style setup for dark mode
-//   updateDarkModeStyles();
-  
-//   // Listen for dark mode changes
-//   const darkModeToggle = document.querySelector('.dark-mode-toggle');
-//   if (darkModeToggle) {
-//     darkModeToggle.addEventListener('click', function() {
-//       // Wait a bit for the dark-mode class to be applied
-//       setTimeout(updateDarkModeStyles, 100);
-//     });
-//   }
-  
-//   // Show search box when clicking search icon
-//   searchIcon.addEventListener('click', function(e) {
-//     e.stopPropagation();
+
+    // Searching 
+        // Create the search index when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      buildSearchIndex();
+    });
     
-//     // Toggle visibility
-//     if (searchBox.style.display === 'none' || searchBox.style.display === '') {
-//       searchBox.style.display = 'flex';
-//       setTimeout(() => {
-//         searchInput.focus();
-//       }, 100);
-//     } else {
-//       searchBox.style.display = 'none';
-//     }
-//   });
-  
-//   // Hide search box when clicking close button
-//   closeSearch.addEventListener('click', function(e) {
-//     e.stopPropagation();
-//     searchBox.style.display = 'none';
-//   });
-  
-//   // Prevent clicks inside search box from closing it
-//   searchBox.addEventListener('click', function(e) {
-//     e.stopPropagation();
-//   });
-  
-//   // Hide search box when clicking outside
-//   document.addEventListener('click', function() {
-//     searchBox.style.display = 'none';
-//   });
-  
-//   // Handle search submission
-//   searchInput.addEventListener('keypress', function(e) {
-//     if (e.key === 'Enter') {
-//       if (searchInput.value.trim()) {
-//         alert('Searching for: ' + searchInput.value.trim());
-//         // Add your actual search function here
-//       }
+    let searchIndex = [];
+    
+    function buildSearchIndex() {
+      // Add publications to the search index
+      const publications = document.querySelectorAll('#publications .publication');
+      publications.forEach(publication => {
+        const title = publication.querySelector('h3').textContent;
+        const content = publication.querySelector('p:not(.publication-meta)').textContent;
+        const meta = publication.querySelector('.publication-meta')?.textContent || '';
+        const link = publication.querySelector('a')?.getAttribute('href') || '#publications';
+        
+        searchIndex.push({
+          title: title,
+          content: content,
+          category: 'Publication',
+          meta: meta,
+          link: link,
+          element: publication
+        });
+      });
       
-//       // Optionally hide the search box after search
-//       searchBox.style.display = 'none';
-//     }
-//   });
-  
-//   // Make sure search is responsive
-//   function handleResize() {
-//     if (window.innerWidth <= 768) {
-//       // Mobile styles
-//       searchBox.style.position = 'absolute';
-//       searchBox.style.right = '0';
-//       searchBox.style.top = '100%';
-//       searchBox.style.width = '100vw';
-//       searchBox.style.maxWidth = 'none';
-//       searchBox.style.borderRadius = '0';
-//     } else {
-//       // Desktop styles
-//       searchBox.style.position = 'absolute';
-//       searchBox.style.width = 'auto';
-//       searchBox.style.minWidth = '250px';
-//       searchBox.style.borderRadius = '4px';
-//     }
-//   }
-  
-//   // Initial responsive setup
-//   handleResize();
-  
-//   // Update layout on window resize
-//   window.addEventListener('resize', handleResize);
-  
-//   console.log('Search functionality initialized with direct styles');
-// });
+      // Add projects to the search index
+      const projects = document.querySelectorAll('#projects .card');
+      projects.forEach(project => {
+        const title = project.querySelector('.card-title').textContent;
+        const content = project.querySelector('.card-text').textContent;
+        const link = project.querySelector('.card-link')?.getAttribute('href') || '#projects';
+        
+        searchIndex.push({
+          title: title,
+          content: content,
+          category: 'Project',
+          link: link,
+          element: project
+        });
+      });
+      
+      // Add blog posts to the search index
+      const blogPosts = document.querySelectorAll('#blog .card');
+      blogPosts.forEach(post => {
+        const title = post.querySelector('.card-title').textContent;
+        const content = post.querySelector('.card-text').textContent;
+        const link = post.querySelector('.card-link')?.getAttribute('href') || '#blog';
+        
+        searchIndex.push({
+          title: title,
+          content: content,
+          category: 'Blog',
+          link: link,
+          element: post
+        });
+      });
+      
+      // Add about section content
+      const aboutSection = document.querySelector('#about');
+      if (aboutSection) {
+        searchIndex.push({
+          title: "About Me",
+          content: aboutSection.querySelector('p').textContent,
+          category: 'About',
+          link: '#about',
+          element: aboutSection
+        });
+      }
+      
+      // Add AIBOMECH LAB section content
+      const labSection = document.querySelector('#Aibomech\\ Lab');
+      if (labSection) {
+        searchIndex.push({
+          title: "AIBOMECH LAB",
+          content: labSection.querySelector('p').textContent,
+          category: 'Lab',
+          link: '#Aibomech Lab',
+          element: labSection
+        });
+      }
+    }
+    
+    function performSearch(event) {
+      event.preventDefault();
+      const searchInput = document.getElementById('searchInput');
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const searchResults = document.getElementById('searchResults');
+      const searchResultsList = document.getElementById('searchResultsList');
+      
+      // Clear previous results
+      searchResultsList.innerHTML = '';
+      
+      if (searchTerm.length < 2) {
+        searchResults.classList.remove('active');
+        return;
+      }
+      
+      // Perform the search
+      const results = searchIndex.filter(item => {
+        return item.title.toLowerCase().includes(searchTerm) || 
+               item.content.toLowerCase().includes(searchTerm) ||
+               (item.meta && item.meta.toLowerCase().includes(searchTerm));
+      });
+      
+      // Display results
+      if (results.length > 0) {
+        results.forEach(result => {
+          const li = document.createElement('li');
+          li.className = 'search-result-item';
+          
+          // Find the context where the search term appears in the content
+          let contextSnippet = '';
+          const contentLower = result.content.toLowerCase();
+          const termIndex = contentLower.indexOf(searchTerm);
+          
+          if (termIndex !== -1) {
+            // Get context around the found term (about 100 characters)
+            const startIndex = Math.max(0, termIndex - 50);
+            const endIndex = Math.min(result.content.length, termIndex + searchTerm.length + 50);
+            contextSnippet = result.content.substring(startIndex, endIndex);
+            
+            // Add ellipsis if we're not showing from the beginning or to the end
+            if (startIndex > 0) contextSnippet = '...' + contextSnippet;
+            if (endIndex < result.content.length) contextSnippet += '...';
+          } else {
+            // If the match was in the title, just show the first bit of content
+            contextSnippet = result.content.substring(0, 100) + '...';
+          }
+          
+          li.innerHTML = `
+            <span class="search-result-category">${result.category}</span>
+            <h4>${result.title}</h4>
+            <p>${contextSnippet}</p>
+          `;
+          
+          li.addEventListener('click', () => {
+            // Close search results
+            searchResults.classList.remove('active');
+            
+            // Navigate to the section and highlight the element temporarily
+            window.location.href = result.link;
+            
+            // Highlight the found element
+            result.element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Add a temporary highlight class
+            result.element.classList.add('search-highlight');
+            setTimeout(() => {
+              result.element.classList.remove('search-highlight');
+            }, 2000);
+          });
+          
+          searchResultsList.appendChild(li);
+        });
+        
+        searchResults.classList.add('active');
+      } else {
+        // No results found
+        const li = document.createElement('li');
+        li.className = 'no-results';
+        li.textContent = 'No results found';
+        searchResultsList.appendChild(li);
+        searchResults.classList.add('active');
+      }
+    }
+    
+    // Close search results when clicking outside
+    document.addEventListener('click', (event) => {
+      const searchContainer = document.querySelector('.search-container');
+      const searchResults = document.getElementById('searchResults');
+      
+      if (!searchContainer.contains(event.target)) {
+        searchResults.classList.remove('active');
+      }
+    });
+    
+    // Toggle search results visibility when typing
+    document.getElementById('searchInput').addEventListener('input', (event) => {
+      const searchTerm = event.target.value.trim();
+      const searchResults = document.getElementById('searchResults');
+      
+      if (searchTerm.length >= 2) {
+        performSearch(new Event('submit'));  // This will update and show results
+      } else {
+        searchResults.classList.remove('active');
+      }
+    });
+    
+    // Add this to your existing CSS for highlighting found elements
+    const highlightStyle = document.createElement('style');
+    highlightStyle.textContent = `
+      .search-highlight {
+        animation: highlightPulse 2s;
+        box-shadow: 0 0 20px rgba(107, 70, 193, 0.6);
+      }
+      
+      @keyframes highlightPulse {
+        0% { box-shadow: 0 0 0 rgba(107, 70, 193, 0); }
+        50% { box-shadow: 0 0 20px rgba(107, 70, 193, 0.6); }
+        100% { box-shadow: 0 0 0 rgba(107, 70, 193, 0); }
+      }
+      
+      .dark-mode .search-highlight {
+        box-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+      }
+    `;
+    document.head.appendChild(highlightStyle);
 
  
 </script>
