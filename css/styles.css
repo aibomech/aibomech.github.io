@@ -837,10 +837,252 @@
   }
   
   #siteSearchForm {
-    width: 100%;
   }
   
   #siteSearchInput {
     width: 100%;
+  }
+}
+
+/* Timeline styles for Professional Experience */
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  border-left: 4px solid var(--primary-color);
+  transition: var(--transition);
+}
+
+.timeline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-date {
+  min-width: 120px;
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  margin-right: 2rem;
+}
+
+.timeline-content h3 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.timeline-org {
+  color: var(--text-color);
+  font-style: italic;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Education styles */
+.education-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.education-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  border-left: 4px solid var(--accent-color);
+}
+
+.education-period {
+  min-width: 100px;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-right: 2rem;
+}
+
+.education-content h3 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.education-org {
+  color: var(--text-color);
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+.education-detail {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Talks styles */
+.talks-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.talk-item {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--card-shadow);
+  border-left: 4px solid var(--primary-color);
+}
+
+.talk-item.upcoming {
+  border-left-color: var(--accent-color);
+}
+
+.talk-header h4 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.talk-subtitle {
+  color: var(--text-color);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.talk-details {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.talk-date, .talk-location, .talk-event {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.talk-placeholder {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 2px dashed var(--primary-color);
+}
+
+/* Resources styles */
+.resources-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.courses-grid, .projects-grid, .channels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.course-item, .project-item, .channel-item {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.course-item:hover, .project-item:hover, .channel-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.course-item h4, .project-item h4, .channel-item h4 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.course-org, .project-desc, .channel-desc {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.resource-link {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.resource-link:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Contact styles updates */
+.contact-social {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Mobile responsiveness for new sections */
+@media (max-width: 768px) {
+  .timeline-item, .education-item {
+    flex-direction: column;
+  }
+  
+  .timeline-date, .education-period {
+    margin-bottom: 1rem;
+    margin-right: 0;
+  }
+  
+  .talk-details {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .courses-grid, .projects-grid, .channels-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-social {
+    flex-direction: column;
   }
 }
