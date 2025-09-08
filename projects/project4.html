@@ -1,0 +1,121 @@
+<!-- project4.html -->
+<project-post>
+  <p><strong>Status:</strong> In Development</p>
+
+  <h4>🔍 Project Overview</h4>
+  <p>
+    This project presents the development of a comprehensive <strong>IoT Device Management System</strong> designed for industrial automation and remote device control. 
+    The system provides a cloud-based platform for managing distributed devices with touchscreen interfaces, enabling real-time control, monitoring, and firmware management 
+    through a scalable, secure architecture.
+  </p>
+
+  <h4>📋 Scope of Work</h4>
+  <p>The following features are included in this project:</p>
+  <ul>
+    <li><strong>User Authentication:</strong> Secure login and signup system with JWT-based sessions</li>
+    <li><strong>Device Management:</strong> Registration of devices by unique serial numbers, accessible through a central dashboard</li>
+    <li><strong>Real-Time Control:</strong> Live synchronization between the device touchscreen and the cloud dashboard using WebSockets</li>
+    <li><strong>OTA Firmware Updates:</strong> Deployment of firmware remotely with rollback and version control</li>
+    <li><strong>Parameter Profiles:</strong> Creation, storage, and application of configuration profiles across devices</li>
+    <li><strong>Monitoring & Logging:</strong> Device status tracking, error reporting, and historical activity logs</li>
+  </ul>
+
+  <h4>🏗️ Technical Architecture</h4>
+  <p>The architecture consists of three major layers: Frontend, Backend, and Device Integration with Raspberry Pi.</p>
+  <p><strong>Assumption:</strong> All input data will be provided to the system in a consistent and predefined format, and data will flow smoothly from the designated sources.</p>
+
+  <h5>🖥️ Frontend</h5>
+  <ul>
+    <li><strong>Technology:</strong> React.js</li>
+    <li><strong>Purpose:</strong> Provides a user-friendly interface for administrators and operators</li>
+    <li><strong>Features:</strong>
+      <ul>
+        <li>Secure login and authentication</li>
+        <li>Device list and management dashboard</li>
+        <li>Real-time control panel mirroring device touchscreen UI</li>
+        <li>Parameter profile creation and assignment</li>
+        <li>Access to logs and monitoring reports</li>
+        <li>Additional features will be added based on needs</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h5>⚙️ Backend</h5>
+  <ul>
+    <li><strong>Technology:</strong> Python (FastAPI preferred for asynchronous performance)</li>
+    <li><strong>Database:</strong> PostgreSQL for relational data storage and scaling</li>
+    <li><strong>Core Functions:</strong>
+      <ul>
+        <li>User authentication and role-based access control (JWT)</li>
+        <li>Device registration and association with user accounts</li>
+        <li>API endpoints for device commands, status updates, and logs</li>
+        <li>OTA firmware update service</li>
+        <li>Profile management system (create, save, assign profiles)</li>
+        <li>Additional features will be added based on needs</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h5>🔄 Real-Time Communication</h5>
+  <ul>
+    <li><strong>Protocol:</strong> WebSockets (via Socket.IO)</li>
+    <li><strong>Function:</strong> Enables instant, bi-directional communication between cloud and devices</li>
+    <li><strong>Key Features:</strong>
+      <ul>
+        <li>Live control panel synchronization</li>
+        <li>Reliable message delivery with automatic reconnection handling</li>
+        <li>Scalable for multiple concurrent devices</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h5>🔧 Device Integration (Edge Layer)</h5>
+  <ul>
+    <li><strong>Hardware:</strong> Raspberry Pi (touchscreen-based)</li>
+    <li><strong>Functions:</strong>
+      <ul>
+        <li>Local device control and monitoring</li>
+        <li>Touchscreen interface for on-site operations</li>
+        <li>Real-time synchronization with cloud dashboard</li>
+        <li>Local data caching for offline operation</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>☁️ Hosting & Deployment</h4>
+  <ul>
+    <li><strong>Environment:</strong> Cloud-based infrastructure (AWS, Azure, Google Cloud Platform, or another provider chosen by the client)</li>
+    <li><strong>Deployment Model:</strong> Containerized (Docker) for portability and scalability</li>
+    <li><strong>Security Measures:</strong> SSL encryption, secure API gateways, and role-based permissions</li>
+  </ul>
+
+  <h4>🔧 Tools & Technologies</h4>
+  <ul>
+    <li><strong>Frontend:</strong> React.js, HTML5, CSS3, JavaScript ES6+</li>
+    <li><strong>Backend:</strong> Python FastAPI, PostgreSQL, JWT Authentication</li>
+    <li><strong>Real-time:</strong> Socket.IO, WebSockets</li>
+    <li><strong>Device Layer:</strong> Raspberry Pi, Python, Touch Display Interface</li>
+    <li><strong>Infrastructure:</strong> Docker, Cloud Services (AWS/Azure/GCP), SSL/TLS</li>
+    <li><strong>Version Control:</strong> Git-based firmware management with rollback capabilities</li>
+  </ul>
+
+  <h4>🚀 Key Benefits</h4>
+  <ul>
+    <li>Centralized management of distributed devices</li>
+    <li>Real-time monitoring and control capabilities</li>
+    <li>Secure, scalable architecture suitable for industrial environments</li>
+    <li>Flexible profile management for different operational scenarios</li>
+    <li>Robust OTA update system with rollback protection</li>
+    <li>Comprehensive logging and audit trail for compliance</li>
+  </ul>
+
+  <h4>🏭 Real-World Use Cases</h4>
+  <ul>
+    <li>Industrial automation and process control</li>
+    <li>Smart building management systems</li>
+    <li>Remote equipment monitoring and maintenance</li>
+    <li>Agricultural IoT device management</li>
+    <li>Laboratory instrument control and data collection</li>
+  </ul>
+
+</project-post>
