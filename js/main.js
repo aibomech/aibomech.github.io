@@ -11,26 +11,31 @@
     // Dark Mode Toggle
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     const body = document.body;
-    const icon = darkModeToggle.querySelector('i');
     
-    // Check for saved theme preference
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      body.classList.add('dark-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
-    }
-    
-    darkModeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
+    if (darkModeToggle) {
+      const icon = darkModeToggle.querySelector('i');
       
-      // Update icon
-      if (body.classList.contains('dark-mode')) {
-        icon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        icon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('darkMode', 'disabled');
+      // Check for saved theme preference
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        if (icon) icon.classList.replace('fa-moon', 'fa-sun');
       }
-    });
+      
+      darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        // Update icon
+        if (icon) {
+          if (body.classList.contains('dark-mode')) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+          } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+          }
+        }
+      });
+    }
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
