@@ -67,33 +67,62 @@
     </nav>
   </header>
   <!-- <div class="card-content"> -->
-  <section class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 text-white px-6 text-center" id="home">
-  <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg animate-fade-in mb-4">
-    AIBOMECH
-  </h1>
-  <p class="text-lg md:text-2xl max-w-3xl font-light leading-relaxed drop-shadow-md animate-fade-in-delay">
-    Shaping the future of <span class="font-semibold text-yellow-300">Robotics</span>, <span class="font-semibold text-cyan-300">AI</span>, and <span class="font-semibold text-green-300">Computer Vision</span> through research, engineering principles, and entrepreneurship.
-  </p>
-</section>
+  <section id="home" class="hero-section">
+    <h1 class="hero-title">
+      AIBOMECH
+    </h1>
+    <p class="hero-description">
+      Shaping the future of <span class="highlight-robotics">Robotics</span>, <span class="highlight-ai">AI</span>, and <span class="highlight-cv">Computer Vision</span> through research, engineering principles, and entrepreneurship.
+    </p>
+  </section>
 
 
   <div class="content">
     <!-- About Me Section -->
     <section id="about">
       <h2>About Me</h2>
-      <p>
-        I'm a robotics engineer and PhD student with a strong focus on mobile robotics, computer vision, and SLAM.
-        I have hands-on experience in ROS, AI, and embedded systems, and I enjoy turning complex robotic problems into practical solutions.
-        I'm passionate about research and development, and I regularly share my knowledge through projects, blogs, and tutorials.
-        My goal is to become an expert in robotics and contribute to real-world applications that make a difference.
-      </p>
+      <div class="about-content">
+        <p>
+          Welcome! I'm <strong>Basheer Al-Tawil</strong>, a passionate robotics engineer and PhD researcher dedicated to advancing the frontiers of mobile robotics, computer vision, and artificial intelligence. Currently pursuing my doctoral studies, I specialize in developing intelligent robotic systems that can navigate, perceive, and interact with complex real-world environments.
+        </p>
+        
+        <div class="expertise-grid">
+          <div class="expertise-item">
+            <h3><i class="fas fa-robot"></i> Robotics Engineering</h3>
+            <p>Specializing in mobile robotics, SLAM (Simultaneous Localization and Mapping), path planning, and autonomous navigation systems using ROS (Robot Operating System).</p>
+          </div>
+          
+          <div class="expertise-item">
+            <h3><i class="fas fa-eye"></i> Computer Vision</h3>
+            <p>Developing advanced perception systems using RGB-D cameras, LiDAR sensors, and deep learning techniques for object detection, tracking, and scene understanding.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <h3><i class="fas fa-brain"></i> Artificial Intelligence</h3>
+            <p>Implementing machine learning algorithms, neural networks, and AI frameworks to create intelligent decision-making systems for autonomous robots.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <h3><i class="fas fa-microchip"></i> Embedded Systems</h3>
+            <p>Designing and programming embedded control systems, microcontrollers, and real-time systems for robotic applications and industrial automation.</p>
+          </div>
+        </div>
+        
+        <p>
+          My research focuses on enhancing robot perception and navigation capabilities through sensor fusion techniques, combining data from multiple sources to create robust and reliable autonomous systems. I'm particularly interested in developing solutions that bridge the gap between laboratory research and real-world applications.
+        </p>
+        
+        <p>
+          Beyond research, I'm passionate about knowledge sharing and education. Through AIBOMECH Lab, I regularly publish technical articles, tutorials, and open-source projects to help fellow researchers, students, and robotics enthusiasts learn and grow in this exciting field. My goal is to contribute to making robotics technology more accessible and to inspire the next generation of robotics engineers.
+        </p>
+      </div>
     </section>
 
     <!-- AIBOMECH LAB Section -->
     <section id="Aibomech Lab">
       <h2>AIBOMECH LAB</h2>
       <p>
-    AIBOMECH Lab is where I regularly publish my academic research, hands-on robotics projects, and technical blogs. 
+    AIBOMECH Lab is my dedicated research and development hub where cutting-edge robotics meets practical innovation. This is where theoretical concepts transform into real-world solutions, and where I share my journey through the fascinating world of artificial intelligence, robotics, and mechatronics. 
     It’s a space dedicated to sharing my ongoing work in robotics, AI, and computer vision — including peer-reviewed papers, 
     real-world experiments, and step-by-step tutorials. Whether you're a researcher, student, or enthusiast, you'll find 
     valuable insights and practical applications here.
@@ -225,11 +254,11 @@
         <div class="card">
           <!-- <img src="/api/placeholder/400/200" alt="Temperature Control System" class="card-img"> -->
           <div class="card-content">
-            <h3 class="card-title">🌡️ Temperature Control Using Fuzzy Logic</h3>
+            <h3 class="card-title">🌡️ Intelligent Temperature Control Using Fuzzy Logic</h3>
             <p class="card-text">
-              A smart temperature control system implementing fuzzy logic principles for precise environmental management. This project demonstrates how fuzzy logic can be applied to create more natural and human-like control systems.
+              A sophisticated environmental control system that leverages fuzzy logic algorithms to maintain optimal temperature conditions. This project demonstrates the application of soft computing techniques in creating adaptive control systems that can handle uncertainty and imprecision, making decisions more similar to human reasoning. The system includes sensor integration, real-time data processing, and intelligent decision-making capabilities for precise environmental management in various applications such as greenhouse automation, HVAC systems, and industrial processes.
             </p>
-             <a href="projects/project1.html" class="card-link" data-project="projects/project1.html">View Project</a>
+             <a href="projects/project1.html" class="card-link" data-project="projects/project1.html">View Project Details</a>
           </div>
         </div>
         
@@ -237,26 +266,23 @@
         <div class="card">
           <!-- <img src="/api/placeholder/400/200" alt="Laser Belt Machine" class="card-img"> -->
           <div class="card-content">
-            <h3 class="card-title">🔦 Laser Belt Marking Machine</h3>
+            <h3 class="card-title">🔦 Advanced Laser Belt Marking System</h3>
             <p class="card-text">
-              A fully automated system that synchronizes a moving belt with a fiber laser marker for precise and consistent product labeling. 
-              Designed with embedded control, custom UI, and mechanical integration.
+              A state-of-the-art industrial automation solution that synchronizes a continuously moving conveyor belt with a high-precision fiber laser marking system. This project combines mechanical engineering, embedded systems programming, and advanced control algorithms to achieve consistent, high-quality product marking at industrial speeds. The system features custom-developed user interface, real-time motion control, position tracking, and quality assurance mechanisms, making it suitable for high-volume manufacturing environments where precision and reliability are critical.
             </p>
-            <a href="projects/project2.html" class="card-link" data-project="projects/project2.html">View Project</a>
+            <a href="projects/project2.html" class="card-link" data-project="projects/project2.html">Explore Implementation</a>
           </div>
         </div>
 
-
-        
         <!-- Project 3 -->
         <div class="card">
           <!-- <img src="/api/placeholder/400/200" alt="5DoF Robot Arm with ROS MoveIt" class="card-img"> -->
           <div class="card-content">
-            <h3 class="card-title">5DoF Robot Arm with ROS MoveIt</h3>
+            <h3 class="card-title">🦾 5DoF Robotic Arm with ROS MoveIt Integration</h3>
             <p class="card-text">
-              A custom-designed 5DoF robotic arm built in SolidWorks, converted to URDF, and integrated with ROS MoveIt for motion planning, simulation, and control in Gazebo and RViz.
+              A comprehensive robotics project featuring a custom-designed 5 Degree-of-Freedom robotic manipulator developed from concept to implementation. The project encompasses mechanical design using SolidWorks CAD software, conversion to URDF (Unified Robot Description Format), and full integration with the ROS (Robot Operating System) ecosystem. Utilizing MoveIt motion planning framework, the system provides advanced path planning, collision avoidance, inverse kinematics solving, and real-time control capabilities. The robot is fully simulated in Gazebo physics engine and visualized in RViz, making it an excellent platform for robotics research, education, and industrial automation applications.
             </p>
-            <a href="projects/project3.html" class="card-link" data-project="projects/project3.html">View Project</a>
+            <a href="projects/project3.html" class="card-link" data-project="projects/project3.html">Discover Technical Details</a>
         </div>
       </div>
     </section>
@@ -268,66 +294,66 @@
         <!-- Blog 1 -->
         <div class="card">
           <div class="card-content">
-            <h3 class="card-title">Robot Kinematics & Dynamics: Basic Definitions and Design</h3>
+            <h3 class="card-title">Robot Kinematics & Dynamics: Foundations of Robotic Motion</h3>
             <p class="card-text">
-              Understanding the fundamental principles of robot movement and how different parts interact to create coordinated motion.
+              Dive deep into the mathematical foundations that govern robot movement. This comprehensive guide covers forward and inverse kinematics, Jacobian matrices, velocity analysis, and dynamic modeling. Learn how robots calculate their joint positions, plan their movements, and interact with physical forces in their environment. Essential reading for anyone serious about understanding robotic motion control.
             </p>
-            <a href="blogs/blog1.html" class="card-link" data-project="blogs/blog1.html">Read More...</a>
+            <a href="blogs/blog1.html" class="card-link" data-project="blogs/blog1.html">Read Complete Guide</a>
           </div>
         </div>
         
         <!-- Blog 2 -->
         <div class="card">
           <div class="card-content">
-            <h3 class="card-title">Robot Manipulators Design - Part 1</h3>
+            <h3 class="card-title">Robot Manipulator Design Fundamentals - Part 1</h3>
             <p class="card-text">
-              An in-depth exploration of robot manipulator design principles, focusing on mechanical considerations and degrees of freedom.
+              An in-depth exploration of robotic manipulator design principles, covering mechanical considerations, degrees of freedom analysis, workspace design, and joint configuration strategies. Learn about different manipulator architectures, their advantages and limitations, and how to choose the right design for specific applications. This foundational knowledge is crucial for anyone involved in robotic system design.
             </p>
-            <a href="blogs/blog2.html" class="card-link" data-project="blogs/blog2.html">Read More...</a>
+            <a href="blogs/blog2.html" class="card-link" data-project="blogs/blog2.html">Start Learning</a>
           </div>
         </div>
         
         <!-- Blog 3 -->
         <div class="card">
           <div class="card-content">
-            <h3 class="card-title">Robot Manipulators Design - Part 2</h3>
+            <h3 class="card-title">Robot Manipulator Design Advanced Topics - Part 2</h3>
             <p class="card-text">
-              Advanced topics in manipulator design, including workspace analysis, singularities, and performance optimization.
+              Building on the fundamentals, this advanced guide delves into workspace analysis, singularity avoidance, performance optimization techniques, and advanced control strategies. Explore topics like redundancy resolution, optimal path planning, and real-time control implementation. Perfect for researchers and engineers looking to push the boundaries of manipulator performance and capabilities.
             </p>
-            <a href="blogs/blog3.html" class="card-link" data-project="blogs/blog3.html">Read More...</a>
+            <a href="blogs/blog3.html" class="card-link" data-project="blogs/blog3.html">Advance Your Knowledge</a>
           </div>
         </div>
         
         <!-- Blog 4 -->
         <div class="card">
           <div class="card-content">
-            <h3 class="card-title">Mechanisms of Machines & Their Benefits</h3>
+            <h3 class="card-title">Mechanisms & Machine Elements: Building Blocks of Automation</h3>
             <p class="card-text">
-              Exploring various mechanical systems and how they contribute to machine functionality, efficiency, and reliability.
+              Discover the fundamental mechanical systems that power modern automation. This comprehensive overview covers gear systems, linkage mechanisms, cam and follower systems, belt and chain drives, and their applications in robotic and automated systems. Learn how these mechanical elements contribute to machine functionality, efficiency, and reliability in industrial applications.
             </p>
-            <a href="blogs/blog4.html" class="card-link" data-project="blogs/blog4.html">Read More...</a>
+            <a href="blogs/blog4.html" class="card-link" data-project="blogs/blog4.html">Explore Mechanisms</a>
           </div>
         </div>
         
         <!-- Blog 5 -->
         <div class="card">
           <div class="card-content">
-            <h3 class="card-title">Microcontrollers: The Hidden Power Behind Smart Devices</h3>
+            <h3 class="card-title">Microcontrollers: The Intelligent Heart of Smart Devices</h3>
             <p class="card-text">
-              Discover how these tiny computers enable countless smart devices and how they're programmed to perform complex tasks.
+              Uncover the world of microcontrollers and their pivotal role in modern smart devices and robotic systems. Learn about different microcontroller architectures, programming paradigms, real-time operating systems, and interfacing techniques. Discover how these tiny but powerful computers enable complex behaviors in everything from household appliances to sophisticated industrial robots.
             </p>
-            <a href="blogs/blog5.html" class="card-link" data-project="blogs/blog5.html">Read More...</a>
+            <a href="blogs/blog5.html" class="card-link" data-project="blogs/blog5.html">Discover Microcontrollers</a>
           </div>
         </div>
         
         <!-- Blog 6 -->
         <div class="card">
           <div class="card-content">
-            <h3 class="card-title">From Ideas to Reality: Arduino Microcontroller Essentials</h3>
+            <h3 class="card-title">Arduino Development: From Concept to Reality</h3>
             <p class="card-text">
-              A practical guide to getting started with Arduino platforms for robotics and automation projects.
+              A practical, hands-on guide to Arduino development for robotics and automation projects. Learn essential programming concepts, sensor integration, actuator control, and project development methodologies. This tutorial series takes you from basic LED blinking to complex robotic behaviors, providing the practical skills needed to bring your innovative ideas to life using the Arduino ecosystem.
             </p>
-            <a href="blogs/blog6.html" class="card-link" data-project="blogs/blog6.html">Read More...</a>
+            <a href="blogs/blog6.html" class="card-link" data-project="blogs/blog6.html">Start Building</a>
           </div>
         </div>
       </div>
