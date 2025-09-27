@@ -1,0 +1,107 @@
+{
+  "blogs": [
+    {
+      "id": "blog1",
+      "title": "Robot Kinematics & Dynamics: Foundations of Robotic Motion",
+      "description": "Dive deep into the mathematical foundations that govern robot movement. This comprehensive guide covers forward and inverse kinematics, Jacobian matrices, velocity analysis, and dynamic modeling. Learn how robots calculate their joint positions, plan their movements, and interact with physical forces in their environment. Essential reading for anyone serious about understanding robotic motion control.",
+      "link": "blogs/blog1.html",
+      "linkText": "Read Complete Guide"
+    },
+    {
+      "id": "blog2",
+      "title": "Robot Manipulator Design Fundamentals - Part 1",
+      "description": "An in-depth exploration of robotic manipulator design principles, covering mechanical considerations, degrees of freedom analysis, workspace design, and joint configuration strategies. Learn about different manipulator architectures, their advantages and limitations, and how to choose the right design for specific applications. This foundational knowledge is crucial for anyone involved in robotic system design.",
+      "link": "blogs/blog2.html",
+      "linkText": "Start Learning"
+    },
+    {
+      "id": "blog3",
+      "title": "Robot Manipulator Design Advanced Topics - Part 2",
+      "description": "Building on the fundamentals, this advanced guide delves into workspace analysis, singularity avoidance, performance optimization techniques, and advanced control strategies. Explore topics like redundancy resolution, optimal path planning, and real-time control implementation. Perfect for researchers and engineers looking to push the boundaries of manipulator performance and capabilities.",
+      "link": "blogs/blog3.html",
+      "linkText": "Advance Your Knowledge"
+    },
+    {
+      "id": "blog4",
+      "title": "Mechanisms & Machine Elements: Building Blocks of Automation",
+      "description": "Discover the fundamental mechanical systems that power modern automation. This comprehensive overview covers gear systems, linkage mechanisms, cam and follower systems, belt and chain drives, and their applications in robotic and automated systems. Learn how these mechanical elements contribute to machine functionality, efficiency, and reliability in industrial applications.",
+      "link": "blogs/blog4.html",
+      "linkText": "Explore Mechanisms"
+    },
+    {
+      "id": "blog5",
+      "title": "Microcontrollers: The Intelligent Heart of Smart Devices",
+      "description": "Uncover the world of microcontrollers and their pivotal role in modern smart devices and robotic systems. Learn about different microcontroller architectures, programming paradigms, real-time operating systems, and interfacing techniques. Discover how these tiny but powerful computers enable complex behaviors in everything from household appliances to sophisticated industrial robots.",
+      "link": "blogs/blog5.html",
+      "linkText": "Discover Microcontrollers"
+    },
+    {
+      "id": "blog6",
+      "title": "Arduino Development: From Concept to Reality",
+      "description": "A practical, hands-on guide to Arduino development for robotics and automation projects. Learn essential programming concepts, sensor integration, actuator control, and project development methodologies. This tutorial series takes you from basic LED blinking to complex robotic behaviors, providing the practical skills needed to bring your innovative ideas to life using the Arduino ecosystem.",
+      "link": "blogs/blog6.html",
+      "linkText": "Start Building"
+    }
+  ],
+  "projects": [
+    {
+      "id": "project1",
+      "title": "🌡️ Intelligent Temperature Control Using Fuzzy Logic",
+      "description": "A sophisticated environmental control system that leverages fuzzy logic algorithms to maintain optimal temperature conditions. This project demonstrates the application of soft computing techniques in creating adaptive control systems that can handle uncertainty and imprecision, making decisions more similar to human reasoning. The system includes sensor integration, real-time data processing, and intelligent decision-making capabilities for precise environmental management in various applications such as greenhouse automation, HVAC systems, and industrial processes.",
+      "link": "projects/project1.html",
+      "linkText": "View Project Details"
+    },
+    {
+      "id": "project2",
+      "title": "🔦 Advanced Laser Belt Marking System",
+      "description": "A state-of-the-art industrial automation solution that synchronizes a continuously moving conveyor belt with a high-precision fiber laser marking system. This project combines mechanical engineering, embedded systems programming, and advanced control algorithms to achieve consistent, high-quality product marking at industrial speeds. The system features custom-developed user interface, real-time motion control, position tracking, and quality assurance mechanisms, making it suitable for high-volume manufacturing environments where precision and reliability are critical.",
+      "link": "projects/project2.html",
+      "linkText": "Explore Implementation"
+    },
+    {
+      "id": "project3",
+      "title": "🦾 5DoF Robotic Arm with ROS MoveIt Integration",
+      "description": "A comprehensive robotics project featuring a custom-designed 5 Degree-of-Freedom robotic manipulator developed from concept to implementation. The project encompasses mechanical design using SolidWorks CAD software, conversion to URDF (Unified Robot Description Format), and full integration with the ROS (Robot Operating System) ecosystem. Utilizing MoveIt motion planning framework, the system provides advanced path planning, collision avoidance, inverse kinematics solving, and real-time control capabilities. The robot is fully simulated in Gazebo physics engine and visualized in RViz, making it an excellent platform for robotics research, education, and industrial automation applications.",
+      "link": "projects/project3.html",
+      "linkText": "Discover Technical Details"
+    }
+  ],
+  "publications": [
+    {
+      "id": "pub1",
+      "title": "Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition",
+      "image": "images/pub1.png",
+      "journal": "Sensors, 2025",
+      "description": "This paper proposes a deep learning framework combining ResNet-18, Bi-LSTM, and multi-head attention for accurate and efficient human action recognition. It achieves 96.60% accuracy on the UCF-101 dataset and was validated on a mobile robot for real-time deployment.",
+      "link": "https://doi.org/10.3390/s25092930",
+      "citation": "@article{al2025multi,\n  title={Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition},\n  author={Al-Tawil, Basheer and Jung, Magnus and Hempel, Thorsten and Al-Hamadi, Ayoub},\n  journal={Sensors},\n  year={2025},\n  publisher={Multidisciplinary Digital Publishing Institute}\n}"
+    },
+    {
+      "id": "pub2",
+      "title": "Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion",
+      "image": "images/pub2.png",
+      "journal": "Sensors, 2025",
+      "description": "This paper presents an enhanced SLAM framework for mobile robot navigation that integrates RGB-D cameras and 2D LiDAR sensors. A novel fusion strategy projects RGB-D point clouds into 2D and denoises them alongside LiDAR data. The enhanced Gmapping (EGM) algorithm adds adaptive resampling and degeneracy handling, improving robustness.",
+      "link": " https://doi.org/10.3390/s25082408",
+      "citation": "@article{al2025mobile,\n  title={Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion},\n  author={Al-Tawil, Basheer and Candemir, Adem and Jung, Magnus and Al-Hamadi, Ayoub},\n  journal={Sensors},\n  volume={25},\n  number={8},\n  pages={2408},\n  year={2025},\n  publisher={MDPI}\n}"
+    },
+    {
+      "id": "pub3",
+      "title": "A Review of Visual SLAM for Robotics: Evolution, Properties, and Future Applications",
+      "image": "images/pub3.png",
+      "journal": "Frontiers in Robotics and AI, 2024",
+      "description": "This review explores the evolution and recent advancements of Visual SLAM (V-SLAM) for robotic systems. It provides selection criteria and comparative insights into major V-SLAM methods, emphasizing their integration with ROS middleware and evaluating them using key benchmark datasets.",
+      "link": "https://doi.org/10.3389/frobt.2024.1347985  ",
+      "citation": "@article{al2024review,\n  title = {A Review of Visual SLAM for Robotics: Evolution, Properties, and Future Applications},\n  author = {Al-Tawil, Basheer and Hempel, Thorsten and Abdelrahman, Ahmed and Al-Hamadi, Ayoub},\n  journal = {Frontiers in Robotics and AI},\n  volume = {11},\n  year = {2024},\n  publisher = {Frontiers},\n  doi = {10.3389/frobt.2024.1347985}\n}"
+    },
+    {
+      "id": "pub4",
+      "title": "Design and Analysis of a Four DoF Robotic Arm with Two Grippers Used in Agricultural Operations",
+      "image": "images/pub4.png",
+      "journal": "International Journal of Applied Mathematics Electronics and Computers, 2023",
+      "description": "This paper proposes a novel 4DoF robotic arm with dual grippers for multitasking in agricultural applications. It incorporates kinematic and dynamic modeling using the D-H method and Lagrangian mechanics, while integrating with ROS for system-level control. The design enhances flexibility and compatibility with IoT and other agricultural hardware, offering a new approach to automation in precision farming tasks.",
+      "link": "https://doi.org/10.18100/ijamec.1217072",
+      "citation": "@article{altawil2023design,\n  title={Design and analysis of a four dof robotic arm with two grippers used in agricultural operations},\n  author={Altawil, Basheer and Can, Fatih Cemal},\n  journal={International Journal of Applied Mathematics Electronics and Computers},\n  volume={11},\n  number={2},\n  pages={79--87},\n  year={2023},\n  publisher={{\\.I}smail SARITA{\\c{S}}}\n}"
+    }
+  ]
+}

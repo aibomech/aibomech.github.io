@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIBOMECH Admin Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .admin-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    
+    .admin-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .tab-button {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-color);
+      color: var(--text-color);
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-button:hover,
+    .tab-button.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .form-section {
+      background: var(--bg-color);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .btn {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: var(--secondary-color);
+    }
+    
+    .btn-secondary {
+      background: var(--accent-color);
+    }
+    
+    .btn-secondary:hover {
+      background: #e67e22;
+    }
+    
+    .success-message,
+    .error-message {
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+      display: none;
+    }
+    
+    .success-message {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      color: #155724;
+    }
+    
+    .error-message {
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+    }
+    
+    .preview-section {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 2px dashed var(--primary-color);
+      margin-top: 1rem;
+    }
+    
+    .existing-items {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .existing-item {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .existing-item h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary-color);
+    }
+    
+    .existing-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+    
+    .item-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .btn-small {
+      padding: 0.25rem 0.75rem;
+      font-size: 0.8rem;
+    }
+    
+    .btn-danger {
+      background: #dc3545;
+    }
+    
+    .btn-danger:hover {
+      background: #c82333;
+    }
+    
+    .login-form {
+      max-width: 400px;
+      margin: 10rem auto;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+  </style>
+</head>
+<body>
+  <div id="loginScreen" class="login-form">
+    <h2><i class="fas fa-lock"></i> Admin Access</h2>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter admin password">
+    </div>
+    <button class="btn" onclick="checkPassword()">Login</button>
+    <div id="loginError" class="error-message">Incorrect password. Please try again.</div>
+  </div>
+
+  <div id="adminPanel" class="admin-container" style="display: none;">
+    <div class="admin-header">
+      <h1><i class="fas fa-cogs"></i> AIBOMECH Admin Panel</h1>
+      <p>Manage your website content easily</p>
+      <button class="btn btn-secondary" onclick="logout()" style="float: right;">Logout</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="tab-button active" onclick="showTab('blogs')">
+        <i class="fas fa-blog"></i> Blogs
+      </button>
+      <button class="tab-button" onclick="showTab('projects')">
+        <i class="fas fa-project-diagram"></i> Projects
+      </button>
+      <button class="tab-button" onclick="showTab('publications')">
+        <i class="fas fa-file-alt"></i> Publications
+      </button>
+      <button class="tab-button" onclick="showTab('preview')">
+        <i class="fas fa-eye"></i> Preview & Update
+      </button>
+    </div>
+
+    <!-- Blog Management -->
+    <div id="blogs" class="tab-content active">
+      <h2>Blog Management</h2>
+      
+      <div class="existing-items" id="existingBlogs">
+        <!-- Existing blogs will be loaded here -->
+      </div>
+      
+      <div class="form-section">
+        <h3>Add New Blog Post</h3>
+        <form id="blogForm">
+          <div class="form-group">
+            <label for="blogTitle">Title:</label>
+            <input type="text" id="blogTitle" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="blogDescription">Description:</label>
+            <textarea id="blogDescription" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="blogLink">Link (relative path, e.g., blogs/new-blog.html):</label>
+            <input type="text" id="blogLink" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="blogLinkText">Link Text:</label>
+            <input type="text" id="blogLinkText" required>
+          </div>
+          
+          <button type="submit" class="btn">Add Blog Post</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Project Management -->
+    <div id="projects" class="tab-content">
+      <h2>Project Management</h2>
+      
+      <div class="existing-items" id="existingProjects">
+        <!-- Existing projects will be loaded here -->
+      </div>
+      
+      <div class="form-section">
+        <h3>Add New Project</h3>
+        <form id="projectForm">
+          <div class="form-group">
+            <label for="projectTitle">Title:</label>
+            <input type="text" id="projectTitle" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="projectDescription">Description:</label>
+            <textarea id="projectDescription" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="projectLink">Link (relative path, e.g., projects/new-project.html):</label>
+            <input type="text" id="projectLink" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="projectLinkText">Link Text:</label>
+            <input type="text" id="projectLinkText" required>
+          </div>
+          
+          <button type="submit" class="btn">Add Project</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Publication Management -->
+    <div id="publications" class="tab-content">
+      <h2>Publication Management</h2>
+      
+      <div class="existing-items" id="existingPublications">
+        <!-- Existing publications will be loaded here -->
+      </div>
+      
+      <div class="form-section">
+        <h3>Add New Publication</h3>
+        <form id="publicationForm">
+          <div class="form-group">
+            <label for="pubTitle">Title:</label>
+            <input type="text" id="pubTitle" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pubJournal">Journal/Conference:</label>
+            <input type="text" id="pubJournal" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pubDescription">Description:</label>
+            <textarea id="pubDescription" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="pubImage">Image Path (e.g., images/pub5.png):</label>
+            <input type="text" id="pubImage" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pubLink">DOI/Link:</label>
+            <input type="url" id="pubLink" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pubCitation">BibTeX Citation:</label>
+            <textarea id="pubCitation" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn">Add Publication</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preview & Update -->
+    <div id="preview" class="tab-content">
+      <h2>Preview & Update Website</h2>
+      <p>Review your changes and update the main website.</p>
+      
+      <div class="preview-section">
+        <h3>Content Summary</h3>
+        <div id="contentSummary">
+          <!-- Content summary will be loaded here -->
+        </div>
+        <br>
+        <button class="btn" onclick="updateWebsite()">
+          <i class="fas fa-sync"></i> Update Website
+        </button>
+        <button class="btn btn-secondary" onclick="previewWebsite()" style="margin-left: 1rem;">
+          <i class="fas fa-external-link-alt"></i> Preview Website
+        </button>
+      </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="successMessage" class="success-message">
+      <i class="fas fa-check-circle"></i> <span id="successText"></span>
+    </div>
+    
+    <div id="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-circle"></i> <span id="errorText"></span>
+    </div>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" aria-label="Toggle Dark Mode" id="darkModeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
