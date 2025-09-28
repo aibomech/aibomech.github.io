@@ -35,13 +35,17 @@
   <p><strong>Newton-Euler Equations:</strong></p>
   <p>The fundamental equations governing rigid body motion combine linear and angular momentum:</p>
   
-  \[ \sum \mathbf{F} = m \cdot \mathbf{a}_{cm} \]
+  <div class="formula-container">
+    $$\sum \mathbf{F} = m \cdot \mathbf{a}_{cm}$$
+  </div>
   
-  <p>Linear motion equation where force equals mass times acceleration of the center of mass.</p>
+  <p class="formula-description">Linear motion equation where force equals mass times acceleration of the center of mass.</p>
   
-  \[ \sum \boldsymbol{\tau} = \mathbf{I} \cdot \boldsymbol{\alpha} + \boldsymbol{\omega} \times (\mathbf{I} \cdot \boldsymbol{\omega}) \]
+  <div class="formula-container">
+    $$\sum \boldsymbol{\tau} = \mathbf{I} \cdot \boldsymbol{\alpha} + \boldsymbol{\omega} \times (\mathbf{I} \cdot \boldsymbol{\omega})$$
+  </div>
   
-  <p>Angular motion equation including gyroscopic effects.</p>
+  <p class="formula-description">Angular motion equation including gyroscopic effects.</p>
 
   <h4>🦾 Robot Manipulator Kinematics</h4>
   <p>Kinematics describes the motion of robotic systems without considering the forces that cause motion:</p>
@@ -64,7 +68,9 @@
   <p><strong>Jacobian Matrix:</strong></p>
   <p>The Jacobian relates joint velocities to end-effector velocities:</p>
   
-  \[ \mathbf{J}(\mathbf{q}) = \frac{\partial \mathbf{f}(\mathbf{q})}{\partial \mathbf{q}} \]
+  <div class="formula-container">
+    $$\mathbf{J}(\mathbf{q}) = \frac{\partial \mathbf{f}(\mathbf{q})}{\partial \mathbf{q}}$$
+  </div>
 
   <h4>🚗 Mobile Robot Navigation</h4>
   <p>Mobile robotics requires mathematical models for different locomotion systems and navigation strategies:</p>
@@ -79,17 +85,23 @@
   <p><strong>Differential Drive Model:</strong></p>
   <p>The mathematical model for differential drive robots consists of three key equations:</p>
   
-  \[ \dot{x} = \frac{r}{2}(\omega_l + \omega_r)\cos\theta \]
+  <div class="formula-container">
+    $$\dot{x} = \frac{r}{2}(\omega_l + \omega_r)\cos\theta$$
+  </div>
   
-  <p>Forward velocity component in the x-direction.</p>
+  <p class="formula-description">Forward velocity component in the x-direction.</p>
   
-  \[ \dot{y} = \frac{r}{2}(\omega_l + \omega_r)\sin\theta \]
+  <div class="formula-container">
+    $$\dot{y} = \frac{r}{2}(\omega_l + \omega_r)\sin\theta$$
+  </div>
   
-  <p>Forward velocity component in the y-direction.</p>
+  <p class="formula-description">Forward velocity component in the y-direction.</p>
   
-  \[ \dot{\theta} = \frac{r}{L}(\omega_r - \omega_l) \]
+  <div class="formula-container">
+    $$\dot{\theta} = \frac{r}{L}(\omega_r - \omega_l)$$
+  </div>
   
-  <p>Angular velocity where r is wheel radius, L is wheelbase distance.</p>
+  <p class="formula-description">Angular velocity where r is wheel radius, L is wheelbase distance.</p>
 
   <h4>🎮 Control Systems Theory</h4>
   <p>Control theory provides the mathematical tools for achieving desired robotic behaviors:</p>
@@ -116,18 +128,24 @@
   <p><strong>Lagrangian Formulation:</strong></p>
   <p>Energy-based approach using kinetic and potential energy:</p>
   
-  \[ \mathcal{L} = T - V \]
+  <div class="formula-container">
+    $$\mathcal{L} = T - V$$
+  </div>
   
-  <p>The Lagrangian function where T is kinetic energy and V is potential energy.</p>
+  <p class="formula-description">The Lagrangian function where T is kinetic energy and V is potential energy.</p>
   
-  \[ \frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{q}}\right) - \frac{\partial\mathcal{L}}{\partial q} = \tau \]
+  <div class="formula-container">
+    $$\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{q}}\right) - \frac{\partial\mathcal{L}}{\partial q} = \tau$$
+  </div>
   
-  <p>The Euler-Lagrange equation for deriving equations of motion.</p>
+  <p class="formula-description">The Euler-Lagrange equation for deriving equations of motion.</p>
 
   <p><strong>Robot Dynamics Equation:</strong></p>
   <p>The complete dynamics of an n-DOF manipulator:</p>
   
-  \[ \mathbf{M}(\mathbf{q})\ddot{\mathbf{q}} + \mathbf{C}(\mathbf{q},\dot{\mathbf{q}})\dot{\mathbf{q}} + \mathbf{G}(\mathbf{q}) = \boldsymbol{\tau} \]
+  <div class="formula-container">
+    $$\mathbf{M}(\mathbf{q})\ddot{\mathbf{q}} + \mathbf{C}(\mathbf{q},\dot{\mathbf{q}})\dot{\mathbf{q}} + \mathbf{G}(\mathbf{q}) = \boldsymbol{\tau}$$
+  </div>
   
   <ul>
     <li><strong>M(q):</strong> Mass matrix (symmetric, positive definite)</li>
@@ -148,9 +166,11 @@
   <p><strong>Camera Projection Equation:</strong></p>
   <p>The fundamental equation relating world points to image pixels:</p>
   
-  \[ \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \mathbf{K} \begin{bmatrix} \mathbf{R} & \mathbf{t} \end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix} \]
+  <div class="formula-container">
+    $$\begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \mathbf{K} \begin{bmatrix} \mathbf{R} & \mathbf{t} \end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}$$
+  </div>
   
-  <p>Where K is the intrinsic matrix, R is rotation, t is translation, and (X,Y,Z) are world coordinates.</p>
+  <p class="formula-description">Where K is the intrinsic matrix, R is rotation, t is translation, and (X,Y,Z) are world coordinates.</p>
 
   <p><strong>Image Processing Techniques:</strong></p>
   <ol>
@@ -174,7 +194,9 @@
   <p><strong>Mathematical Formulation:</strong></p>
   <p>SLAM seeks to estimate the joint posterior probability distribution:</p>
   
-  \[ p(\mathbf{x}_{1:t}, \mathbf{m} | \mathbf{z}_{1:t}, \mathbf{u}_{1:t}) \]
+  <div class="formula-container">
+    $$p(\mathbf{x}_{1:t}, \mathbf{m} | \mathbf{z}_{1:t}, \mathbf{u}_{1:t})$$
+  </div>
   
   <p>Where:</p>
   <ul>
@@ -187,7 +209,9 @@
   <p><strong>Bayes' Theorem Application:</strong></p>
   <p>The posterior probability can be decomposed using Bayes' theorem:</p>
   
-  \[ p(\mathbf{x}_{1:t}, \mathbf{m} | \mathbf{z}_{1:t}, \mathbf{u}_{1:t}) = \frac{p(\mathbf{z}_{1:t} | \mathbf{x}_{1:t}, \mathbf{m}) p(\mathbf{x}_{1:t} | \mathbf{u}_{1:t}) p(\mathbf{m})}{p(\mathbf{z}_{1:t} | \mathbf{u}_{1:t})} \]
+  <div class="formula-container">
+    $$p(\mathbf{x}_{1:t}, \mathbf{m} | \mathbf{z}_{1:t}, \mathbf{u}_{1:t}) = \frac{p(\mathbf{z}_{1:t} | \mathbf{x}_{1:t}, \mathbf{m}) p(\mathbf{x}_{1:t} | \mathbf{u}_{1:t}) p(\mathbf{m})}{p(\mathbf{z}_{1:t} | \mathbf{u}_{1:t})}$$
+  </div>
 
   <p><strong>SLAM Algorithm Categories:</strong></p>
   <ul>
@@ -262,9 +286,5 @@
 
   <h4>🌟 Why Robotics Mathematics Matters</h4>
   <p>Understanding the mathematical foundations of robotics is crucial for developing reliable, efficient, and safe autonomous systems. From enabling precise industrial manufacturing to powering autonomous vehicles, these mathematical principles form the backbone of modern automation technology. As robotics continues to advance with AI integration, machine learning, and improved sensors, the mathematical foundations remain constant and essential for innovation in this rapidly evolving field.</p>
-
-  <h4>🎥 Deep Dive into Robotics Mathematics</h4>
-  <p>Ready to explore the fascinating world of robotics mathematics? Watch this comprehensive guide covering everything from basic transformations to advanced SLAM algorithms:<br>
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch Complete Robotics Mathematics Course</a></p>
 
 </blog-post>
