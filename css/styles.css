@@ -1206,29 +1206,143 @@
   }
 }
 
+/* Add these improved formula styles to your existing CSS */
+
+/* Enhanced Formula Container Styles */
 .formula-container {
     text-align: center;
-    margin: 15px 0;
-    padding: 15px;
-    background: #f8f9fa;
-    border-left: 4px solid #3498db;
-    border-radius: 0 8px 8px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--card-bg);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 12px 12px 0;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow-x: auto;
+}
+
+.formula-container:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.formula-container .MathJax {
+    font-size: 1.2em !important;
+    color: var(--text-color) !important;
 }
 
 .formula-description {
     font-style: italic;
-    color: #666;
-    margin: 10px 0 15px 0;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin: 15px 0 10px 0;
     text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 10px;
 }
 
-/* Dark mode support for formulas */
-[data-theme="dark"] .formula-container {
-    background: #2d3748;
-    border-left-color: #4299e1;
+/* Dark mode formula support */
+.dark-mode .formula-container {
+    background: var(--card-bg);
+    border-left-color: var(--primary-color);
 }
 
-[data-theme="dark"] .formula-description {
-    color: #a0aec0;
+.dark-mode .formula-description {
+    color: var(--text-color);
+    border-top-color: rgba(255,255,255,0.1);
+}
+
+.dark-mode .formula-container .MathJax {
+    color: var(--text-color) !important;
+}
+
+/* MathJax specific styling */
+.MathJax_Display {
+    margin: 1em 0 !important;
+}
+
+.MathJax {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Responsive formula styling */
+@media (max-width: 768px) {
+    .formula-container {
+        margin: 15px 0;
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .formula-container .MathJax {
+        font-size: 1em !important;
+    }
+    
+    .formula-description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .formula-container {
+        padding: 12px;
+        margin: 12px 0;
+    }
+    
+    .formula-container .MathJax {
+        font-size: 0.9em !important;
+    }
+    
+    .formula-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Formula section styling for blog content */
+.formula-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--card-shadow);
+}
+
+.dark-mode .formula-section {
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* Math expression highlighting */
+.math-highlight {
+    background: linear-gradient(120deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.2) 100%);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+}
+
+/* Variable definitions list styling */
+.variable-list {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-left: 3px solid var(--accent-color);
+}
+
+.variable-list ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.variable-list li {
+    margin-bottom: 0.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.variable-list strong {
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
 }
