@@ -1,0 +1,121 @@
+<!-- blog6.xml -->
+<blog-post>
+  <p>ROS (Robot Operating System) web video streaming allows you to view your robot's camera feed directly in a web browser without special plugins. This powerful capability lets you monitor your robot's visual data remotely and create custom web interfaces for robotics applications. In this post, we'll explore how to set up web video streaming for ROS image topics using the web_video_server package.</p>
+
+  <h4>🎥 What is ROS Web Video Streaming?</h4>
+  <p><strong>ROS Web Video Streaming</strong> is a system that converts ROS image topics into web-compatible video streams. The <strong>web_video_server package</strong> provides HTTP streaming of ROS image topics in multiple formats including MJPEG, VP8, VP9, H264, and PNG. This means you can access your robot's camera feed from any device with a web browser - no special software required!</p>
+
+  <h4>🔧 Prerequisites You'll Need</h4>
+  <p>Before diving into web video streaming, make sure you have these essentials ready:</p>
+  <ul>
+    <li><strong>ROS Installation:</strong> Either ROS Noetic (ROS 1) or ROS 2 Humble or newer</li>
+    <li><strong>Basic ROS Knowledge:</strong> Understanding of topics, nodes, and launch processes</li>
+    <li><strong>Modern Web Browser:</strong> Any browser that supports MJPEG (most modern browsers do)</li>
+    <li><strong>Image Topics:</strong> A node publishing image data (camera driver or simulation)</li>
+  </ul>
+
+  <h4>📦 Installing web_video_server</h4>
+  <p>The installation process varies depending on your ROS version:</p>
+  
+  <p><strong>For ROS 2 (Recommended):</strong></p>
+  <ul>
+    <li>Install via apt: <code>sudo apt install ros-$ROS_DISTRO-web-video-server</code></li>
+    <li>Replace $ROS_DISTRO with your version (humble, jazzy, etc.)</li>
+  </ul>
+
+  <p><strong>For ROS 1 or Building from Source:</strong></p>
+  <ol>
+    <li><strong>Create workspace:</strong> <code>mkdir -p ~/ros_ws/src && cd ~/ros_ws/src</code></li>
+    <li><strong>Clone repository:</strong> <code>git clone https://github.com/RobotWebTools/web_video_server.git</code></li>
+    <li><strong>Switch to ROS 1 branch:</strong> <code>git checkout ros1</code> (if using ROS 1)</li>
+    <li><strong>Build the package:</strong> <code>cd ~/ros_ws && colcon build --packages-select web_video_server</code></li>
+    <li><strong>Source workspace:</strong> <code>source install/setup.bash</code></li>
+  </ol>
+
+  <h4>🚀 Getting Started with Streaming</h4>
+  <p>Once installed, follow these steps to start streaming:</p>
+
+  <p><strong>Step 1: Launch the Web Video Server</strong></p>
+  <ul>
+    <li><strong>ROS 1:</strong> <code>rosrun web_video_server web_video_server</code></li>
+    <li><strong>ROS 2:</strong> <code>ros2 run web_video_server web_video_server</code></li>
+    <li><strong>Custom Port:</strong> Add <code>_port:=8081</code> (ROS 1) or <code>--ros-args -p port:=8081</code> (ROS 2)</li>
+  </ul>
+
+  <p><strong>Step 2: Ensure Image Topics are Publishing</strong></p>
+  <ul>
+    <li>Common topics: <code>/camera/image_raw</code>, <code>/usb_cam/image_raw</code></li>
+    <li>List available topics: <code>rostopic list</code> (ROS 1) or <code>ros2 topic list</code> (ROS 2)</li>
+  </ul>
+
+  <p><strong>Step 3: Access the Web Interface</strong></p>
+  <ul>
+    <li>Open browser and go to: <code>http://localhost:8080</code></li>
+    <li>Click on any available image topic to view the stream</li>
+    <li>For remote access, replace localhost with your robot's IP address</li>
+  </ul>
+
+  <h4>🌐 Creating Custom Web Interfaces</h4>
+  <p>While the default interface works well, you might want to create a custom streaming interface. Here's how to build one:</p>
+
+  <p><strong>Basic HTML Structure:</strong></p>
+  <ul>
+    <li><strong>Stream Controls:</strong> Dropdown for format selection (MJPEG, VP8, H264)</li>
+    <li><strong>Topic Input:</strong> Text field to enter ROS topic names</li>
+    <li><strong>Quality Settings:</strong> Width, height, and compression quality controls</li>
+    <li><strong>Display Area:</strong> Image element to show the video stream</li>
+  </ul>
+
+  <p><strong>Stream URL Format:</strong></p>
+  <p>The web_video_server uses URLs like: <code>http://localhost:8080/stream?topic=/camera/image_raw&type=mjpeg&quality=80</code></p>
+
+  <p><strong>Supported Formats:</strong></p>
+  <ol>
+    <li><strong>MJPEG:</strong> Best compatibility, real-time streaming</li>
+    <li><strong>VP8/VP9:</strong> Better compression, WebM format</li>
+    <li><strong>H264:</strong> Excellent compression, MP4 format</li>
+    <li><strong>PNG:</strong> Lossless, good for static images</li>
+    <li><strong>ROS Compressed:</strong> Uses ROS compression algorithms</li>
+  </ol>
+
+  <h4>🛠️ Troubleshooting Common Issues</h4>
+  <p>Here are solutions to frequent problems:</p>
+
+  <p><strong>No Image Topics Available:</strong></p>
+  <ul>
+    <li>Verify nodes are publishing: <code>rostopic list</code> or <code>ros2 topic list</code></li>
+    <li>Check topic types: <code>rostopic info /your/topic</code></li>
+    <li>Ensure camera drivers or simulators are running</li>
+  </ul>
+
+  <p><strong>Connection Errors:</strong></p>
+  <ul>
+    <li>Confirm web_video_server is running: <code>rosnode list</code> or <code>ros2 node list</code></li>
+    <li>Check firewall settings for port 8080</li>
+    <li>For remote access, use: <code>_address:=0.0.0.0</code> parameter</li>
+  </ul>
+
+  <p><strong>Poor Video Quality:</strong></p>
+  <ul>
+    <li>Adjust quality parameter (1-100)</li>
+    <li>Try different formats (MJPEG for speed, H264 for compression)</li>
+    <li>Reduce resolution if bandwidth is limited</li>
+  </ul>
+
+  <h4>🔗 Advanced Configuration</h4>
+  <p>The web_video_server offers several advanced options:</p>
+  <ul>
+    <li><strong>Multi-topic Streaming:</strong> Stream multiple cameras simultaneously</li>
+    <li><strong>Authentication:</strong> Add basic HTTP authentication for security</li>
+    <li><strong>Custom Parameters:</strong> Adjust bitrate, framerate, and codec settings</li>
+    <li><strong>CORS Support:</strong> Enable cross-origin requests for web applications</li>
+  </ul>
+
+  <h4>🌟 Why ROS Web Streaming Matters</h4>
+  <p>Web-based video streaming transforms robotics development by enabling remote monitoring, web-based control interfaces, and easier demonstration of robot capabilities. It's essential for telepresence robots, security systems, and educational robotics platforms.</p>
+
+  <h4>🎥 See It in Action</h4>
+  <p>Ready to implement ROS web video streaming in your projects? Watch this comprehensive tutorial to see the complete setup process:<br>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch ROS Web Streaming Tutorial</a></p>
+
+</blog-post>
