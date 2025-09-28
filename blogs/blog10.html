@@ -34,10 +34,14 @@
 
   <p><strong>Newton-Euler Equations:</strong></p>
   <p>The fundamental equations governing rigid body motion combine linear and angular momentum:</p>
-  <ul>
-    <li><strong>Linear Motion:</strong> \(\sum F = m \cdot a_{cm}\) (force equals mass times acceleration)</li>
-    <li><strong>Angular Motion:</strong> \(\sum \tau = I \cdot \alpha + \omega \times (I \cdot \omega)\) (including gyroscopic effects)</li>
-  </ul>
+  
+  \[ \sum \mathbf{F} = m \cdot \mathbf{a}_{cm} \]
+  
+  <p>Linear motion equation where <em>F</em> represents force, <em>m</em> is mass, and <em>a<sub>cm</sub></em> is acceleration of the center of mass.</p>
+  
+  \[ \sum \boldsymbol{\tau} = \mathbf{I} \cdot \boldsymbol{\alpha} + \boldsymbol{\omega} \times (\mathbf{I} \cdot \boldsymbol{\omega}) \]
+  
+  <p>Angular motion equation including gyroscopic effects, where <em>τ</em> is torque, <em>I</em> is the inertia tensor, <em>α</em> is angular acceleration, and <em>ω</em> is angular velocity.</p>
 
   <h4>🦾 Robot Manipulator Kinematics</h4>
   <p>Kinematics describes the motion of robotic systems without considering the forces that cause motion:</p>
@@ -58,7 +62,9 @@
   </ol>
 
   <p><strong>Jacobian Matrix:</strong></p>
-  <p>The Jacobian relates joint velocities to end-effector velocities: \(J(q) = \frac{\partial f(q)}{\partial q}\)</p>
+  <p>The Jacobian relates joint velocities to end-effector velocities:</p>
+  
+  \[ \mathbf{J}(\mathbf{q}) = \frac{\partial \mathbf{f}(\mathbf{q})}{\partial \mathbf{q}} \]
 
   <h4>🚗 Mobile Robot Navigation</h4>
   <p>Mobile robotics requires mathematical models for different locomotion systems and navigation strategies:</p>
@@ -72,11 +78,12 @@
 
   <p><strong>Differential Drive Model:</strong></p>
   <p>The mathematical model for differential drive robots:</p>
-  <ul>
-    <li>\(\dot{x} = \frac{r}{2}(\omega_l + \omega_r)\cos\theta\) - forward velocity</li>
-    <li>\(\dot{y} = \frac{r}{2}(\omega_l + \omega_r)\sin\theta\) - lateral velocity</li>
-    <li>\(\dot{\theta} = \frac{r}{L}(\omega_r - \omega_l)\) - angular velocity</li>
-  </ul>
+  
+  \[ \dot{x} = \frac{r}{2}(\omega_l + \omega_r)\cos\theta \]
+  \[ \dot{y} = \frac{r}{2}(\omega_l + \omega_r)\sin\theta \]
+  \[ \dot{\theta} = \frac{r}{L}(\omega_r - \omega_l) \]
+  
+  <p>Where <em>r</em> is wheel radius, <em>L</em> is wheelbase, and <em>ω<sub>l</sub></em>, <em>ω<sub>r</sub></em> are left and right wheel angular velocities.</p>
 
   <h4>🎮 Control Systems Theory</h4>
   <p>Control theory provides the mathematical tools for achieving desired robotic behaviors:</p>
@@ -102,13 +109,18 @@
 
   <p><strong>Lagrangian Formulation:</strong></p>
   <p>Energy-based approach using kinetic and potential energy:</p>
-  <ul>
-    <li><strong>Lagrangian Function:</strong> \(\mathcal{L} = T - V\) (kinetic minus potential energy)</li>
-    <li><strong>Euler-Lagrange Equation:</strong> \(\frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{q}}\right) - \frac{\partial\mathcal{L}}{\partial q} = \tau\)</li>
-  </ul>
+  
+  \[ \mathcal{L} = T - V \]
+  
+  <p>Where <em>T</em> is kinetic energy and <em>V</em> is potential energy.</p>
+  
+  \[ \frac{d}{dt}\left(\frac{\partial\mathcal{L}}{\partial\dot{q}}\right) - \frac{\partial\mathcal{L}}{\partial q} = \tau \]
 
   <p><strong>Robot Dynamics Equation:</strong></p>
-  <p>The complete dynamics of an n-DOF manipulator: \(M(q)\ddot{q} + C(q,\dot{q})\dot{q} + G(q) = \tau\)</p>
+  <p>The complete dynamics of an <em>n</em>-DOF manipulator:</p>
+  
+  \[ \mathbf{M}(\mathbf{q})\ddot{\mathbf{q}} + \mathbf{C}(\mathbf{q},\dot{\mathbf{q}})\dot{\mathbf{q}} + \mathbf{G}(\mathbf{q}) = \boldsymbol{\tau} \]
+  
   <ul>
     <li><strong>M(q):</strong> Mass matrix (symmetric, positive definite)</li>
     <li><strong>C(q,q̇):</strong> Coriolis and centripetal terms</li>
@@ -127,7 +139,8 @@
 
   <p><strong>Camera Projection Equation:</strong></p>
   <p>The fundamental equation relating world points to image pixels:</p>
-  <p>\(\begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = K \begin{bmatrix} R & t \end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}\)</p>
+  
+  \[ \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \mathbf{K} \begin{bmatrix} \mathbf{R} & \mathbf{t} \end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix} \]
 
   <p><strong>Image Processing Techniques:</strong></p>
   <ol>
@@ -149,12 +162,15 @@
   </ul>
 
   <p><strong>Mathematical Formulation:</strong></p>
-  <p>SLAM seeks to estimate the joint posterior: \(p(x_{1:t}, m | z_{1:t}, u_{1:t})\)</p>
+  <p>SLAM seeks to estimate the joint posterior probability distribution:</p>
+  
+  \[ p(\mathbf{x}_{1:t}, \mathbf{m} | \mathbf{z}_{1:t}, \mathbf{u}_{1:t}) \]
+  
   <ul>
-    <li><strong>x₁:t:</strong> Robot trajectory over time</li>
+    <li><strong>x<sub>1:t</sub>:</strong> Robot trajectory over time</li>
     <li><strong>m:</strong> Map of the environment</li>
-    <li><strong>z₁:t:</strong> Sensor measurements</li>
-    <li><strong>u₁:t:</strong> Control inputs</li>
+    <li><strong>z<sub>1:t</sub>:</strong> Sensor measurements</li>
+    <li><strong>u<sub>1:t</sub>:</strong> Control inputs</li>
   </ul>
 
   <p><strong>SLAM Algorithm Categories:</strong></p>
@@ -231,5 +247,8 @@
   <h4>🌟 Why Robotics Mathematics Matters</h4>
   <p>Understanding the mathematical foundations of robotics is crucial for developing reliable, efficient, and safe autonomous systems. From enabling precise industrial manufacturing to powering autonomous vehicles, these mathematical principles form the backbone of modern automation technology. As robotics continues to advance with AI integration, machine learning, and improved sensors, the mathematical foundations remain constant and essential for innovation in this rapidly evolving field.</p>
 
- 
+  <h4>🎥 Deep Dive into Robotics Mathematics</h4>
+  <p>Ready to explore the fascinating world of robotics mathematics? Watch this comprehensive guide covering everything from basic transformations to advanced SLAM algorithms:<br>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch Complete Robotics Mathematics Course</a></p>
+
 </blog-post>
