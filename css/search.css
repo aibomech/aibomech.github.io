@@ -97,3 +97,16 @@
 .search-box.active {
   z-index: 2000; /* Ensures the search box is on top of other content */
 }
+.formula-container {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.formula-description {
+    font-style: italic;
+    color: #666;
+    margin: 5px 0 15px 0;
+}
