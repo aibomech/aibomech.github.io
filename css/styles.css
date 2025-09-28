@@ -1205,3 +1205,30 @@
     font-size: 1.5rem;
   }
 }
+
+.formula-container {
+    text-align: center;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.formula-description {
+    font-style: italic;
+    color: #666;
+    margin: 10px 0 15px 0;
+    text-align: left;
+}
+
+/* Dark mode support for formulas */
+[data-theme="dark"] .formula-container {
+    background: #2d3748;
+    border-left-color: #4299e1;
+}
+
+[data-theme="dark"] .formula-description {
+    color: #a0aec0;
+}
