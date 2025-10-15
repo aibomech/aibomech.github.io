@@ -72,17 +72,25 @@ const modal = document.getElementById('contentModal');
 const modalContent = document.getElementById('modalContent');
 const closeModal = document.querySelector('.close-modal');
 
-// Close modal when clicking the X
-closeModal.addEventListener('click', () => {
+// Function to close modal and clear URL parameter
+function closeContentModal() {
   modal.style.display = 'none';
   document.body.style.overflow = 'auto';
+  // Clear URL parameter
+  const url = new URL(window.location);
+  url.searchParams.delete('content');
+  window.history.pushState({}, '', url);
+}
+
+// Close modal when clicking the X
+closeModal.addEventListener('click', () => {
+  closeContentModal();
 });
 
 // Close modal when clicking outside the modal content
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    closeContentModal();
   }
 });
 
@@ -100,6 +108,57 @@ function renderMathJax(element) {
   }
 }
 
+// Function to open content modal
+function openContentModal(contentPath, contentTitle) {
+  // Show modal
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  
+  // Update URL with content parameter for sharing
+  const url = new URL(window.location);
+  url.searchParams.set('content', contentPath);
+  window.history.pushState({}, '', url);
+  
+  // Show loading message
+  modalContent.innerHTML = '<div class="loading">Loading content...</div>';
+  
+  // Load the content
+  fetch(contentPath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(html => {
+      // Extract content from the loaded HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      
+      // Look for main content - adjust selectors based on your HTML structure
+      const contentElement = doc.querySelector('.content') || 
+                            doc.querySelector('article') || 
+                            doc.querySelector('main') || 
+                            doc.querySelector('blog-post') ||
+                            doc.body;
+      
+      // Set title and content
+      modalContent.innerHTML = `<h2>${contentTitle}</h2>${contentElement.innerHTML}`;
+      
+      // Render MathJax for the new content
+      return renderMathJax(modalContent);
+    })
+    .catch(error => {
+      modalContent.innerHTML = `
+        <div class="error-message">
+          <p>Sorry, could not load the content. Please try clicking the link directly:</p>
+          <p><a href="${contentPath}" target="_blank">Open ${contentTitle} in new tab</a></p>
+        </div>
+      `;
+      console.error('Error loading content:', error);
+    });
+}
+
 // Handle blog and project link clicks
 document.addEventListener('click', (event) => {
   // Check if the clicked element is a blog or project link
@@ -111,56 +170,39 @@ document.addEventListener('click', (event) => {
     const contentPath = event.target.dataset.blog || event.target.dataset.project;
     const contentTitle = event.target.closest('.card-content').querySelector('.card-title').textContent;
     
-    // Show modal
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // Show loading message
-    modalContent.innerHTML = '<div class="loading">Loading content...</div>';
-    
-    // Load the content
-    fetch(contentPath)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then(html => {
-        // Extract content from the loaded HTML
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        
-        // Look for main content - adjust selectors based on your HTML structure
-        const contentElement = doc.querySelector('.content') || 
-                              doc.querySelector('article') || 
-                              doc.querySelector('main') || 
-                              doc.querySelector('blog-post') ||
-                              doc.body;
-        
-        // Set title and content
-        modalContent.innerHTML = `<h2>${contentTitle}</h2>${contentElement.innerHTML}`;
-        
-        // Render MathJax for the new content
-        return renderMathJax(modalContent);
-      })
-      .catch(error => {
-        modalContent.innerHTML = `
-          <div class="error-message">
-            <p>Sorry, could not load the content. Please try clicking the link directly:</p>
-            <p><a href="${contentPath}" target="_blank">Open ${contentTitle} in new tab</a></p>
-          </div>
-        `;
-        console.error('Error loading content:', error);
-      });
+    openContentModal(contentPath, contentTitle);
   }
 });
 
 // Close modal with Escape key
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && modal.style.display === 'block') {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    closeContentModal();
+  }
+});
+
+// Check URL parameters on page load to open content if specified
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const contentPath = urlParams.get('content');
+  
+  if (contentPath) {
+    // Find the title from the page - try to match with existing links
+    const linkElement = document.querySelector(`a[data-blog="${contentPath}"], a[data-project="${contentPath}"]`);
+    let contentTitle = 'Content';
+    
+    if (linkElement) {
+      const cardContent = linkElement.closest('.card-content');
+      if (cardContent) {
+        const titleElement = cardContent.querySelector('.card-title');
+        if (titleElement) {
+          contentTitle = titleElement.textContent;
+        }
+      }
+    }
+    
+    // Open the modal with the content
+    openContentModal(contentPath, contentTitle);
   }
 });
 
