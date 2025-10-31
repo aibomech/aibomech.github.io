@@ -1,51 +1,153 @@
-<!-- blog1.xml -->
-<blog-post>
-    <!-- <h3>Robot Arm Kinematics & Dynamics: Basic Definitions and Design</h3> -->
-    <p>To build a robot that works in real life, we must first understand how it moves and how its parts work together. This starts with learning about its structure and motion — known as kinematics and dynamics.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dive deep into the mathematical foundations that govern robot movement. Learn about kinematics, dynamics, and the essential components of robotic arms." />
+  <meta name="keywords" content="robot kinematics, robot dynamics, robotic arms, robotics engineering, AIBOMECH" />
+  <meta name="author" content="Basheer Al-tawil" />
+  <meta property="og:title" content="Robot Kinematics & Dynamics: Foundations of Robotic Motion - AIBOMECH" />
+  <meta property="og:description" content="Understanding kinematics and dynamics is the first step in building smart, safe, and effective robots." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aibomech.github.io/blogs/blog1.html" />
+  <title>Robot Kinematics & Dynamics: Foundations of Robotic Motion - AIBOMECH</title>
   
-    <h4> What Are the Main Parts of a Robot Arm?</h4>
-    <ul>
-      <li><strong>Links:</strong> These are solid parts that form the body of the robot. Each link connects to the next through a joint.</li>
-      <li><strong>Joints:</strong> Joints allow movement between links. They can rotate(Revolute Joint) or slide(Prismatic Joint).</li>
-      <li><strong>Actuators:</strong> Motors or devices that move the joints.</li>
-      <li><strong>Transmissions:</strong> Systems like gears or pulleys that pass motion from actuators to joints.</li>
-      <li><strong>Sensors & Controllers:</strong> Sensors collect info like position or force. Controllers use this to move the robot correctly.</li>
-      <li><strong>User Interface:</strong> Allows a person to control or monitor the robot Function.</li>
-    </ul>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-    <h4>How Do We Design a Robot Arm?</h4>
-      <p>The design depends on what the robot needs to do. There's no one-size-fits-all answer. We ask:</p>
-    <ul>
-      <li>How far does it need to reach?</li>
-      <li>How heavy are the objects it will handle?</li>
-      <li>How fast and accurate should it be?</li>
-      <li>What is the budget and complexity of building it?</li>
-    </ul>
-    <p><em>Example:</em> If a robot needs to cut plastic sheets, we’ll design its arm based on space, cutting speed, and material strength.</p>
-  
-    <h4>Kinematics: Motion Without Forces</h4>
-    <p>Kinematics is all about how the robot moves:</p>
-    <ul>
-      <li><strong>Position:</strong> Where is the end of the arm and how is it angled?</li>
-      <li><strong>Velocity:</strong> How fast is it moving?</li>
-      <li><strong>Acceleration:</strong> How quickly does the speed change?</li>
-    </ul>
-  
-    <h4> Dynamics: Adding Forces to the Picture</h4>
-      <p>Dynamics helps us figure out what power is needed to make those movements. We ask:</p>
-      <ul>
-      <li>How much torque is needed at each joint?</li>
-      <li>Which motors can provide that torque?</li>
-      <li>How much energy does the robot need?</li>
-      </ul>
-    <p>This helps us pick the right motors and keep the robot working smoothly and safely.</p>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/content-page.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="content-header">
+    <nav class="header-nav">
+      <a href="../index.html" class="back-to-home">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+      </a>
+      <div class="share-buttons">
+        <button class="share-btn" onclick="copyLink()" title="Copy link">
+          <i class="fas fa-link"></i>
+          Copy Link
+        </button>
+        <button class="share-btn" onclick="shareOnTwitter()" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </button>
+        <button class="share-btn" onclick="shareOnLinkedIn()" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-  
-    <h4> Want to Learn More?</h4>
-    <p>Watch a full video explanation here:<br>
-    <a href="https://www.youtube.com/watch?v=WTzNCyuPnQs&ab_channel=AIBOMECH" target="_blank">Robot Kinematics & Dynamics - YouTube</a></p>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-separator">/</span>
+    <a href="../index.html#blog">Blog</a>
+    <span class="breadcrumb-separator">/</span>
+    <span>Robot Kinematics & Dynamics</span>
+  </nav>
 
-    <h4> Final Thoughts</h4>
-    <p>Understanding kinematics and dynamics is the first step in building smart, safe, and effective robots. It’s like giving robots a skeleton, muscles, and brain to move the way we want.</p>
-</blog-post>
-  
+  <!-- Main Content -->
+  <main class="content-container">
+    <article class="content-article">
+      <h1 class="content-title">Robot Kinematics & Dynamics: Foundations of Robotic Motion</h1>
+      
+      <div class="content-meta">
+        <span class="meta-item">
+          <i class="fas fa-calendar"></i>
+          AIBOMECH Blog
+        </span>
+        <span class="meta-item">
+          <i class="fas fa-tag"></i>
+          Robotics Engineering
+        </span>
+        <span class="meta-item">
+          <i class="fas fa-clock"></i>
+          5 min read
+        </span>
+      </div>
+
+      <div class="content-body">
+        <p>To build a robot that works in real life, we must first understand how it moves and how its parts work together. This starts with learning about its structure and motion — known as kinematics and dynamics.</p>
+      
+        <h4>What Are the Main Parts of a Robot Arm?</h4>
+        <ul>
+          <li><strong>Links:</strong> These are solid parts that form the body of the robot. Each link connects to the next through a joint.</li>
+          <li><strong>Joints:</strong> Joints allow movement between links. They can rotate (Revolute Joint) or slide (Prismatic Joint).</li>
+          <li><strong>Actuators:</strong> Motors or devices that move the joints.</li>
+          <li><strong>Transmissions:</strong> Systems like gears or pulleys that pass motion from actuators to joints.</li>
+          <li><strong>Sensors & Controllers:</strong> Sensors collect info like position or force. Controllers use this to move the robot correctly.</li>
+          <li><strong>User Interface:</strong> Allows a person to control or monitor the robot Function.</li>
+        </ul>
+      
+        <h4>How Do We Design a Robot Arm?</h4>
+        <p>The design depends on what the robot needs to do. There's no one-size-fits-all answer. We ask:</p>
+        <ul>
+          <li>How far does it need to reach?</li>
+          <li>How heavy are the objects it will handle?</li>
+          <li>How fast and accurate should it be?</li>
+          <li>What is the budget and complexity of building it?</li>
+        </ul>
+        <p><em>Example:</em> If a robot needs to cut plastic sheets, we'll design its arm based on space, cutting speed, and material strength.</p>
+      
+        <h4>Kinematics: Motion Without Forces</h4>
+        <p>Kinematics is all about how the robot moves:</p>
+        <ul>
+          <li><strong>Position:</strong> Where is the end of the arm and how is it angled?</li>
+          <li><strong>Velocity:</strong> How fast is it moving?</li>
+          <li><strong>Acceleration:</strong> How quickly does the speed change?</li>
+        </ul>
+      
+        <h4>Dynamics: Adding Forces to the Picture</h4>
+        <p>Dynamics helps us figure out what power is needed to make those movements. We ask:</p>
+        <ul>
+          <li>How much torque is needed at each joint?</li>
+          <li>Which motors can provide that torque?</li>
+          <li>How much energy does the robot need?</li>
+        </ul>
+        <p>This helps us pick the right motors and keep the robot working smoothly and safely.</p>
+    
+        <h4>Want to Learn More?</h4>
+        <p>Watch a full video explanation here:<br>
+        <a href="https://www.youtube.com/watch?v=WTzNCyuPnQs&ab_channel=AIBOMECH" target="_blank">Robot Kinematics & Dynamics - YouTube</a></p>
+    
+        <h4>Final Thoughts</h4>
+        <p>Understanding kinematics and dynamics is the first step in building smart, safe, and effective robots. It's like giving robots a skeleton, muscles, and brain to move the way we want.</p>
+      </div>
+
+      <div class="content-tags">
+        <span class="tag">Robotics</span>
+        <span class="tag">Kinematics</span>
+        <span class="tag">Dynamics</span>
+        <span class="tag">Engineering</span>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="content-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#publications">Publications</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <p class="copyright">&copy; 2025 AIBOMECH</p>
+    </div>
+  </footer>
+
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="../js/content-page.js"></script>
+</body>
+</html>
