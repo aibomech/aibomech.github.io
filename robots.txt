@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://aibomech.github.io/sitemap.xml
+
+# Disallow admin panel
+Disallow: /admin.html
+Disallow: /data/
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

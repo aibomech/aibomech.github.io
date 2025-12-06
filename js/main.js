@@ -512,3 +512,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Back to Top Button Functionality
+const backToTopButton = document.querySelector('.back-to-top');
+
+if (backToTopButton) {
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('show');
+    } else {
+      backToTopButton.classList.remove('show');
+    }
+  });
+
+  // Scroll to top when clicked
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// Lazy Loading Images - Add loaded class when image loads
+document.addEventListener('DOMContentLoaded', () => {
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  
+  lazyImages.forEach(img => {
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+    });
+    
+    // If image is already loaded (from cache)
+    if (img.complete) {
+      img.classList.add('loaded');
+    }
+  });
+});

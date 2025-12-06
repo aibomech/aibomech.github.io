@@ -1,0 +1,230 @@
+/* Print Stylesheet for AIBOMECH Website */
+
+@media print {
+  /* Reset colors for print */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Hide navigation and interactive elements */
+  header,
+  .navbar,
+  .search-container,
+  .mobile-menu-btn,
+  .back-to-top,
+  .dark-mode-toggle,
+  .social-icons,
+  .social-share,
+  .share-btn,
+  #contentModal,
+  .modal,
+  button:not(.print-visible) {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  body {
+    font-family: 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 24pt;
+    margin-bottom: 1em;
+    page-break-after: avoid;
+  }
+
+  h2 {
+    font-size: 18pt;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.3em;
+  }
+
+  h3 {
+    font-size: 14pt;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+  }
+
+  /* Links */
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    font-style: italic;
+  }
+
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* Publications */
+  .publication {
+    page-break-inside: avoid;
+    margin-bottom: 2em;
+    border: 1px solid #ccc;
+    padding: 1em;
+  }
+
+  .publication-meta {
+    font-style: italic;
+    color: #666 !important;
+  }
+
+  /* Code blocks */
+  pre {
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 10pt;
+    overflow: visible;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+  }
+
+  /* Cards */
+  .card {
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin-bottom: 1.5em;
+    page-break-inside: avoid;
+  }
+
+  /* Expertise grid */
+  .expertise-grid {
+    display: block;
+  }
+
+  .expertise-item {
+    margin-bottom: 1.5em;
+    padding: 0.5em;
+    border: 1px solid #eee;
+    page-break-inside: avoid;
+  }
+
+  /* Skills section */
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .skill-tag {
+    display: inline-block;
+    border: 1px solid #000;
+    padding: 0.3em 0.6em;
+    margin: 0.2em;
+    border-radius: 4px;
+    font-size: 10pt;
+  }
+
+  /* Stats section */
+  .research-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    page-break-inside: avoid;
+  }
+
+  .stat-card {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 1em;
+  }
+
+  .stat-number {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+
+  /* Forms - hide in print */
+  form,
+  input,
+  textarea {
+    display: none !important;
+  }
+  
+  /* Hide contact form section specifically */
+  .contact-method form,
+  .contact-method:last-child {
+    display: none !important;
+  }
+
+  /* Contact info */
+  .contact-info {
+    page-break-inside: avoid;
+  }
+
+  /* Footer */
+  footer {
+    page-break-before: always;
+    border-top: 2px solid #000;
+    padding-top: 1em;
+    margin-top: 2em;
+  }
+
+  .footer-links a:after {
+    content: none !important;
+  }
+
+  /* Add page breaks */
+  section {
+    page-break-before: auto;
+    page-break-after: auto;
+  }
+
+  /* Hero section */
+  .hero-section {
+    text-align: center;
+    margin-bottom: 2em;
+    padding: 2em 0;
+    border-bottom: 3px double #000;
+  }
+
+  .hero-title {
+    font-size: 32pt;
+    margin-bottom: 0.5em;
+  }
+
+  /* Avoid orphans and widows */
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Print URL at the end */
+  body:after {
+    content: "Printed from: https://aibomech.github.io/";
+    display: block;
+    text-align: center;
+    margin-top: 2em;
+    font-size: 10pt;
+    font-style: italic;
+  }
+}

@@ -4,11 +4,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <!-- Preconnect to external domains for better performance -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
   <meta name="description" content="AIBOMECH website. Robotics engineer specializing in mobile robotics, computer vision, AI, and entrepreneurship." />
   <meta name="keywords" content="robotics, mobile robotics, computer vision, SLAM, ROS, AI, LLM, entrepreneurship, AIBOMECH" />
   <meta name="author" content="Basheer Al-tawil" />
   <title>AIBOMECH - Robotics Engineering, Academic Research, and Entrepreneurship</title>
+  
+  <!-- Open Graph / Facebook Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aibomech.github.io/" />
+  <meta property="og:title" content="AIBOMECH - Robotics Engineering, Academic Research, and Entrepreneurship" />
+  <meta property="og:description" content="Shaping the future of Robotics, AI, and Computer Vision through research, engineering principles, and entrepreneurship." />
+  <meta property="og:image" content="https://aibomech.github.io/images/l44.png" />
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://aibomech.github.io/" />
+  <meta name="twitter:title" content="AIBOMECH - Robotics Engineering, Academic Research, and Entrepreneurship" />
+  <meta name="twitter:description" content="Shaping the future of Robotics, AI, and Computer Vision through research, engineering principles, and entrepreneurship." />
+  <meta name="twitter:image" content="https://aibomech.github.io/images/l44.png" />
+  <meta name="twitter:site" content="@aibomech" />
+  <meta name="twitter:creator" content="@aibomech" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Prism JavaScript -->
@@ -17,6 +39,7 @@
   
   <!-- External CSS -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -26,7 +49,7 @@
         <a href="#home">
           <img src="images/l44.png" alt="Aibomech Logo" class="logo" />
         </a>
-        <button class="mobile-menu-btn">
+        <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -112,6 +135,33 @@
     <p>
       I also enjoy sharing what I learn. Through the AIBOMECH, I regularly write articles, tutorials, and share open-source projects. I hope these resources help students, researchers, and anyone interested in robotics to learn and try new things. My goal is to make robotics more approachable for everyone.
     </p>
+    
+    <!-- Skills & Technologies -->
+    <div class="skills-section">
+      <h3>Core Technologies & Tools</h3>
+      <div class="skills-container">
+        <span class="skill-tag">ROS / ROS2</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Computer Vision</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">SLAM</span>
+        <span class="skill-tag">LiDAR</span>
+        <span class="skill-tag">RGB-D Cameras</span>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Deep Learning</span>
+        <span class="skill-tag">Path Planning</span>
+        <span class="skill-tag">Sensor Fusion</span>
+        <span class="skill-tag">Gazebo</span>
+        <span class="skill-tag">Arduino</span>
+        <span class="skill-tag">Embedded Systems</span>
+        <span class="skill-tag">MoveIt</span>
+        <span class="skill-tag">Navigation Stack</span>
+        <span class="skill-tag">Linux</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -122,6 +172,30 @@
     AIBOMECH Lab is where I share my research and projects in robotics, AI, and computer vision. Here, I post my latest work, including published papers, hands-on experiments, and practical guides. Whether you’re a student, researcher, or just curious about robotics, I hope you’ll find something useful and interesting.
   </p>
   </section>
+  
+  <!-- Research Highlights -->
+  <div class="research-stats">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Published Papers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Major Projects</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-blog"></i></div>
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Technical Blogs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-robot"></i></div>
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
 
     <!-- Content Display Area -->
     <div id="contentDisplay" class="content-display">
@@ -140,12 +214,27 @@
         <div class="publication">
           <h3 class="card-title">Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition</h3>
           <!-- <h3>Multi-Head Attention-Based Framework with Residual Network for Human Action Recognition</h3> -->
-          <img src="images/pub1.png" alt="HAR Framework" class="pub-card-img">
+          <img src="images/pub1.png" alt="HAR Framework" class="pub-card-img" loading="lazy">
           <p class="publication-meta">Sensors, 2025</p>
           <p>
             This paper proposes a deep learning framework combining ResNet-18, Bi-LSTM, and multi-head attention for accurate and efficient human action recognition. It achieves 96.60% accuracy on the UCF-101 dataset and was validated on a mobile robot for real-time deployment.
           </p>
               <a href="https://doi.org/10.3390/s25092930" target="_blank" class="card-link">Read Full Paper</a>
+          
+          <!-- Social Share Buttons -->
+          <div class="social-share">
+            <span class="share-label">Share:</span>
+            <a href="https://twitter.com/intent/tweet?text=Multi-Head%20Attention-Based%20Framework%20for%20Human%20Action%20Recognition&url=https://doi.org/10.3390/s25092930&via=aibomech" target="_blank" class="share-btn twitter" aria-label="Share on Twitter" title="Share on Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://doi.org/10.3390/s25092930" target="_blank" class="share-btn linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://doi.org/10.3390/s25092930" target="_blank" class="share-btn facebook" aria-label="Share on Facebook" title="Share on Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+          
           <p><strong>If you wish to cite this paper:</strong></p>
           <pre>
                 @article{al2025multi,
@@ -162,7 +251,7 @@
         <div class="publication">
           <h3 class="card-title">Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion</h3>
           <!-- <h3>Mobile Robot Navigation with Enhanced 2D Mapping and Multi-Sensor Fusion</h3> -->
-          <img src="images/pub2.png" alt="Robot Navigation System" class="pub-card-img">
+          <img src="images/pub2.png" alt="Robot Navigation System" class="pub-card-img" loading="lazy">
           <p class="publication-meta">Sensors, 2025</p>
           <p>
             This paper presents an enhanced SLAM framework for mobile robot navigation that integrates RGB-D cameras and 2D LiDAR sensors. A novel fusion strategy projects RGB-D point clouds into 2D and denoises them alongside LiDAR data. The enhanced Gmapping (EGM) algorithm adds adaptive resampling and degeneracy handling, improving robustness.
@@ -188,7 +277,7 @@
         <div class="publication">
           <h3 class="card-title">A Review of Visual SLAM for Robotics: Evolution, Properties, and Future Applications</h3>
           <!-- <h3>A Review of Visual SLAM for Robotics: Evolution, Properties, and Future Applications</h3> -->
-          <img src="images/pub3.png" alt="Visual SLAM Review" class="pub-card-img">
+          <img src="images/pub3.png" alt="Visual SLAM Review" class="pub-card-img" loading="lazy">
           <p class="publication-meta">Frontiers in Robotics and AI, 2024</p>
           <p>
             This review explores the evolution and recent advancements of Visual SLAM (V-SLAM) for robotic systems. It provides selection criteria and comparative insights into major V-SLAM methods, emphasizing their integration with ROS middleware and evaluating them using key benchmark datasets.
@@ -216,7 +305,7 @@
     <h3 class="card-title">Design and Analysis of a Four DoF Robotic Arm with Two Grippers Used in Agricultural Operations</h3>
 
     <!-- <h3>Design and Analysis of a Four DoF Robotic Arm with Two Grippers Used in Agricultural Operations</h3> -->
-    <img src="images/pub4.png" alt="Agricultural Robotic Arm" class="pub-card-img">
+    <img src="images/pub4.png" alt="Agricultural Robotic Arm" class="pub-card-img" loading="lazy">
     <p class="publication-meta">International Journal of Applied Mathematics Electronics and Computers, 2023</p>
     <p>
       This paper proposes a novel 4DoF robotic arm with dual grippers for multitasking in agricultural applications. It incorporates kinematic and dynamic modeling using the D-H method and Lagrangian mechanics, while integrating with ROS for system-level control. The design enhances flexibility and compatibility with IoT and other agricultural hardware, offering a new approach to automation in precision farming tasks.
@@ -402,7 +491,6 @@
 
 
   
-</section>
     
 
 <!-- Contact Section -->
@@ -505,15 +593,61 @@
     <i class="fas fa-moon"></i>
   </button>
 
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to Top" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Structured Data (Schema.org) for Person and Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Basheer Al-Tawil",
+    "url": "https://aibomech.github.io/",
+    "image": "https://aibomech.github.io/images/l44.png",
+    "jobTitle": "Robotics Engineer & PhD Student",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "AIBOMECH Lab"
+    },
+    "description": "Robotics engineer specializing in mobile robotics, computer vision, AI, and entrepreneurship",
+    "knowsAbout": ["Robotics", "Computer Vision", "Artificial Intelligence", "SLAM", "ROS", "Mobile Robotics", "Machine Learning"],
+    "sameAs": [
+      "https://www.linkedin.com/in/basheeraltawil/",
+      "https://x.com/aibomech",
+      "https://www.youtube.com/channel/UCMk8Wiy96j4m9BFl7SuwM2g"
+    ],
+    "email": "aibomechatronics@gmail.com",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "PhD Student in Robotics"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AIBOMECH",
+    "url": "https://aibomech.github.io/",
+    "description": "Shaping the future of Robotics, AI, and Computer Vision through research, engineering principles, and entrepreneurship",
+    "author": {
+      "@type": "Person",
+      "name": "Basheer Al-Tawil"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://aibomech.github.io/?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
   <!-- JavaScript -->
   <script src="js/content-loader.js"></script>
   <script src="js/main.js"></script>
-  <!-- <script>
-
- 
-</script>
-    -->
 </body>
 </html>
 
-  

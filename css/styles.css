@@ -1346,3 +1346,350 @@
     font-family: 'Courier New', monospace;
     color: var(--primary-color);
 }
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced Card Hover Effects */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.publication {
+  transition: all 0.3s ease;
+}
+
+.publication:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Loading Animation for Images */
+img.pub-card-img {
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Improved Hero Section Animation */
+.hero-section {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Expertise Grid Fade In */
+.expertise-item {
+  animation: fadeIn 0.8s ease-out backwards;
+}
+
+.expertise-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.expertise-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.expertise-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.expertise-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments for back-to-top button */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}
+
+/* Skills Section */
+.skills-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+}
+
+.skills-section h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: default;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skill-tag:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode adjustments for skills */
+.dark-mode .skill-tag {
+  background: linear-gradient(135deg, #4da6ff, #ff6b6b);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .skill-tag:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Research Statistics Section */
+.research-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  padding: 2rem 0;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+.stat-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 0.5rem 0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animate stats on scroll */
+.stat-card {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Responsive adjustments for stats */
+@media (max-width: 768px) {
+  .research-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem;
+  }
+  
+  .stat-icon {
+    font-size: 2.5rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .research-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Social Share Buttons */
+.social-share {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.share-label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.share-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-btn.twitter {
+  background-color: #1DA1F2;
+}
+
+.share-btn.twitter:hover {
+  background-color: #0d8bd9;
+}
+
+.share-btn.linkedin {
+  background-color: #0077B5;
+}
+
+.share-btn.linkedin:hover {
+  background-color: #005885;
+}
+
+.share-btn.facebook {
+  background-color: #1877F2;
+}
+
+.share-btn.facebook:hover {
+  background-color: #0d5dbf;
+}
+
+/* Dark mode adjustments for share buttons */
+.dark-mode .share-btn {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .share-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
