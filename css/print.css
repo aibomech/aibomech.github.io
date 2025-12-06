@@ -166,8 +166,13 @@
   /* Forms - hide in print */
   form,
   input,
-  textarea,
-  .contact-method:has(form) {
+  textarea {
+    display: none !important;
+  }
+  
+  /* Hide contact form section specifically */
+  .contact-method form,
+  .contact-method:last-child {
     display: none !important;
   }
 
