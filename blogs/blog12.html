@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A comprehensive guide to mastering Visual SLAM theory and implementation with expanded explanations and professional mathematical notation." />
+    <meta name="keywords" content="Visual SLAM, SLAM, Robotics, Computer Vision, Localization, Mapping, AIBOMECH" />
+    <meta name="author" content="Basheer Al-tawil" />
+    <meta property="og:title" content="Advanced Visual SLAM Learning Guide - AIBOMECH" />
+    <meta property="og:description" content="A comprehensive, scientifically-grounded guide to mastering Visual SLAM theory and implementation." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://aibomech.github.io/blogs/blog12.html" />
+    <title>Advanced Visual SLAM Learning Guide - AIBOMECH</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/content-page.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            line-height: 1.6;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+        }
+        .nav-gradient {
+            background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+        }
+        .section-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border-left: 4px solid #0ea5e9;
+        }
+        .section-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+        .step-icon {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
+        }
+        .math-block {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #0ea5e9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .concept-highlight {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .implementation-box {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #10b981;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+        .nav-link:hover {
+            background-color: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+        .nav-link.active {
+            background-color: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+            font-weight: 600;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #1e293b;
+            cursor: help;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            font-weight: normal;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .chapter-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
+        }
+        .progress-bar {
+            height: 4px;
+            background-color: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9 0%, #10b981 100%);
+            transition: width 0.5s ease;
+        }
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        .sidebar-item {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+        .sidebar-item.active {
+            background-color: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+            font-weight: 600;
+        }
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 lg:p-12 text-gray-800">
+    <!-- Back to Home Button -->
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+        <a href="../index.html#blog" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="floating-action" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 nav-gradient shadow-xl z-10 mb-8 rounded-xl overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-wrap justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="text-white font-bold text-xl mr-10">SLAM Guide</div>
+                    <div class="hidden md:flex space-x-2">
+                        <a href="#part1" class="nav-link text-white">Fundamentals</a>
+                        <a href="#part2" class="nav-link text-white">Technologies</a>
+                        <a href="#resources" class="nav-link text-white">Resources</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-white text-sm hidden md:block">Progress: <span id="progressPercent">0%</span></div>
+                    <div class="w-32 bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-emerald-400 h-2.5 rounded-full" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar Navigation -->
+        <div class="lg:w-1/4">
+            <div class="bg-white rounded-xl shadow-lg p-6 sidebar">
+                <h3 class="font-bold text-lg text-gray-800 mb-4">Guide Navigation</h3>
+                <div class="space-y-2">
+                    <div class="sidebar-item active" data-target="part1">Part I: Fundamental Knowledge</div>
+                    <div class="sidebar-item" data-target="step1">Chapter 1: SLAM Context & Framework</div>
+                    <div class="sidebar-item" data-target="step2">Chapter 2: Pose Representation</div>
+                    <div class="sidebar-item" data-target="step3">Chapter 3: Lie Group & Algebra</div>
+                    <div class="sidebar-item" data-target="step4">Chapter 4: Camera Models</div>
+                    <div class="sidebar-item" data-target="step5">Chapter 5: Nonlinear Optimization</div>
+                    
+                    <div class="sidebar-item mt-4" data-target="part2">Part II: SLAM Technologies</div>
+                    <div class="sidebar-item" data-target="step6">Chapter 6: Feature-Based VO</div>
+                    <div class="sidebar-item" data-target="step7">Chapter 7: Direct VO</div>
+                    <div class="sidebar-item" data-target="step8">Chapter 8-9: Backend Optimization</div>
+                    <div class="sidebar-item" data-target="step9">Chapter 10: Loop Closure</div>
+                    <div class="sidebar-item" data-target="step10">Chapter 11: Mapping</div>
+                    <div class="sidebar-item" data-target="step11">Chapter 12-13: System Integration</div>
+                    
+                    <div class="sidebar-item mt-4" data-target="resources">Implementation Resources</div>
+                </div>
+                
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 class="font-semibold text-blue-800 mb-2">Quick Tips</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• Click on any section to jump directly</li>
+                        <li>• Hover over terms for explanations</li>
+                        <li>• Check implementation boxes for code</li>
+                        <li>• Use the progress tracker above</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:w-3/4">
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+                <!-- Header -->
+                <div class="header-gradient text-white p-8 sm:p-10 lg:p-12">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                        <div>
+                            <h1 class="text-4xl sm:text-5xl font-extrabold mb-2">
+                                Advanced Visual SLAM Learning Guide
+                            </h1>
+                            <p class="text-lg text-blue-100 max-w-2xl">A comprehensive, scientifically-grounded guide to mastering Visual SLAM theory and implementation with expanded explanations and professional mathematical notation.</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 floating-card">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                <div class="text-3xl">📚</div>
+                                <div class="text-sm font-semibold">13 Chapters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 lg:p-10">
+                    <!-- PART I: FUNDAMENTAL KNOWLEDGE -->
+                    <section id="part1" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="chapter-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800">Part I: Fundamental Knowledge</h2>
+                                <p class="text-gray-600">Chapters 1–5: Building the mathematical and conceptual foundation</p>
+                            </div>
+                        </div>
+
+                        <!-- STEP 1 -->
+                        <div id="step1" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">1</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">The SLAM Context and Core Framework</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Theory</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Foundation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Scientific Foundation</h4>
+                                    <p class="mb-4 text-gray-700">The SLAM problem is formally defined by two stochastic equations representing motion and observation models. The noise terms (\(\mathbf{w}_k\), \(\mathbf{v}_{k,j}\)) are typically modeled as Gaussian distributions (\(N(0, \mathbf{R}_k)\)) to enable probabilistic estimation techniques.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Core SLAM Problem
+                                        </h4>
+                                        <p class="text-gray-700">Visual SLAM addresses the fundamental challenge of simultaneously estimating a robot's 6-DOF pose (localization) while incrementally building a consistent map of its environment (mapping) using primarily visual sensors. This creates a chicken-and-egg problem where an accurate map requires precise localization, and precise localization requires an accurate map.</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Mathematical Formulation</h4>
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Motion Model:</div>
+                                        $$ \mathbf{x}_{k}=f(\mathbf{x}_{k-1},\mathbf{u}_{k},\mathbf{w}_{k}) $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Observation Model:</div>
+                                        $$ \mathbf{z}_{k,j}=h(\mathbf{y}_{j},\mathbf{x}_{k},\mathbf{v}_{k,j}) $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">The motion equation models how the robot's state evolves over time based on control inputs, while the observation equation relates the landmark state and current pose to sensor measurements.</p>
+                                    
+                                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-yellow-700">
+                                                    <strong>Historical Context:</strong> Early SLAM implementations used Extended Kalman Filters (EKF), but modern approaches favor optimization techniques due to EKF's linearization errors and quadratic complexity.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Setting up the development environment with C++, CMake, and understanding the basic project structure for SLAM implementations.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// Basic SLAM system structure
+class SLAMSystem {
+public:
+    void processFrame(const cv::Mat& image, double timestamp);
+    Eigen::Matrix4d getCurrentPose() const;
+    // ...
+private:
+    Frontend frontend;
+    Backend backend;
+    Map map;
+};</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2 -->
+                        <div id="step2" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">2</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Pose Representation in 3D Space</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Geometry</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Math</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Mathematical Foundation</h4>
+                                    <p class="mb-4 text-gray-700">Finding a robust, compact representation for rotation (\(R\)) and translation (\(T\)) is crucial. The <strong>Rotation Matrix</strong> (\(\mathbf{R} \in SO(3)\)) is redundant (9 elements) but only has 3 degrees of freedom (DoF), requiring 6 geometric constraints (\(R^T R = I\), \(\det(R)=1\)).</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Transformation Matrix (\(SE(3)\))</h4>
+                                        <p class="text-gray-700 mb-3">Combines the 3 DoF rotation and 3 DoF translation (\(\mathbf{t}\)) into a single \(4\times4\) matrix using homogeneous coordinates:</p>
+                                        <div class="math-block">
+                                            $$ \mathbf{T} = \begin{pmatrix} \mathbf{R} & \mathbf{t} \\ \mathbf{0}^T & 1 \end{pmatrix} $$
+                                        </div>
+                                        <p class="text-sm text-gray-600">This matrix representation allows efficient composition of multiple transformations and application to points using simple matrix multiplication.</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Rotation Representations</h4>
+                                    <div class="overflow-x-auto">
+                                        <table class="min-w-full bg-white border border-gray-200">
+                                            <thead class="bg-gray-50">
+                                                <tr>
+                                                    <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Representation</th>
+                                                    <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">DoF</th>
+                                                    <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Advantages</th>
+                                                    <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Disadvantages</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-gray-700 divide-y divide-gray-200">
+                                                <tr>
+                                                    <td class="py-3 px-4 font-medium">Rotation Matrix</td>
+                                                    <td class="py-3 px-4">3</td>
+                                                    <td class="py-3 px-4">Intuitive, direct composition</td>
+                                                    <td class="py-3 px-4">9 parameters with 6 constraints</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-3 px-4 font-medium">Euler Angles</td>
+                                                    <td class="py-3 px-4">3</td>
+                                                    <td class="py-3 px-4">Minimal, intuitive</td>
+                                                    <td class="py-3 px-4">Gimbal lock, non-unique</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-3 px-4 font-medium">Rotation Vector</td>
+                                                    <td class="py-3 px-4">3</td>
+                                                    <td class="py-3 px-4">Minimal, no singularities</td>
+                                                    <td class="py-3 px-4">Non-intuitive, complex interpolation</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-3 px-4 font-medium">Quaternions</td>
+                                                    <td class="py-3 px-4">4</td>
+                                                    <td class="py-3 px-4">No singularities, efficient composition</td>
+                                                    <td class="py-3 px-4">4 parameters (1 redundant), non-intuitive</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-3">Quaternions are particularly useful for interpolation (slerp) and avoid the gimbal lock problem that plagues Euler angles.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Using <strong>Eigen</strong>'s specialized classes for efficient pose manipulation and transformation composition.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// Create a rotation matrix from angle-axis representation
+Eigen::AngleAxisd rotation_vector(M_PI/4, Eigen::Vector3d(0,0,1));
+Eigen::Matrix3d R = rotation_vector.toRotationMatrix();
+
+// Create a transformation matrix
+Eigen::Vector3d t(1.0, 2.0, 3.0);
+Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
+T.rotate(R);
+T.translate(t);
+
+// Apply transformation to a point
+Eigen::Vector3d p_world(1, 0, 0);
+Eigen::Vector3d p_camera = T * p_world;</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3 -->
+                        <div id="step3" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">3</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Lie Group and Lie Algebra for Optimization</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Advanced</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Math</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Theoretical Foundation</h4>
+                                    <p class="mb-4 text-gray-700">The <strong>Lie Algebra</strong> (\(\mathfrak{se}(3)\)) is the vector space tangent to the Lie Group (\(SE(3)\)) at the identity, allowing optimization increments (\(\delta\boldsymbol{\xi}\)) to be treated as simple vector additions without violating geometric constraints.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Lie Theory in SLAM</h4>
+                                        <p class="text-gray-700">Lie theory provides the mathematical framework to perform calculus on manifolds like SO(3) and SE(3), which is essential for optimizing pose variables in SLAM without violating the manifold structure.</p>
+                                    </div>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Exponential Map:</div>
+                                        $$ \mathbf{T} = \exp(\boldsymbol{\xi}^{\wedge}) $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Logarithmic Map:</div>
+                                        $$ \boldsymbol{\xi} = \log(\mathbf{T})^{\vee} $$
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Derivatives and Perturbation Model</h4>
+                                    <p class="mb-4 text-gray-700">The Jacobian for pose optimization is calculated by left-multiplying a perturbation \(\Delta \mathbf{T} = \exp(\delta\boldsymbol{\xi}^{\wedge})\):</p>
+                                    
+                                    <div class="math-block">
+                                        $$ \frac{\partial (\mathbf{T} \mathbf{p})}{\partial \delta\boldsymbol{\xi}} = - (\mathbf{T} \mathbf{p})^{\odot} = \begin{pmatrix} \mathbf{I} & -(\mathbf{T} \mathbf{p})^{\wedge} \\ \mathbf{0}^T & \mathbf{0}^T \end{pmatrix} $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">This Jacobian tells us how a point transformed by T changes when we make a small change to the pose parameters in the Lie algebra.</p>
+                                    
+                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-info-circle text-blue-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-700">
+                                                    <strong>Baker-Campbell-Hausdorff (BCH) Formula:</strong> Describes how Lie Group multiplication relates to Lie Algebra addition: \(\ln(\exp(\mathbf{A})\exp(\mathbf{B})) \approx \mathbf{A} + \mathbf{B} + \frac{1}{2}[\mathbf{A}, \mathbf{B}] + \dots\)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Utilizing <strong>Sophus</strong> to compute \(\exp(\cdot)\), \(\log(\cdot)\), and apply the pose update \(\mathbf{T}_{\text{new}} = \exp(\delta\boldsymbol{\xi}^{\wedge})\mathbf{T}_{\text{current}}\).</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// Example Sophus usage for Lie group operations
+Sophus::SE3d T; // Current pose
+Eigen::Vector6d update; // Update in Lie algebra
+
+// Apply update using exponential map
+Sophus::SE3d T_new = Sophus::SE3d::exp(update) * T;
+
+// Convert back to Lie algebra for optimization
+Eigen::Vector6d lie_alg = T_new.log();
+
+// Perturbation model for derivatives
+Eigen::Matrix<double, 6, 6> J = Sophus::SE3d::JacobianR(lie_alg);</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 4 -->
+                        <div id="step4" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">4</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">The Observation Model: Cameras and Pixels</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Computer Vision</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Geometry</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Camera Projection Model</h4>
+                                    <p class="mb-4 text-gray-700">The transformation from a 3D point \(\mathbf{P}_w\) in the world frame to a 2D pixel \(\mathbf{p}_{uv}\) is given by the pinhole model, applied after the pose transform \(\mathbf{T}_{CW}\).</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Camera Projection Pipeline</h4>
+                                        <p class="text-gray-700 mb-3">The process of projecting a 3D world point to a 2D image pixel involves multiple coordinate transformations:</p>
+                                        <ol class="list-decimal ml-5 mt-2 text-gray-700 space-y-2">
+                                            <li>World coordinates → Camera coordinates (using extrinsics)</li>
+                                            <li>Camera coordinates → Normalized coordinates (perspective division)</li>
+                                            <li>Normalized coordinates → Pixel coordinates (using intrinsics)</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Projection Formula:</div>
+                                        $$ Z\mathbf{p}_{uv} = \mathbf{K}\mathbf{P}_c $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Intrinsic Matrix:</div>
+                                        $$ \mathbf{K} = \begin{pmatrix} f_x & 0 & c_x \\ 0 & f_y & c_y \\ 0 & 0 & 1 \end{pmatrix} $$
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Lens Distortion and Stereo Vision</h4>
+                                    <p class="mb-4 text-gray-700">Real cameras exhibit lens distortion that must be corrected for accurate geometric computations. For stereo systems, depth can be calculated from disparity.</p>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Radial Distortion Model:</div>
+                                        $$ \mathbf{x}_{\text{distorted}} = \mathbf{x} (1 + k_1 r^2 + k_2 r^4 + k_3 r^6) $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Stereo Depth:</div>
+                                        $$ \mathbf{Z} = \frac{f b}{d} $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">Lens distortion causes straight lines in the world to appear curved in images. Stereo vision triangulates depth by finding corresponding points in left and right images and using their horizontal displacement (disparity).</p>
+                                    
+                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-info-circle text-blue-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-700">
+                                                    <strong>Camera Calibration:</strong> The process of estimating intrinsic parameters (focal length, principal point) and distortion coefficients is essential for accurate SLAM.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Using <strong>OpenCV</strong> to manage camera intrinsics, perform camera calibration, and implement projection and distortion correction.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// OpenCV camera projection example
+cv::Mat cameraMatrix = (cv::Mat_<double>(3,3) << fx, 0, cx, 0, fy, cy, 0, 0, 1);
+cv::Mat distCoeffs = (cv::Mat_<double>(5,1) << k1, k2, p1, p2, k3);
+
+// Project 3D point to 2D
+std::vector<cv::Point3d> objectPoints;
+std::vector<cv::Point2d> imagePoints;
+cv::projectPoints(objectPoints, rvec, tvec, cameraMatrix, distCoeffs, imagePoints);
+
+// Undistort image
+cv::Mat undistorted;
+cv::undistort(image, undistorted, cameraMatrix, distCoeffs);</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 5 -->
+                        <div id="step5" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">5</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Nonlinear Optimization for State Estimation</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Optimization</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Math</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Least-Squares Optimization</h4>
+                                    <p class="mb-4 text-gray-700">The system seeks to minimize the weighted sum of squared errors, equivalent to finding the <strong>Maximum A Posteriori (MAP)</strong> estimate under Gaussian assumptions.</p>
+                                    
+                                    <div class="math-block">
+                                        $$ \min_{\mathbf{x}} J(\mathbf{x}) = \sum_k \mathbf{e}_{u,k}^T \mathbf{R}_k^{-1} \mathbf{e}_{u,k} + \sum_{k,j} \mathbf{e}_{z,k,j}^T \mathbf{Q}_{k,j}^{-1} \mathbf{e}_{z,k,j} $$
+                                    </div>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Optimization Methods</h4>
+                                        <div class="overflow-x-auto">
+                                            <table class="min-w-full bg-white border border-gray-200">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Method</th>
+                                                        <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Key Idea</th>
+                                                        <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Advantages</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-gray-700 divide-y divide-gray-200">
+                                                    <tr>
+                                                        <td class="py-3 px-4 font-medium">Gauss-Newton</td>
+                                                        <td class="py-3 px-4">Linearize and solve normal equations</td>
+                                                        <td class="py-3 px-4">Fast convergence near optimum</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-3 px-4 font-medium">Levenberg-Marquardt</td>
+                                                        <td class="py-3 px-4">Damped version of Gauss-Newton</td>
+                                                        <td class="py-3 px-4">More robust, handles poor initial guesses</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-3 px-4 font-medium">Gradient Descent</td>
+                                                        <td class="py-3 px-4">Follow negative gradient direction</td>
+                                                        <td class="py-3 px-4">Simple, guaranteed convergence</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Solving the Optimization</h4>
+                                    <p class="mb-4 text-gray-700">The normal equation \(\mathbf{H}\Delta\mathbf{x} = \mathbf{g}\) provides the solution to the linearized optimization problem at each iteration.</p>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Normal Equation:</div>
+                                        $$ \mathbf{H}\Delta\mathbf{x} = \mathbf{g} $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Levenberg-Marquardt:</div>
+                                        $$ (\mathbf{H} + \lambda \mathbf{I})\Delta\mathbf{x} = \mathbf{g} $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">The damping parameter \(\lambda\) adapts during optimization to balance between fast convergence (small \(\lambda\), Gauss-Newton behavior) and stability (large \(\lambda\), gradient descent behavior).</p>
+                                    
+                                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-yellow-700">
+                                                    <strong>Hessian Sparsity:</strong> In SLAM problems, the Hessian matrix exhibits a characteristic sparse block structure that can be exploited for efficient computation.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Hand-coding the iterative solution (Gauss-Newton) and leveraging external libraries like <strong>Ceres</strong> and <strong>g2o</strong> for robust optimization.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// Ceres Solver example for bundle adjustment
+ceres::Problem problem;
+for (int i = 0; i < observations.size(); ++i) {
+    ceres::CostFunction* cost_function =
+        new ceres::AutoDiffCostFunction<ReprojectionError, 2, 9, 3>(
+            new ReprojectionError(observations[i]));
+    problem.AddResidualBlock(cost_function, NULL, camera, point);
+}
+
+ceres::Solver::Options options;
+options.linear_solver_type = ceres::SPARSE_NORMAL_CHOLESKY;
+options.minimizer_progress_to_stdout = true;
+
+ceres::Solver::Summary summary;
+ceres::Solve(options, &problem, &summary);</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PART II: SLAM TECHNOLOGIES -->
+                    <section id="part2" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="chapter-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800">Part II: SLAM Technologies</h2>
+                                <p class="text-gray-600">Chapters 6–13: Implementing the theoretical foundation in real-world systems</p>
+                            </div>
+                        </div>
+
+                        <!-- STEP 6 -->
+                        <div id="step6" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">6</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Feature-Based Visual Odometry</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Implementation</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Computer Vision</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Feature Processing</h4>
+                                    <p class="mb-4 text-gray-700">Using efficient features like <strong>ORB</strong> (Oriented FAST Keypoints + Rotated BRIEF Descriptors). Matching uses brute-force comparison or accelerated methods like FLANN based on distance (e.g., Hamming distance for binary descriptors).</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Motion Estimation Methods</h4>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="bg-blue-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-blue-800 mb-2">2D-2D (Epipolar Geometry)</h5>
+                                                <p class="text-sm text-blue-700">For monocular cameras, uses essential matrix to recover R,t up to scale with constraint \(\mathbf{x}_2^T \mathbf{E} \mathbf{x}_1 = 0\).</p>
+                                            </div>
+                                            <div class="bg-green-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-green-800 mb-2">3D-2D (PnP)</h5>
+                                                <p class="text-sm text-green-700">Perspective-n-Point, solves for camera pose given 3D points and 2D projections by minimizing reprojection error.</p>
+                                            </div>
+                                            <div class="bg-purple-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-purple-800 mb-2">3D-3D (ICP)</h5>
+                                                <p class="text-sm text-purple-700">Iterative Closest Point, aligns two 3D point clouds by minimizing point-to-point or point-to-plane distances.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Mathematical Formulation</h4>
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Essential Matrix Constraint:</div>
+                                        $$ \mathbf{x}_2^T \mathbf{E} \mathbf{x}_1 = 0 $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Reprojection Error:</div>
+                                        $$ \mathbf{e}_{\text{reproj}} = \mathbf{p}_{\text{observed}} - \mathbf{p}_{\text{projected}}(\mathbf{T}) $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">The essential matrix E encapsulates the epipolar geometry between two views and can be decomposed to recover the relative pose. PnP is the most common method in feature-based VO as it leverages 3D map points to estimate new camera poses.</p>
+                                    
+                                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-yellow-700">
+                                                    <strong>Triangulation Contradiction:</strong> Depth estimation is fragile when translation is small, making \(\mathbf{P}\) estimation uncertain due to numerical instability in the triangulation equations.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Using OpenCV for feature detection, description, and matching, then implementing PnP solvers with RANSAC for robust pose estimation.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// ORB feature extraction and matching
+cv::Ptr<cv::ORB> orb = cv::ORB::create(500);
+std::vector<cv::KeyPoint> kp1, kp2;
+cv::Mat desc1, desc2;
+orb->detectAndCompute(img1, cv::noArray(), kp1, desc1);
+orb->detectAndCompute(img2, cv::noArray(), kp2, desc2);
+
+// Feature matching
+cv::BFMatcher matcher(cv::NORM_HAMMING);
+std::vector<cv::DMatch> matches;
+matcher.match(desc1, desc2, matches);
+
+// PnP with RANSAC
+std::vector<cv::Point3f> objectPoints;
+std::vector<cv::Point2f> imagePoints;
+// ... populate points from matches
+cv::Mat rvec, tvec;
+cv::solvePnPRansac(objectPoints, imagePoints, cameraMatrix, 
+                   distCoeffs, rvec, tvec, false, 100, 8.0, 0.99);</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 7 -->
+                        <div id="step7" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">7</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Direct Visual Odometry</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Implementation</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Optimization</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Photometric Optimization</h4>
+                                    <p class="mb-4 text-gray-700">Direct methods minimize brightness error \(e_i = I_1(\mathbf{p}_{1,i}) - I_2(\mathbf{p}_{2,i}(\mathbf{T}))\) over selected pixels. The large motions require <strong>Multi-Layer Pyramids</strong> for coarse-to-fine estimation.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Direct vs Feature-Based Methods</h4>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="bg-blue-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-blue-800 mb-2">Direct Methods</h5>
+                                                <ul class="text-sm text-blue-700 list-disc ml-4 space-y-1">
+                                                    <li>Use pixel intensities directly</li>
+                                                    <li>No feature extraction needed</li>
+                                                    <li>Work in textureless regions</li>
+                                                    <li>Sensitive to lighting changes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-green-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-green-800 mb-2">Feature-Based Methods</h5>
+                                                <ul class="text-sm text-green-700 list-disc ml-4 space-y-1">
+                                                    <li>Use distinctive image features</li>
+                                                    <li>Robust to lighting changes</li>
+                                                    <li>Fail in textureless regions</li>
+                                                    <li>Feature extraction overhead</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Mathematical Formulation</h4>
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Photometric Error:</div>
+                                        $$ e_i = I_1(\mathbf{p}_{1,i}) - I_2(\mathbf{p}_{2,i}(\mathbf{T})) $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Jacobian Chain Rule:</div>
+                                        $$ \frac{\partial e}{\partial \delta\boldsymbol{\xi}} = - \frac{\partial I_2}{\partial \mathbf{u}} \frac{\partial \mathbf{u}}{\partial \mathbf{q}} \frac{\partial \mathbf{q}}{\partial \delta\boldsymbol{\xi}} $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">This chain rule derivation connects changes in pixel intensity to changes in camera pose through the image formation process. The <strong>Constant Grayscale Assumption</strong> is crucial but can be violated by lighting changes or non-Lambertian surfaces.</p>
+                                    
+                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-info-circle text-blue-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-700">
+                                                    <strong>Lucas-Kanade Optical Flow:</strong> Solves for 2D shift \(\mathbf{u}\) using multiple pixels in a patch: \(\mathbf{A}^T \mathbf{A} \mathbf{u} = - \mathbf{A}^T \mathbf{b}\).
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Implementing single-layer and multi-layer Direct Pose Estimation, utilizing parallel processing for speed on CPU.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// Direct method implementation (simplified)
+void directPoseEstimation(
+    const cv::Mat& img1, 
+    const cv::Mat& img2,
+    const std::vector<cv::Point2f>& px_ref,
+    const std::vector<cv::Point3f>& pts_ref,
+    Sophus::SE3d& T21) {
+    
+    // Parameters
+    const int iterations = 10;
+    double cost = 0, lastCost = 0;
+    
+    for (int iter = 0; iter < iterations; iter++) {
+        Eigen::Matrix<double, 6, 6> H = Eigen::Matrix<double, 6, 6>::Zero();
+        Eigen::Matrix<double, 6, 1> g = Eigen::Matrix<double, 6, 1>::Zero();
+        cost = 0;
+        
+        // Compute photometric error and Jacobians
+        for (size_t i = 0; i < px_ref.size(); i++) {
+            // ... compute error and Jacobian for each point
+            // H += J.transpose() * J;
+            // g += -J.transpose() * error;
+        }
+        
+        // Solve H * dx = g
+        Eigen::Matrix<double, 6, 1> dx = H.ldlt().solve(g);
+        T21 = Sophus::SE3d::exp(dx) * T21;
+        
+        // Check convergence
+        if (isnan(dx[0])) break;
+        if (iter > 0 && cost >= lastCost) break;
+        lastCost = cost;
+    }
+}</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 8 -->
+                        <div id="step8" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">8</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Backend Optimization Structure</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Backend</span>
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Optimization</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Bundle Adjustment Structure</h4>
+                                    <p class="mb-4 text-gray-700">Bundle Adjustment (BA) refines both camera poses and 3D point positions by minimizing reprojection error. The Hessian matrix in BA exhibits a characteristic sparse block structure that can be exploited for efficient computation.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">SLAM Backend Evolution</h4>
+                                        <div class="overflow-x-auto">
+                                            <table class="min-w-full bg-white border border-gray-200">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Approach</th>
+                                                        <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Key Idea</th>
+                                                        <th class="py-3 px-4 text-left font-medium text-gray-700 border-b">Advantages</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-gray-700 divide-y divide-gray-200">
+                                                    <tr>
+                                                        <td class="py-3 px-4 font-medium">EKF-SLAM</td>
+                                                        <td class="py-3 px-4">Recursive Bayesian filtering</td>
+                                                        <td class="py-3 px-4">Theoretically sound, online operation</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-3 px-4 font-medium">Bundle Adjustment</td>
+                                                        <td class="py-3 px-4">Batch nonlinear optimization</td>
+                                                        <td class="py-3 px-4">High accuracy, handles loop closures</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-3 px-4 font-medium">Pose Graph</td>
+                                                        <td class="py-3 px-4">Marginalize landmarks, optimize poses only</td>
+                                                        <td class="py-3 px-4">Efficient for large-scale mapping</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Schur Complement and Marginalization</h4>
+                                    <p class="mb-4 text-gray-700">The Schur complement trick exploits the block structure of the Hessian to dramatically reduce the problem size by eliminating landmark variables.</p>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Schur Complement:</div>
+                                        $$ \mathbf{S} = \mathbf{B} - \mathbf{E} \mathbf{C}^{-1} \mathbf{E}^T $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">This reduces the system to only pose variables, which is much smaller than the full BA problem. Pose graphs take this further by explicitly marginalizing landmarks to create constraints between pose nodes only.</p>
+                                    
+                                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-yellow-700">
+                                                    <strong>EKF vs. Optimization:</strong> EKF suffers from non-linearity errors and its state dimensionality grows with O(N) poses and O(M) landmarks. Optimization handles non-linearity via iterative relinearization and manages complexity via sparsity.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Using <strong>Ceres</strong> and <strong>g2o</strong> for BA (with LM and robust kernels like <strong>Huber</strong>) and implementing a g2o-based pose graph optimizer.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// g2o pose graph optimization example
+typedef g2o::BlockSolver<g2o::BlockSolverTraits<6, 3>> BlockSolverType;
+typedef g2o::LinearSolverEigen<BlockSolverType::PoseMatrixType> LinearSolverType;
+
+auto solver = new g2o::OptimizationAlgorithmLevenberg(
+    g2o::make_unique<BlockSolverType>(g2o::make_unique<LinearSolverType>())
+);
+
+g2o::SparseOptimizer optimizer;
+optimizer.setAlgorithm(solver);
+
+// Add pose vertices
+for (size_t i = 0; i < poses.size(); ++i) {
+    g2o::VertexSE3* v = new g2o::VertexSE3();
+    v->setId(i);
+    v->setEstimate(poses[i]);
+    optimizer.addVertex(v);
+}
+
+// Add edges (constraints between poses)
+for (const auto& constraint : constraints) {
+    g2o::EdgeSE3* e = new g2o::EdgeSE3();
+    e->setVertex(0, optimizer.vertex(constraint.from));
+    e->setVertex(1, optimizer.vertex(constraint.to));
+    e->setMeasurement(constraint.transform);
+    e->setInformation(constraint.information);
+    optimizer.addEdge(e);
+}
+
+optimizer.initializeOptimization();
+optimizer.optimize(10);</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 9 -->
+                        <div id="step9" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">9</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Loop Closure Detection</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Recognition</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Machine Learning</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Appearance-Based Loop Detection</h4>
+                                    <p class="mb-4 text-gray-700">Bag-of-Words (BoW) models use a dictionary generated by hierarchical clustering (e.g., K-d Tree). High <strong>Precision</strong> is prioritized, as false loops lead to catastrophic map collapse.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Bag-of-Words Model</h4>
+                                        <p class="text-gray-700">The Bag-of-Words approach treats images as collections of visual words from a predefined vocabulary, enabling efficient place recognition through text retrieval techniques adapted for visual data.</p>
+                                    </div>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">TF-IDF Weighting:</div>
+                                        $$ \eta_i = \text{TF}_i \times \text{IDF}_i $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">Inverse Document Frequency:</div>
+                                        $$ \text{IDF}_i = \log\left(\frac{N}{n_i}\right) $$
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Loop Validation and Metrics</h4>
+                                    <p class="mb-4 text-gray-700">Loop validation often uses time-consistency checks and geometric verification to prevent singular false positive detections. Multiple consecutive detections or geometric verification are used to confirm loop closures.</p>
+                                    
+                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-info-circle text-blue-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-700">
+                                                    <strong>TF-IDF Explanation:</strong> Term Frequency measures how often a word appears in the current document. Inverse Document Frequency measures the discriminative power of the word across the whole vocabulary.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Loop Closure Pipeline</h5>
+                                        <ol class="list-decimal ml-5 text-gray-700 space-y-2">
+                                            <li>Feature extraction from current frame</li>
+                                            <li>BoW vector generation</li>
+                                            <li>Database query for similar images</li>
+                                            <li>Geometric verification (essential matrix check)</li>
+                                            <li>Pose graph optimization with new constraint</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Using the <strong>DBoW3</strong> library to train a visual vocabulary, transform feature descriptors into BoW vectors, and query for similar images within a database.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// DBoW3 loop closure detection example
+#include <DBoW3/DBoW3.h>
+
+// Create vocabulary (offline)
+DBoW3::Vocabulary vocab;
+vocab.create(features); // features from training images
+
+// Create database
+DBoW3::Database database(vocab, false, 0);
+
+// Add images to database
+for (size_t i = 0; i < image_features.size(); ++i) {
+    database.add(image_features[i]);
+}
+
+// Query for loop closures
+DBoW3::QueryResults results;
+database.query(current_features, results, 4); // top 4 matches
+
+// Check for valid loop closure
+if (!results.empty() && results[0].Score > 0.1) {
+    // Perform geometric verification
+    if (geometricVerification(current_frame, loop_frame)) {
+        // Add loop closure constraint to pose graph
+        addLoopClosureConstraint(current_frame_id, loop_frame_id, transform);
+    }
+}</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 10 -->
+                        <div id="step10" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">10</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Mapping and Dense Reconstruction</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Mapping</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">3D Vision</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Volumetric and Probabilistic Maps</h4>
+                                    <p class="mb-4 text-gray-700">Different mapping approaches balance computational efficiency with representation accuracy, from sparse feature maps to dense surface reconstructions.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Map Representations in SLAM</h4>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="bg-blue-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-blue-800 mb-2">Sparse Maps</h5>
+                                                <p class="text-sm text-blue-700">Only distinctive features, efficient for localization but limited for navigation</p>
+                                            </div>
+                                            <div class="bg-green-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-green-800 mb-2">Dense Maps</h5>
+                                                <p class="text-sm text-green-700">All surfaces modeled, useful for navigation but computationally expensive</p>
+                                            </div>
+                                            <div class="bg-purple-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-purple-800 mb-2">Semantic Maps</h5>
+                                                <p class="text-sm text-purple-700">Objects labeled with categories, enables high-level reasoning and interaction</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Depth Estimation and Fusion</h4>
+                                    <p class="mb-4 text-gray-700">Monocular depth estimation iteratively fuses depth observations into probabilistic representations, while volumetric approaches like OctoMap and TSDF provide efficient 3D representations.</p>
+                                    
+                                    <div class="math-block">
+                                        <div class="text-sm text-gray-600 mb-2 font-medium">Bayesian Depth Update:</div>
+                                        $$ \mu_{\text{fuse}} = \frac{\sigma^2_{\text{obs}}\mu + \sigma^2\mu_{\text{obs}}}{\sigma^2 + \sigma^2_{\text{obs}}}, \quad \sigma^2_{\text{fuse}} = \frac{\sigma^2\sigma^2_{\text{obs}}}{\sigma^2 + \sigma^2_{\text{obs}}} $$
+                                        <div class="text-sm text-gray-600 mt-3 mb-2 font-medium">OctoMap Log-Odds Update:</div>
+                                        $$ L(\mathbf{n}|\mathbf{z}_t) = L(\mathbf{n}|\mathbf{z}_{t-1}) + L(\mathbf{n}|\mathbf{z}_t) $$
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-4">The Bayesian update combines new depth measurements with prior knowledge, gradually refining depth estimates. OctoMap uses an efficient octree data structure to represent 3D space at multiple resolutions.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Using <strong>PCL</strong> for 3D point cloud manipulation and <strong>OctoMap</strong> for occupancy grid creation.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// OctoMap example
+#include <octomap/octomap.h>
+
+// Create octree
+octomap::OcTree tree(0.05);  // 5cm resolution
+
+// Insert point cloud
+for (const auto& point : point_cloud) {
+    // Update occupancy of leaf node at point
+    tree.updateNode(point.x, point.y, point.z, true);
+}
+
+// Prune to remove unnecessary nodes
+tree.prune();
+
+// Query occupancy at specific location
+octomap::OcTreeNode* node = tree.search(1.0, 2.0, 0.5);
+if (node && tree.isNodeOccupied(node)) {
+    // Location is occupied
+}
+
+// Save map
+tree.writeBinary("map.bt");
+
+// PCL point cloud processing
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
+pcl::fromPCLPointCloud2(pcl_cloud, *cloud);
+
+// Voxel grid filtering for downsampling
+pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
+voxel_grid.setInputCloud(cloud);
+voxel_grid.setLeafSize(0.01f, 0.01f, 0.01f); // 1cm resolution
+voxel_grid.filter(*filtered_cloud);</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 11 -->
+                        <div id="step11" class="mb-12 p-8 section-box fade-in">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="step-icon">11</div>
+                                    <h3 class="text-2xl font-bold text-gray-800">System Integration and Future Trends</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Advanced</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Future</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Advanced Systems and Sensor Fusion</h4>
+                                    <p class="mb-4 text-gray-700">Modern SLAM systems integrate multiple sensors and leverage advanced computational techniques to improve robustness, accuracy, and scalability.</p>
+                                    
+                                    <div class="concept-highlight">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Modern SLAM Systems</h4>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="bg-blue-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-blue-800 mb-2">ORB-SLAM3</h5>
+                                                <ul class="text-sm text-blue-700 list-disc ml-4 space-y-1">
+                                                    <li>Multi-map Atlas system</li>
+                                                    <li>Visual-inertial capabilities</li>
+                                                    <li>Robust place recognition</li>
+                                                    <li>Open-source implementation</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-green-50 p-4 rounded-lg">
+                                                <h5 class="font-semibold text-green-800 mb-2">Kimera</h5>
+                                                <ul class="text-sm text-green-700 list-disc ml-4 space-y-1">
+                                                    <li>Metric-semantic mapping</li>
+                                                    <li>Real-time mesh reconstruction</li>
+                                                    <li>Semantic labeling</li>
+                                                    <li>Geometric and semantic SLAM</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-lg">Emerging Trends and Challenges</h4>
+                                    <p class="mb-4 text-gray-700">The field of Visual SLAM continues to evolve with new techniques addressing long-standing challenges and expanding capabilities.</p>
+                                    
+                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-info-circle text-blue-500"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-700">
+                                                    <strong>VIO (Visual-Inertial Odometry):</strong> Fusing high-frequency IMU data with visual data provides robustness to fast motion and reduces drift through complementary sensor characteristics.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Future Directions</h5>
+                                        <ul class="list-disc ml-5 text-gray-700 space-y-2">
+                                            <li><strong>Semantic SLAM:</strong> Integrating object recognition and scene understanding</li>
+                                            <li><strong>Long-term autonomy:</strong> Handling environmental changes over extended periods</li>
+                                            <li><strong>Multi-robot SLAM:</strong> Collaborative mapping across multiple agents</li>
+                                            <li><strong>Deep Learning:</strong> End-to-end learning of SLAM components</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-box mt-6">
+                                <h4 class="font-semibold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i> Implementation Focus
+                                </h4>
+                                <p class="mb-3">Building a stable SLAM system requires robust engineering practices beyond individual algorithms, including data management, multi-threading, and proper keyframe selection.</p>
+                                <div class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                    <pre class="text-sm code-font text-gray-300">
+// Keyframe management in SLAM system
+class KeyFrame {
+public:
+    KeyFrame(const cv::Mat& image, double timestamp, 
+             const Sophus::SE3d& pose);
+    
+    void addMapPoint(MapPoint* mp, size_t idx);
+    bool isBad() const { return mbBad; }
+    void setBadFlag();
+    
+    // Getters for pose, features, etc.
+    Sophus::SE3d getPose() const { return mPose; }
+    
+private:
+    Sophus::SE3d mPose;
+    cv::Mat mImage;
+    std::vector<MapPoint*> mvpMapPoints;
+    bool mbBad = false;
+    double mTimestamp;
+};
+
+// Map management
+class Map {
+public:
+    void addKeyFrame(KeyFrame* pKF);
+    void addMapPoint(MapPoint* pMP);
+    void eraseKeyFrame(KeyFrame* pKF);
+    void eraseMapPoint(MapPoint* pMP);
+    
+    std::vector<KeyFrame*> getAllKeyFrames();
+    std::vector<MapPoint*> getAllMapPoints();
+    
+private:
+    std::set<KeyFrame*> mspKeyFrames;
+    std::set<MapPoint*> mspMapPoints;
+    std::mutex mMutexMap;
+};</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Resources Section -->
+                    <section id="resources" class="mb-12 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="chapter-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800">Implementation Resources</h2>
+                                <p class="text-gray-600">Essential libraries, learning materials, and open-source systems</p>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl shadow-lg p-6 section-box">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                    <i class="fas fa-cube text-blue-500 mr-2"></i> Essential Libraries
+                                </h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-project-diagram text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">Eigen</span>
+                                            <p class="text-sm text-gray-600">C++ template library for linear algebra, matrices, vectors, numerical solvers</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-eye text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">OpenCV</span>
+                                            <p class="text-sm text-gray-600">Computer vision and image processing with extensive algorithms</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-sitemap text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">g2o</span>
+                                            <p class="text-sm text-gray-600">General graph optimization framework for SLAM problems</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-calculator text-orange-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">Ceres Solver</span>
+                                            <p class="text-sm text-gray-600">Nonlinear least squares minimizer with automatic differentiation</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-red-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-cubes text-red-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">PCL</span>
+                                            <p class="text-sm text-gray-600">Point Cloud Library for 3D processing and visualization</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-lg p-6 section-box">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                    <i class="fas fa-book text-green-500 mr-2"></i> Learning Materials
+                                </h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-book text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">"Introduction to Visual SLAM"</span>
+                                            <p class="text-sm text-gray-600">Gao Xiang, Tao Zhang - Primary textbook with theory and practice</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-book-open text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">"Multiple View Geometry"</span>
+                                            <p class="text-sm text-gray-600">Hartley & Zisserman - Computer vision classic with mathematical rigor</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-robot text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">"Probabilistic Robotics"</span>
+                                            <p class="text-sm text-gray-600">Thrun et al. - Robotics fundamentals with probabilistic approaches</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-graduation-cap text-orange-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">OpenCV Tutorials</span>
+                                            <p class="text-sm text-gray-600">Official documentation and examples for practical implementation</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-lg p-6 section-box">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                    <i class="fab fa-github text-gray-700 mr-2"></i> Open Source Systems
+                                </h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                                            <i class="fab fa-github text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">ORB-SLAM3</span>
+                                            <p class="text-sm text-gray-600">Most popular feature-based SLAM with multi-map capabilities</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                            <i class="fab fa-github text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">OpenVSLAM</span>
+                                            <p class="text-sm text-gray-600">General visual SLAM framework with various camera models</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                                            <i class="fab fa-github text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">Kimera</span>
+                                            <p class="text-sm text-gray-600">Semantic SLAM with metric-semantic mapping and mesh reconstruction</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                                            <i class="fab fa-github text-orange-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium text-gray-800">VINS-Mono</span>
+                                            <p class="text-sm text-gray-600">Visual-inertial odometry with tight coupling of camera and IMU</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer class="mt-12 pt-8 border-t border-gray-300 text-center text-sm text-gray-500">
+                        <p>&copy; 2025 Advanced Visual SLAM Learning Guide. Content based on "Introduction to Visual SLAM: From Theory to Practice" by Gao Xiang, Tao Zhang, et al. and scientific literature.</p>
+                        <p class="mt-2">This guide is for educational purposes and includes expanded explanations from peer-reviewed research and established textbooks.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation active state
+        const sections = document.querySelectorAll('section, .section-box');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            sidebarItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-target') === current) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Progress tracking
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const trackLength = docHeight - winHeight;
+            const progress = Math.floor(scrollTop / trackLength * 100);
+            
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressPercent').textContent = progress + '%';
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"], .sidebar-item').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                let targetId;
+                if (this.getAttribute('href')) {
+                    targetId = this.getAttribute('href');
+                } else {
+                    targetId = '#' + this.getAttribute('data-target');
+                }
+                
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll to top functionality
+        document.getElementById('scrollToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTop = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTop.style.display = 'flex';
+            } else {
+                scrollToTop.style.display = 'none';
+            }
+        });
+        
+        // Initialize progress bar
+        document.getElementById('progressBar').style.width = '0%';
+    </script>
+</body>
+</html>
