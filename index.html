@@ -187,7 +187,7 @@
     </div>
     <div class="stat-card">
       <div class="stat-icon"><i class="fas fa-blog"></i></div>
-      <div class="stat-number">10+</div>
+      <div class="stat-number">12+</div>
       <div class="stat-label">Technical Blogs</div>
     </div>
     <div class="stat-card">
@@ -500,6 +500,17 @@
   </div>
 </div>
 
+<!-- Blog 12 -->
+<div class="card">
+  <div class="card-content">
+    <h3 class="card-title">📚 Advanced Visual SLAM Learning Guide</h3>
+    <p class="card-text">
+      A comprehensive, scientifically-grounded guide to mastering Visual SLAM from theory to practice. Explore fundamental mathematics including Lie Groups, camera models, and nonlinear optimization. Learn feature-based and direct visual odometry, backend optimization with bundle adjustment, loop closure detection, and mapping techniques. Includes implementation resources using Eigen, OpenCV, g2o, Ceres, and PCL with code examples and references to state-of-the-art systems like ORB-SLAM3 and Kimera.
+    </p>
+    <a href="blogs/blog12.html" class="card-link">Master Visual SLAM</a>
+  </div>
+</div>
+
 
   
     
@@ -659,6 +670,105 @@
   <!-- JavaScript -->
   <script src="js/content-loader.js"></script>
   <script src="js/main.js"></script>
+  
+  <!-- Additional styles for collapsible sections -->
+  <style>
+    .publication-details {
+      margin-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 1rem;
+    }
+    
+    .show-details-btn {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    
+    .show-details-btn:hover {
+      background-color: #e0e0e0;
+      border-color: #ccc;
+    }
+    
+    .show-details-btn i {
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .show-details-btn.expanded i {
+      transform: rotate(180deg);
+    }
+    
+    .publication-details.hidden {
+      display: none;
+    }
+  </style>
+  
+  <!-- Script for collapsible publication details -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all publications
+      const publications = document.querySelectorAll('.publication');
+      
+      publications.forEach(function(pub) {
+        // Find citation and social share sections
+        const citationPara = Array.from(pub.querySelectorAll('p')).find(p => 
+          p.textContent.includes('If you wish to cite this paper')
+        );
+        
+        const socialShare = pub.querySelector('.social-share');
+        const preElement = pub.querySelector('pre');
+        
+        if (citationPara || preElement) {
+          // Create a wrapper for details
+          const detailsWrapper = document.createElement('div');
+          detailsWrapper.className = 'publication-details hidden';
+          
+          // Move citation and pre into wrapper
+          if (socialShare) {
+            detailsWrapper.appendChild(socialShare);
+          }
+          if (citationPara) {
+            detailsWrapper.appendChild(citationPara);
+          }
+          if (preElement) {
+            detailsWrapper.appendChild(preElement);
+          }
+          
+          // Create toggle button
+          const toggleBtn = document.createElement('button');
+          toggleBtn.className = 'show-details-btn';
+          toggleBtn.innerHTML = 'Show Citation & Share <i class="fas fa-chevron-down"></i>';
+          
+          // Add toggle functionality
+          toggleBtn.addEventListener('click', function() {
+            detailsWrapper.classList.toggle('hidden');
+            toggleBtn.classList.toggle('expanded');
+            
+            if (detailsWrapper.classList.contains('hidden')) {
+              toggleBtn.innerHTML = 'Show Citation & Share <i class="fas fa-chevron-down"></i>';
+            } else {
+              toggleBtn.innerHTML = 'Hide Citation & Share <i class="fas fa-chevron-up"></i>';
+            }
+          });
+          
+          // Insert button and details wrapper
+          const cardLink = pub.querySelector('.card-link');
+          if (cardLink) {
+            cardLink.parentNode.insertBefore(toggleBtn, cardLink.nextSibling);
+            toggleBtn.parentNode.insertBefore(detailsWrapper, toggleBtn.nextSibling);
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
