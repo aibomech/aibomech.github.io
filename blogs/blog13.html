@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary meta tags -->
+    <meta name="description" content="A gentle introduction to robotics and artificial intelligence for the AIBOMECH Ramadan series. Learn what robots are, how AI empowers them and where you already encounter these technologies in daily life." />
+    <meta name="keywords" content="Robotics basics, Artificial Intelligence basics, Robots, AI, AIBOMECH, Ramadan series" />
+    <meta name="author" content="Basheer Al‑tawil" />
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Day 1 – Introduction to Robotics & AI – AIBOMECH" />
+    <meta property="og:description" content="Discover the fundamentals of robotics and artificial intelligence. Part of the 30‑day AIBOMECH Ramadan series." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://aibomech.github.io/blogs/day1.html" />
+    <title>Day 1 – Introduction to Robotics & AI – AIBOMECH</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- TailwindCSS CDN for convenience -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            line-height: 1.7;
+            color: #1f2937;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+        }
+        .nav-gradient {
+            background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+        }
+        .section-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border-left: 4px solid #0ea5e9;
+            margin-bottom: 2rem;
+        }
+        .section-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+        .step-icon {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
+        }
+        .concept-highlight {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+        .sidebar-item {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+        .sidebar-item.active {
+            background-color: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 lg:p-12">
+    <!-- Back to Home -->
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+        <a href="../index.html#blog" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+    <!-- Navigation bar with progress (optional) -->
+    <nav class="sticky top-0 nav-gradient shadow-xl z-10 mb-8 rounded-xl overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-wrap justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="text-white font-bold text-xl mr-10">AIBOMECH Ramadan Series</div>
+                    <div class="hidden md:flex space-x-2">
+                        <a href="#intro" class="nav-link text-white">Intro</a>
+                        <a href="#what-is-robotics" class="nav-link text-white">Robotics</a>
+                        <a href="#what-is-ai" class="nav-link text-white">Artificial&nbsp;Intelligence</a>
+                        <a href="#applications" class="nav-link text-white">Applications</a>
+                        <a href="#components" class="nav-link text-white">Components</a>
+                        <a href="#conclusion" class="nav-link text-white">Conclusion</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-white text-sm hidden md:block">Progress: <span id="progressPercent">0%</span></div>
+                    <div class="w-32 bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-emerald-400 h-2.5 rounded-full" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar -->
+        <div class="lg:w-1/4">
+            <div class="bg-white rounded-xl shadow-lg p-6 sidebar">
+                <h3 class="font-bold text-lg text-gray-800 mb-4">Day 1 Navigation</h3>
+                <div class="space-y-2">
+                    <div class="sidebar-item active" data-target="intro">Introduction</div>
+                    <div class="sidebar-item" data-target="what-is-robotics">What&nbsp;Is&nbsp;Robotics?</div>
+                    <div class="sidebar-item" data-target="what-is-ai">What&nbsp;Is&nbsp;AI?</div>
+                    <div class="sidebar-item" data-target="applications">Everyday&nbsp;Applications</div>
+                    <div class="sidebar-item" data-target="components">Robot&nbsp;Components</div>
+                    <div class="sidebar-item" data-target="conclusion">Conclusion & Next&nbsp;Steps</div>
+                </div>
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 class="font-semibold text-blue-800 mb-2">Quick Tips</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• Click on any section to jump directly</li>
+                        <li>• Hover over terms for definitions</li>
+                        <li>• Share your answers to our questions in the comments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Main content -->
+        <div class="lg:w-3/4">
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+                <!-- Header section -->
+                <div class="header-gradient text-white p-8 sm:p-10 lg:p-12">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                        <div>
+                            <h1 class="text-4xl sm:text-5xl font-extrabold mb-2">
+                                Day 1: Introduction to Robotics & AI
+                            </h1>
+                            <p class="text-lg text-blue-100 max-w-2xl">Kick‑off our 30‑day series with a friendly overview of robots and artificial intelligence. Learn what they are, how they differ and why they matter in our daily lives.</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 floating-card">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-center">
+                                <div class="text-3xl">🌙</div>
+                                <div class="text-sm font-semibold">Ramadan&nbsp;Day 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 lg:p-10">
+                    <!-- Introduction section -->
+                    <section id="intro" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="step-icon">1</div>
+                            <div class="ml-4">
+                                <h2 class="text-2xl font-bold text-gray-800">Welcome & Series Overview</h2>
+                                <p class="text-gray-600">Setting the stage for our learning journey</p>
+                            </div>
+                        </div>
+                        <div class="section-box p-6">
+                            <p class="mb-4 text-gray-700">Assalamu alaikum and welcome to <strong>AIBOMECH</strong>! During this blessed month of Ramadan we’re launching a special 30‑day series exploring the fascinating world of robotics and artificial intelligence. Over the next four weeks we’ll take you on a journey from the absolute basics—what robots are made of and how they move—to the latest advances shaping industries, homes and our imaginations. Each episode is designed for everyone, whether you’re a tech enthusiast or have never thought about robots before. We’ll also touch on important ethical topics like privacy and bias, and share tips on how to adopt AI responsibly. Our mission at AIBOMECH is to make complex technology understandable and enjoyable, and to build a community that learns together. By the end of the series you’ll have a solid foundation and a clear idea of how these technologies influence your daily life. To kick things off, tell us what excites you most: building robots, learning about AI or exploring future possibilities?</p>
+                            <img src="e2af2a00-c914-4d53-87c6-94f476403c9c.png" alt="Day 1 roadmap" class="w-full h-auto rounded-lg shadow-lg" />
+                        </div>
+                    </section>
+                    <!-- What is Robotics section -->
+                    <section id="what-is-robotics" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="step-icon">2</div>
+                            <div class="ml-4">
+                                <h2 class="text-2xl font-bold text-gray-800">What Is Robotics?</h2>
+                                <p class="text-gray-600">Understanding the discipline behind the machines</p>
+                            </div>
+                        </div>
+                        <div class="section-box p-6">
+                            <p class="mb-4 text-gray-700">Robotics is an interdisciplinary field that combines mechanical and electrical engineering, computer science and sometimes biology to design, build and operate machines that can act autonomously or semi‑autonomously. A <strong>robot</strong> is a programmable machine capable of carrying out tasks by sensing, planning and acting in the physical world. The robot is the physical embodiment—the body—while <strong>robotics</strong> is the science and engineering behind it. Robots aim to mimic or augment human actions, improve productivity and safety and reduce human error【911110352638171†L199-L205】.</p>
+                            <p class="mb-4 text-gray-700">Early robotic concepts date back to myths and automata, but the modern era began in 1954 when George Devol patented the first programmable robotic arm called <em>Unimate</em>. Installed at a General Motors plant in 1961, Unimate revolutionised manufacturing by performing hazardous tasks like stacking hot metal parts【597678869996811†L128-L166】. Since then, robots have evolved into various forms: industrial arms welding car frames, mobile rovers exploring Mars and friendly domestic helpers cleaning floors.</p>
+                            <div class="concept-highlight">
+                                <h3 class="font-semibold text-gray-800 mb-2">Robotics vs. Robot</h3>
+                                <p class="text-gray-700">It’s important to distinguish between the two: the <em>robot</em> is a specific machine, whereas <em>robotics</em> is the broader field encompassing the theory, design and control of such machines【185551684521014†L424-L427】. Understanding this distinction helps us appreciate the creativity and engineering behind every robotic system.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- What is AI section -->
+                    <section id="what-is-ai" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="step-icon">3</div>
+                            <div class="ml-4">
+                                <h2 class="text-2xl font-bold text-gray-800">What Is Artificial Intelligence?</h2>
+                                <p class="text-gray-600">Giving machines the ability to learn and reason</p>
+                            </div>
+                        </div>
+                        <div class="section-box p-6">
+                            <p class="mb-4 text-gray-700">Artificial intelligence (AI) refers to software systems that perform tasks traditionally requiring human intelligence—recognising patterns, understanding language, learning from experience and making decisions. AI can process huge volumes of data and find patterns humans might miss, enabling machines to optimise tasks, predict outcomes and automate repetitive learning【978673526372158†L114-L167】. Crucially, AI by itself is just code running on computers; it becomes truly transformative when paired with sensors and actuators in a robot.</p>
+                            <p class="mb-4 text-gray-700">In the context of robotics, AI provides the <em>mind</em> that allows robots to perceive their environment, plan actions and adapt. It includes algorithms like machine learning, natural language processing and computer vision, giving robots autonomy and decision‑making capabilities【788119097997636†L120-L139】. When AI is integrated into robots, they gain enhanced perception, learning and adaptation, faster data processing and even predictive maintenance capabilities【788119097997636†L150-L186】. Not all AI uses robots—think of recommendation systems or language models like the one generating this page—and not all robots employ AI; many factory arms follow preprogrammed paths. The fusion of AI with robotics creates intelligent machines that can work safely alongside humans, navigate unpredictable environments and communicate naturally.</p>
+                            <div class="concept-highlight">
+                                <h3 class="font-semibold text-gray-800 mb-2">Types of Machine Learning</h3>
+                                <p class="text-gray-700">Machine learning underpins many AI systems. In <strong>supervised learning</strong>, the algorithm learns from labelled examples; in <strong>unsupervised learning</strong>, it discovers patterns in unlabelled data; and in <strong>reinforcement learning</strong>, it improves through trial and error guided by rewards【497602859318838†L260-L276】. You’ll see these concepts reappear throughout our series.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Applications section -->
+                    <section id="applications" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="step-icon">4</div>
+                            <div class="ml-4">
+                                <h2 class="text-2xl font-bold text-gray-800">Everyday Applications</h2>
+                                <p class="text-gray-600">Robots and AI in your home, work and beyond</p>
+                            </div>
+                        </div>
+                        <div class="section-box p-6">
+                            <p class="mb-4 text-gray-700">You may already interact with robots and AI more than you realise. Domestic robots like vacuum cleaners and lawn mowers navigate your home and yard using sensors to avoid obstacles, saving you time【719528527930395†L233-L239】. Voice‑activated assistants such as smart speakers respond to your commands, play music and control lights. In hospitals, service robots transport supplies and remind patients to take medications【719528527930395†L296-L307】. Retail and hospitality robots deliver groceries or towels and scan shelves to check inventory. These machines are designed to be safe, friendly and user‑friendly, bringing automation and convenience into our daily routines.</p>
+                            <p class="mb-4 text-gray-700">Industrial robots weld car frames, assemble electronics, handle hazardous materials and package goods, boosting productivity in factories【911110352638171†L314-L360】. In agriculture, robots harvest crops and monitor soil conditions; in transportation, autonomous vehicles navigate roads and deliver packages. Robots also venture into hazardous environments—disaster zones, underwater depths and space—protecting human lives and expanding exploration【719528527930395†L331-L352】【719528527930395†L360-L374】. AI‑driven recommendation systems suggest movies and songs, while chatbots assist with customer service. Wherever you look, AI and robotics are quietly augmenting human abilities.</p>
+                            <div class="concept-highlight">
+                                <h3 class="font-semibold text-gray-800 mb-2">Benefits & Challenges</h3>
+                                <p class="text-gray-700">AI and robotics can make our lives easier, safer and more productive, but they also raise ethical questions about privacy, bias and job displacement. Later in the series we will discuss these topics in depth and offer guidelines for responsible adoption【514315224030034†L264-L274】.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Components section -->
+                    <section id="components" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="step-icon">5</div>
+                            <div class="ml-4">
+                                <h2 class="text-2xl font-bold text-gray-800">Key Components of a Robot</h2>
+                                <p class="text-gray-600">Anatomy of a machine</p>
+                            </div>
+                        </div>
+                        <div class="section-box p-6">
+                            <p class="mb-4 text-gray-700">For a robot to function, it needs several essential parts. The <strong>control system</strong> serves as the brain, running software that makes decisions and processes sensor inputs. <strong>Motors and actuators</strong> convert electrical signals into motion—these are the muscles that move wheels, arms or legs. <strong>Sensors</strong> provide feedback about the robot’s internal state and environment: cameras and LiDAR give vision, encoders track joint angles and tactile sensors measure force. The <strong>end effector</strong> is the tool or gripper that interacts with the world, whether welding, painting or picking up objects. A <strong>power supply</strong> fuels the system, and a <strong>communication system</strong> links the robot to users or other machines【911110352638171†L234-L309】.</p>
+                            <p class="mb-4 text-gray-700">Robots rely on a wide array of sensors to perceive their surroundings. Internal sensors measure position, velocity and torque, while external sensors include motion detectors, proximity sensors (ultrasonic or infrared), vision systems (cameras and depth sensors), force/torque sensors, tactile sensors and environmental sensors like temperature, humidity and gas detectors【160069754320640†L203-L238】. Together, these components give robots the sense, actuation and intelligence necessary to operate autonomously.</p>
+                            <div class="concept-highlight">
+                                <h3 class="font-semibold text-gray-800 mb-2">Looking Ahead</h3>
+                                <p class="text-gray-700">In future episodes we will explore these components in detail, from how cameras project 3D scenes onto 2D images to how tactile sensors allow robots to handle delicate objects. Understanding the anatomy of robots will help you appreciate the complexity behind seemingly simple motions.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Conclusion section -->
+                    <section id="conclusion" class="mb-16 fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="step-icon">6</div>
+                            <div class="ml-4">
+                                <h2 class="text-2xl font-bold text-gray-800">Conclusion & Next Steps</h2>
+                                <p class="text-gray-600">Reflect and engage</p>
+                            </div>
+                        </div>
+                        <div class="section-box p-6">
+                            <p class="mb-4 text-gray-700">We hope this introduction has sparked your curiosity about robotics and artificial intelligence. Throughout this series we will delve deeper into the history of robotics, discuss different types of robots and sensors, and explain the fundamentals of machine learning and ethics. By the end you’ll see how these technologies can improve our daily lives and how to engage with them responsibly. Your participation matters—please share your thoughts on today’s question: <em>What excites you most—building robots, learning about AI or exploring future possibilities?</em></p>
+                            <p class="mb-4 text-gray-700">If you enjoyed this article, consider following us on our social media channels under the name <strong>AIBOMECH</strong> for daily videos, figures and discussions throughout Ramadan.</p>
+                        </div>
+                    </section>
+                    <!-- Footnotes -->
+                    <footer class="mt-8 pt-4 border-t border-gray-300 text-sm text-gray-500">
+                        <p>Sources &amp; Further Reading:</p>
+                        <ol class="list-decimal ml-5 mt-2 space-y-1">
+                            <li>The history of the Unimate robotic arm and its impact on manufacturing【597678869996811†L128-L166】.</li>
+                            <li>Definition of robotics and components including control systems, actuators and sensors【911110352638171†L234-L309】【185551684521014†L424-L427】.</li>
+                            <li>Differences between AI and robotics, and benefits of AI integration into robots【788119097997636†L120-L139】【788119097997636†L150-L186】.</li>
+                            <li>Capabilities of AI for processing data and automating tasks【978673526372158†L114-L167】.</li>
+                            <li>Common sensors used in robotics and their roles【160069754320640†L203-L238】.</li>
+                            <li>Examples of robots and AI in daily life and hazardous environments【719528527930395†L233-L239】【719528527930395†L331-L352】.</li>
+                            <li>Ethical considerations including privacy and bias【514315224030034†L264-L274】.</li>
+                            <li>Basics of machine learning: supervised, unsupervised and reinforcement learning【497602859318838†L260-L276】.</li>
+                        </ol>
+                        <p class="mt-4">© 2026 AIBOMECH Ramadan Robotics & AI Series. This blog is part of a 30‑day educational program produced by AIBOMECH to promote the understanding of robotics and artificial intelligence.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Progress and scroll tracking
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+            sidebarItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-target') === current) {
+                    item.classList.add('active');
+                }
+            });
+            // Progress bar
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const trackLength = docHeight - winHeight;
+            const progress = Math.floor(scrollTop / trackLength * 100);
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressPercent').textContent = progress + '%';
+        });
+        // Smooth scroll for nav and sidebar
+        document.querySelectorAll('a[href^="#"], .sidebar-item').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                let targetId;
+                if (this.getAttribute('href')) {
+                    targetId = this.getAttribute('href');
+                } else {
+                    targetId = '#' + this.getAttribute('data-target');
+                }
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+        });
+        // Initialize progress bar
+        document.getElementById('progressBar').style.width = '0%';
+    </script>
+</body>
+</html>
