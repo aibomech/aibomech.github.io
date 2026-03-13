@@ -387,8 +387,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 node.childNodes && 
                 !/(script|style)/i.test(node.tagName)) {
         let hasChanges = false;
-        for (let i = 0; i < node.childNodes.length; i++) {
-          const result = walkText(node.childNodes[i]);
+        // Create a static copy of childNodes to avoid issues when modifying the DOM
+        const children = Array.from(node.childNodes);
+        for (let i = 0; i < children.length; i++) {
+          const result = walkText(children[i]);
           hasChanges = hasChanges || result;
         }
         return hasChanges;
