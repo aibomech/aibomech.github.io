@@ -1,0 +1,21 @@
+{
+  "name": "AIBOMECH - Basheer Al-Tawil",
+  "short_name": "AIBOMECH",
+  "description": "Robotics Engineer & PhD Student specializing in mobile robotics, computer vision, AI, SLAM, and ROS",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logo4.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
