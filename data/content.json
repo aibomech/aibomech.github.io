@@ -3,6 +3,9 @@
     {
       "id": "blog1",
       "title": "Robot Kinematics & Dynamics: Foundations of Robotic Motion",
+      "category": "Robotics",
+      "icon": "fa-graduation-cap",
+      "gradient": "linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%)",
       "description": "Dive deep into the mathematical foundations that govern robot movement. This comprehensive guide covers forward and inverse kinematics, Jacobian matrices, velocity analysis, and dynamic modeling. Learn how robots calculate their joint positions, plan their movements, and interact with physical forces in their environment. Essential reading for anyone serious about understanding robotic motion control.",
       "link": "blogs/blog1.html",
       "linkText": "Read Complete Guide"
@@ -10,6 +13,9 @@
     {
       "id": "blog2",
       "title": "Robot Manipulator Design Fundamentals - Part 1",
+      "category": "Robotics",
+      "icon": "fa-robot",
+      "gradient": "linear-gradient(135deg, #00897b 0%, #004d40 100%)",
       "description": "An in-depth exploration of robotic manipulator design principles, covering mechanical considerations, degrees of freedom analysis, workspace design, and joint configuration strategies. Learn about different manipulator architectures, their advantages and limitations, and how to choose the right design for specific applications. This foundational knowledge is crucial for anyone involved in robotic system design.",
       "link": "blogs/blog2.html",
       "linkText": "Start Learning"
@@ -17,6 +23,9 @@
     {
       "id": "blog3",
       "title": "Robot Manipulator Design Advanced Topics - Part 2",
+      "category": "Robotics",
+      "icon": "fa-cogs",
+      "gradient": "linear-gradient(135deg, #7b1fa2 0%, #4a148c 100%)",
       "description": "Building on the fundamentals, this advanced guide delves into workspace analysis, singularity avoidance, performance optimization techniques, and advanced control strategies. Explore topics like redundancy resolution, optimal path planning, and real-time control implementation. Perfect for researchers and engineers looking to push the boundaries of manipulator performance and capabilities.",
       "link": "blogs/blog3.html",
       "linkText": "Advance Your Knowledge"
@@ -24,6 +33,9 @@
     {
       "id": "blog4",
       "title": "Mechanisms & Machine Elements: Building Blocks of Automation",
+      "category": "Mechanical",
+      "icon": "fa-gear",
+      "gradient": "linear-gradient(135deg, #e65100 0%, #bf360c 100%)",
       "description": "Discover the fundamental mechanical systems that power modern automation. This comprehensive overview covers gear systems, linkage mechanisms, cam and follower systems, belt and chain drives, and their applications in robotic and automated systems. Learn how these mechanical elements contribute to machine functionality, efficiency, and reliability in industrial applications.",
       "link": "blogs/blog4.html",
       "linkText": "Explore Mechanisms"
@@ -31,6 +43,9 @@
     {
       "id": "blog5",
       "title": "Microcontrollers: The Intelligent Heart of Smart Devices",
+      "category": "Electronics",
+      "icon": "fa-microchip",
+      "gradient": "linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%)",
       "description": "Uncover the world of microcontrollers and their pivotal role in modern smart devices and robotic systems. Learn about different microcontroller architectures, programming paradigms, real-time operating systems, and interfacing techniques. Discover how these tiny but powerful computers enable complex behaviors in everything from household appliances to sophisticated industrial robots.",
       "link": "blogs/blog5.html",
       "linkText": "Discover Microcontrollers"
@@ -38,9 +53,102 @@
     {
       "id": "blog6",
       "title": "Arduino Development: From Concept to Reality",
+      "category": "Electronics",
+      "icon": "fa-code",
+      "gradient": "linear-gradient(135deg, #c62828 0%, #b71c1c 100%)",
       "description": "A practical, hands-on guide to Arduino development for robotics and automation projects. Learn essential programming concepts, sensor integration, actuator control, and project development methodologies. This tutorial series takes you from basic LED blinking to complex robotic behaviors, providing the practical skills needed to bring your innovative ideas to life using the Arduino ecosystem.",
       "link": "blogs/blog6.html",
       "linkText": "Start Building"
+    },
+    {
+      "id": "blog7",
+      "title": "ROS Web Video Streaming Guide",
+      "category": "ROS",
+      "icon": "fa-video",
+      "gradient": "linear-gradient(135deg, #0288d1 0%, #006064 100%)",
+      "description": "Comprehensive guide to streaming ROS image topics directly to web browsers without special plugins. Learn how to set up web_video_server, configure multiple video formats, and integrate live robot camera feeds into web applications for remote monitoring and teleoperation.",
+      "link": "blogs/blog7.html",
+      "linkText": "Stream Your Robot"
+    },
+    {
+      "id": "blog8",
+      "title": "Artificial Intelligence in Robotics",
+      "category": "AI & ML",
+      "icon": "fa-brain",
+      "gradient": "linear-gradient(135deg, #ad1457 0%, #880e4f 100%)",
+      "description": "Explore the integration of AI technologies with robotic systems, from neural networks to autonomous decision-making. Covers deep learning for perception, reinforcement learning for control, computer vision, and practical implementation strategies for intelligent robotic systems.",
+      "link": "blogs/blog8.html",
+      "linkText": "Explore AI Robotics"
+    },
+    {
+      "id": "blog9",
+      "title": "AI Agents and Agentic AI Systems",
+      "category": "AI & ML",
+      "icon": "fa-network-wired",
+      "gradient": "linear-gradient(135deg, #283593 0%, #1a237e 100%)",
+      "description": "Deep dive into autonomous AI agents and sophisticated multi-agent systems for intelligent decision-making. Understand how agentic AI frameworks enable robots and software systems to plan, reason, and act autonomously in complex real-world environments.",
+      "link": "blogs/blog9.html",
+      "linkText": "Discover AI Agents"
+    },
+    {
+      "id": "blog10",
+      "title": "The Complete Guide to Robotics Mathematics",
+      "category": "Mathematics",
+      "icon": "fa-calculator",
+      "gradient": "linear-gradient(135deg, #37474f 0%, #263238 100%)",
+      "description": "Master the essential mathematical foundations required for robotics: linear algebra, differential equations, probability theory, optimization, kinematics, and SLAM mathematics. This comprehensive guide bridges the gap between theory and practical robotics implementation.",
+      "link": "blogs/blog10.html",
+      "linkText": "Master the Math"
+    },
+    {
+      "id": "blog11",
+      "title": "Computer Vision Fundamentals for Robotics",
+      "category": "Computer Vision",
+      "icon": "fa-camera",
+      "gradient": "linear-gradient(135deg, #00695c 0%, #004d40 100%)",
+      "description": "Keypoints, descriptors, and feature matching for robotics with Python and OpenCV implementations. Learn SIFT, ORB, BRIEF, and BRISK algorithms, homography estimation, object tracking, and how visual features power modern robotic perception systems.",
+      "link": "blogs/blog11.html",
+      "linkText": "Learn Computer Vision"
+    },
+    {
+      "id": "blog12",
+      "title": "Advanced Visual SLAM Learning Guide",
+      "category": "SLAM",
+      "icon": "fa-eye",
+      "gradient": "linear-gradient(135deg, #00838f 0%, #006064 100%)",
+      "description": "Comprehensive guide to mastering Visual SLAM from theory to practice. Covers feature-based and direct methods, loop closure, map management, multi-sensor fusion, and deep learning integration with step-by-step implementation resources and benchmark comparisons.",
+      "link": "blogs/blog12.html",
+      "linkText": "Master Visual SLAM"
+    },
+    {
+      "id": "blog13",
+      "title": "Day 1 – Introduction to Robotics & AI",
+      "category": "AI & ML",
+      "icon": "fa-rocket",
+      "gradient": "linear-gradient(135deg, #e53935 0%, #b71c1c 100%)",
+      "description": "A gentle introduction to robotics and artificial intelligence. Part of the AIBOMECH Ramadan series — learn what robots are, how AI empowers them, and where you already encounter these technologies in daily life. Perfect starting point for beginners entering the world of robotics.",
+      "link": "blogs/blog13.html",
+      "linkText": "Start the Journey"
+    },
+    {
+      "id": "keypoints-descriptors-matching",
+      "title": "Computer Vision: Keypoints, Descriptors & Matching",
+      "category": "Computer Vision",
+      "icon": "fa-search",
+      "gradient": "linear-gradient(135deg, #00acc1 0%, #006064 100%)",
+      "description": "In-depth tutorial on feature detection and description in computer vision. Master SIFT, ORB, BRISK, and AKAZE algorithms, learn descriptor matching strategies including FLANN and BFMatcher, and apply these techniques to real robotics vision problems with full Python/OpenCV code examples.",
+      "link": "blogs/keypoints-descriptors-matching.html",
+      "linkText": "Explore Features"
+    },
+    {
+      "id": "visual-slam",
+      "title": "Visual SLAM: Theory to Implementation",
+      "category": "SLAM",
+      "icon": "fa-map",
+      "gradient": "linear-gradient(135deg, #1565c0 0%, #0d47a1 100%)",
+      "description": "Complete walkthrough of Visual SLAM systems from mathematical foundations to real-world implementation. Covers stereo and monocular systems, bundle adjustment, pose graph optimization, and state-of-the-art frameworks including ORB-SLAM3, RTAB-Map, and LSD-SLAM with benchmarking guidance.",
+      "link": "blogs/visual_slam.html",
+      "linkText": "Dive into SLAM"
     }
   ],
   "projects": [
