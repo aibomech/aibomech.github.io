@@ -139,7 +139,7 @@
           <div class="stat-label">Projects</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">12+</div>
+          <div class="stat-number">15+</div>
           <div class="stat-label">Tutorials</div>
         </div>
         <div class="stat-item">
@@ -304,87 +304,250 @@
     <!-- Featured Blog Posts -->
     <section id="blog" class="featured-section">
       <div class="section-header">
-        <h2 class="section-title">Latest Tutorials & Articles</h2>
+        <h2 class="section-title">Tutorials & Articles</h2>
+        <p class="section-subtitle">Explore all tutorials and in-depth articles across robotics, AI, computer vision, and more.</p>
+      </div>
+
+      <!-- Blog Category Filter -->
+      <div class="blog-filter-bar">
+        <button class="blog-filter-btn active" data-filter="all">All</button>
+        <button class="blog-filter-btn" data-filter="Robotics">Robotics</button>
+        <button class="blog-filter-btn" data-filter="AI & ML">AI &amp; ML</button>
+        <button class="blog-filter-btn" data-filter="Computer Vision">Computer Vision</button>
+        <button class="blog-filter-btn" data-filter="SLAM">SLAM</button>
+        <button class="blog-filter-btn" data-filter="Mathematics">Mathematics</button>
+        <button class="blog-filter-btn" data-filter="Electronics">Electronics</button>
+        <button class="blog-filter-btn" data-filter="ROS">ROS</button>
+        <button class="blog-filter-btn" data-filter="Mechanical">Mechanical</button>
       </div>
       
-      <div class="featured-grid">
-        <div class="featured-card">
-          <div class="featured-card-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3 class="featured-card-title">Robot Kinematics & Dynamics</h3>
-          <p class="featured-card-description">
-            Deep dive into the mathematical foundations of robot movement, kinematics, and dynamic modeling.
-          </p>
-          <a href="blogs/blog1.html" class="featured-card-link">
-            Read Tutorial <i class="fas fa-arrow-right"></i>
+      <div class="blog-cards-grid" id="blogGrid">
+
+        <!-- Blog 1: Robot Kinematics & Dynamics -->
+        <div class="blog-card" data-category="Robotics">
+          <a href="blogs/blog1.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
           </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Robotics</span>
+            <h3 class="blog-card-title">Robot Kinematics &amp; Dynamics: Foundations of Robotic Motion</h3>
+            <p class="blog-card-desc">Deep dive into the mathematical foundations of robot movement, covering kinematics, Jacobian matrices, velocity analysis, and dynamic modeling.</p>
+            <a href="blogs/blog1.html" class="blog-card-link featured-card-link">Read Tutorial <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
 
-        <div class="featured-card">
-          <div class="featured-card-icon">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3 class="featured-card-title">Visual SLAM Learning Guide</h3>
-          <p class="featured-card-description">
-            Comprehensive guide to mastering Visual SLAM from theory to practice with implementation resources.
-          </p>
-          <a href="blogs/blog12.html" class="featured-card-link">
-            Read Tutorial <i class="fas fa-arrow-right"></i>
+        <!-- Blog 2: Robot Manipulator Design Part 1 -->
+        <div class="blog-card" data-category="Robotics">
+          <a href="blogs/blog2.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #00897b 0%, #004d40 100%);">
+              <i class="fas fa-robot"></i>
+            </div>
           </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Robotics</span>
+            <h3 class="blog-card-title">Robot Manipulator Design Fundamentals – Part 1</h3>
+            <p class="blog-card-desc">Explore robotic manipulator design principles: degrees of freedom, workspace design, joint configurations, and choosing the right architecture for your application.</p>
+            <a href="blogs/blog2.html" class="blog-card-link featured-card-link">Start Learning <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
 
-        <div class="featured-card">
-          <div class="featured-card-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3 class="featured-card-title">AI in Robotics</h3>
-          <p class="featured-card-description">
-            Explore AI integration in robotic systems - from neural networks to autonomous decision-making.
-          </p>
-          <a href="blogs/blog8.html" class="featured-card-link">
-            Read Tutorial <i class="fas fa-arrow-right"></i>
+        <!-- Blog 3: Robot Manipulator Design Part 2 -->
+        <div class="blog-card" data-category="Robotics">
+          <a href="blogs/blog3.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #7b1fa2 0%, #4a148c 100%);">
+              <i class="fas fa-cogs"></i>
+            </div>
           </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Robotics</span>
+            <h3 class="blog-card-title">Robot Manipulator Design Advanced Topics – Part 2</h3>
+            <p class="blog-card-desc">Advanced guide covering workspace analysis, singularity avoidance, redundancy resolution, optimal path planning, and real-time control implementation.</p>
+            <a href="blogs/blog3.html" class="blog-card-link featured-card-link">Advance Your Knowledge <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
 
-        <div class="featured-card">
-          <div class="featured-card-icon">
-            <i class="fas fa-calculator"></i>
-          </div>
-          <h3 class="featured-card-title">Robotics Mathematics</h3>
-          <p class="featured-card-description">
-            Master essential mathematical foundations: linear algebra, differential equations, kinematics, and SLAM.
-          </p>
-          <a href="blogs/blog10.html" class="featured-card-link">
-            Read Tutorial <i class="fas fa-arrow-right"></i>
+        <!-- Blog 4: Mechanisms & Machine Elements -->
+        <div class="blog-card" data-category="Mechanical">
+          <a href="blogs/blog4.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);">
+              <i class="fas fa-gear"></i>
+            </div>
           </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Mechanical</span>
+            <h3 class="blog-card-title">Mechanisms &amp; Machine Elements: Building Blocks of Automation</h3>
+            <p class="blog-card-desc">Comprehensive overview of gear systems, linkage mechanisms, cam and follower systems, belt and chain drives, and their applications in robotic systems.</p>
+            <a href="blogs/blog4.html" class="blog-card-link featured-card-link">Explore Mechanisms <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
 
-        <div class="featured-card">
-          <div class="featured-card-icon">
-            <i class="fas fa-camera"></i>
-          </div>
-          <h3 class="featured-card-title">Computer Vision Fundamentals</h3>
-          <p class="featured-card-description">
-            Keypoints, descriptors & matching for robotics with Python/OpenCV implementations.
-          </p>
-          <a href="blogs/blog11.html" class="featured-card-link">
-            Read Tutorial <i class="fas fa-arrow-right"></i>
+        <!-- Blog 5: Microcontrollers -->
+        <div class="blog-card" data-category="Electronics">
+          <a href="blogs/blog5.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);">
+              <i class="fas fa-microchip"></i>
+            </div>
           </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Electronics</span>
+            <h3 class="blog-card-title">Microcontrollers: The Intelligent Heart of Smart Devices</h3>
+            <p class="blog-card-desc">Uncover microcontroller architectures, programming paradigms, RTOS, and interfacing techniques that power modern smart devices and robotic systems.</p>
+            <a href="blogs/blog5.html" class="blog-card-link featured-card-link">Discover Microcontrollers <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
 
-        <div class="featured-card">
-          <div class="featured-card-icon">
-            <i class="fas fa-video"></i>
-          </div>
-          <h3 class="featured-card-title">ROS Web Video Streaming</h3>
-          <p class="featured-card-description">
-            Guide to streaming ROS image topics to web browsers with multiple video format support.
-          </p>
-          <a href="blogs/blog7.html" class="featured-card-link">
-            Read Tutorial <i class="fas fa-arrow-right"></i>
+        <!-- Blog 6: Arduino Development -->
+        <div class="blog-card" data-category="Electronics">
+          <a href="blogs/blog6.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);">
+              <i class="fas fa-code"></i>
+            </div>
           </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Electronics</span>
+            <h3 class="blog-card-title">Arduino Development: From Concept to Reality</h3>
+            <p class="blog-card-desc">Hands-on Arduino guide for robotics and automation: sensor integration, actuator control, and project development from LED blinking to complex robotic behaviors.</p>
+            <a href="blogs/blog6.html" class="blog-card-link featured-card-link">Start Building <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
+
+        <!-- Blog 7: ROS Web Video Streaming -->
+        <div class="blog-card" data-category="ROS">
+          <a href="blogs/blog7.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #0288d1 0%, #006064 100%);">
+              <i class="fas fa-video"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">ROS</span>
+            <h3 class="blog-card-title">ROS Web Video Streaming Guide</h3>
+            <p class="blog-card-desc">Guide to streaming ROS image topics directly to web browsers without plugins. Set up web_video_server, configure multiple video formats, and integrate live robot camera feeds.</p>
+            <a href="blogs/blog7.html" class="blog-card-link featured-card-link">Stream Your Robot <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog 8: AI in Robotics -->
+        <div class="blog-card" data-category="AI & ML">
+          <a href="blogs/blog8.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #ad1457 0%, #880e4f 100%);">
+              <i class="fas fa-brain"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">AI &amp; ML</span>
+            <h3 class="blog-card-title">Artificial Intelligence in Robotics</h3>
+            <p class="blog-card-desc">Explore AI integration in robotic systems — from neural networks and deep learning for perception to reinforcement learning for autonomous decision-making.</p>
+            <a href="blogs/blog8.html" class="blog-card-link featured-card-link">Explore AI Robotics <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog 9: AI Agents -->
+        <div class="blog-card" data-category="AI & ML">
+          <a href="blogs/blog9.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #283593 0%, #1a237e 100%);">
+              <i class="fas fa-network-wired"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">AI &amp; ML</span>
+            <h3 class="blog-card-title">AI Agents and Agentic AI Systems</h3>
+            <p class="blog-card-desc">Deep dive into autonomous AI agents and multi-agent systems. Understand how agentic AI frameworks enable robots and software to plan, reason, and act in complex environments.</p>
+            <a href="blogs/blog9.html" class="blog-card-link featured-card-link">Discover AI Agents <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog 10: Robotics Mathematics -->
+        <div class="blog-card" data-category="Mathematics">
+          <a href="blogs/blog10.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #37474f 0%, #263238 100%);">
+              <i class="fas fa-calculator"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Mathematics</span>
+            <h3 class="blog-card-title">The Complete Guide to Robotics Mathematics</h3>
+            <p class="blog-card-desc">Master linear algebra, differential equations, probability, optimization, kinematics, and SLAM mathematics — the essential foundations for serious robotics work.</p>
+            <a href="blogs/blog10.html" class="blog-card-link featured-card-link">Master the Math <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog 11: Computer Vision Fundamentals -->
+        <div class="blog-card" data-category="Computer Vision">
+          <a href="blogs/blog11.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #00695c 0%, #004d40 100%);">
+              <i class="fas fa-camera"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Computer Vision</span>
+            <h3 class="blog-card-title">Computer Vision Fundamentals for Robotics</h3>
+            <p class="blog-card-desc">Keypoints, descriptors, and feature matching using Python and OpenCV. Learn SIFT, ORB, BRIEF, BRISK algorithms, homography estimation, and object tracking for robotic perception.</p>
+            <a href="blogs/blog11.html" class="blog-card-link featured-card-link">Learn Computer Vision <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog 12: Advanced Visual SLAM -->
+        <div class="blog-card" data-category="SLAM">
+          <a href="blogs/blog12.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #00838f 0%, #006064 100%);">
+              <i class="fas fa-eye"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">SLAM</span>
+            <h3 class="blog-card-title">Advanced Visual SLAM Learning Guide</h3>
+            <p class="blog-card-desc">Comprehensive guide to Visual SLAM: feature-based and direct methods, loop closure, map management, multi-sensor fusion, and deep learning integration with benchmarks.</p>
+            <a href="blogs/blog12.html" class="blog-card-link featured-card-link">Master Visual SLAM <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog 13: Intro to Robotics & AI -->
+        <div class="blog-card" data-category="AI & ML">
+          <a href="blogs/blog13.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #e53935 0%, #b71c1c 100%);">
+              <i class="fas fa-rocket"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">AI &amp; ML</span>
+            <h3 class="blog-card-title">Day 1 – Introduction to Robotics &amp; AI</h3>
+            <p class="blog-card-desc">A gentle introduction to robotics and artificial intelligence. Part of the AIBOMECH Ramadan series — perfect for beginners entering the world of robotics and AI.</p>
+            <a href="blogs/blog13.html" class="blog-card-link featured-card-link">Start the Journey <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog: Keypoints, Descriptors & Matching -->
+        <div class="blog-card" data-category="Computer Vision">
+          <a href="blogs/keypoints-descriptors-matching.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #00acc1 0%, #006064 100%);">
+              <i class="fas fa-search"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">Computer Vision</span>
+            <h3 class="blog-card-title">Computer Vision: Keypoints, Descriptors &amp; Matching</h3>
+            <p class="blog-card-desc">In-depth tutorial on SIFT, ORB, BRISK, and AKAZE algorithms. Master descriptor matching with FLANN and BFMatcher using full Python/OpenCV code examples.</p>
+            <a href="blogs/keypoints-descriptors-matching.html" class="blog-card-link featured-card-link">Explore Features <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog: Visual SLAM Theory to Implementation -->
+        <div class="blog-card" data-category="SLAM">
+          <a href="blogs/visual_slam.html" class="blog-card-thumb-link">
+            <div class="blog-card-thumbnail" style="background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);">
+              <i class="fas fa-map"></i>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-category">SLAM</span>
+            <h3 class="blog-card-title">Visual SLAM: Theory to Implementation</h3>
+            <p class="blog-card-desc">Complete walkthrough of Visual SLAM — stereo and monocular systems, bundle adjustment, pose graph optimization, and frameworks like ORB-SLAM3, RTAB-Map, and LSD-SLAM.</p>
+            <a href="blogs/visual_slam.html" class="blog-card-link featured-card-link">Dive into SLAM <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
       </div>
     </section>
 
